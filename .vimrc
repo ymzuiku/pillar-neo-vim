@@ -475,7 +475,7 @@ map ; :
 nmap fj :Files<cr>
 " nmap fj :GFiles<cr>
 nmap fk :GFiles?<cr>
-nmap fa :Ag<cr>
+nmap ff :Ag<cr>
 nmap fs @:
 nmap fl :Marks<cr>
 nmap fb :Buffers<cr>

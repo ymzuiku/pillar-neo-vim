@@ -10,7 +10,7 @@ a, e, s, f, ; -, = is diffent VIM keys, Please look `.vimrc` file
 
 First, you must isntall `nodejs` and `brew`, and do it:
 
-1. Clone and init vim-front-end
+### 1. Clone and init vim-front-end
 
 ```sh
 cd ~/
@@ -19,7 +19,7 @@ cd vim-front-end
 bash init.sh
 ```
 
-2. Install Plug
+### 2. Install Plug
 
 ```sh
 $ vim
@@ -29,7 +29,7 @@ $ :PlugInstall
 
 Waiting all Plugin Installed...
 
-3. Install cmake, ctags, YouCompleteMe, fzf, ag
+### 3. Install cmake, ctags, YouCompleteMe, fzf, ag
 ```
 bash YouCompleteMe.sh
 ```
