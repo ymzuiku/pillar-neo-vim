@@ -38,7 +38,7 @@ Use `secondInstall.sh` script install these:
 
 - cmake
 - ctags
-- YouCompleteMe
+- Start YouCompleteMe Server
 - fzf
 - ag
 - prettier
