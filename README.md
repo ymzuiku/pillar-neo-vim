@@ -116,9 +116,6 @@ And other feature:
 - `f/ = :%s/`
 - `fm = format file`
 - `m = commenter multiline in Selected Mode`
-- `cd = delete word`
-- `cy = copy word`
-- `ci = delete word and input`
 - `da = delete to line start`
 - `J = move line down`
 - `K = move line up`

@@ -524,7 +524,7 @@ nmap - <c-b>
 nmap = <c-f>
 
 " c-v在编辑时可用
-inoremap <c-v> <c-r>"
+inoremap <c-v> <c-r>0
 
 " 针对行，换行
 nmap K ddkP
@@ -533,13 +533,19 @@ nmap J ddp
 xmap m gcc
 nmap sm gcc
 " 针对单词的操作
-nmap ci bvEc
-nmap cy bvEy
-nmap cd bvEd
+nmap vi, vi< 
+nmap ci, ci<
+
+"12312312321
+"fghijk
+"fjdksajfdkasf
+"12312312321
+"1fjdksajfdkasf123123123212312312321
+"
+
 " 快速编辑
 nmap e A
 nmap a I
-
 " su隐藏行号和git,为了鼠标复制方便，有时候要隐藏行号
 nmap <leader>@git :GitGutterSignsToggle<cr>
 nmap <leader>@nu! :set nu!<cr>
