@@ -42,8 +42,7 @@ Use `secondInstall.sh` script install these:
 - fzf
 - ag
 - prettier
-- eslint
-- eslint_d
+- eslint, eslint_d
 
 
 Wait all dependent installed.
