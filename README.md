@@ -104,8 +104,8 @@ And other feature:
 - `sn = :tabnew`
 - `st = :tabo`
 - `sm = commenter one line`
-- `si = show files tree`
-- `so = find now file in tree`
+- `si = find now file in tree`
+- `so = show files tree`
 - `su = hidden git and number sign, facility mouse copy multiline`
 - `fa = :Ag`
 - `fj = :Files`

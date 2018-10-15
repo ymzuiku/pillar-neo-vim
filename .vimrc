@@ -10,6 +10,7 @@ Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
@@ -25,6 +26,7 @@ Plug 'tyru/caw.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'groenewege/vim-less'
+Plug 'cakebaker/scss-syntax.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -34,6 +36,8 @@ call plug#end()
 ""系统设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd QuickFixCmdPost *grep* cwindow
+" 突出显示当前行
+" set cursorline
 set encoding=utf-8
 set fileencoding=utf-8
 " set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提示
@@ -179,7 +183,7 @@ let g:gitgutter_max_signs = 500  " default value
 
 let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
 let g:ycm_collect_identifiers_from_tags_files=1	" 开启 YCM 基于标签引擎
-let g:ycm_min_num_of_chars_for_completion=90	" 从第90个键入字符就开始罗列匹配项
+let g:ycm_min_num_of_chars_for_completion=2	" 从第90个键入字符就开始罗列匹配项
 let g:ycm_cache_omnifunc=0	" 禁止缓存匹配项,每次都重新生成匹配项
 let g:ycm_seed_identifiers_with_syntax=1	" 语法关键字补全
 "在注释输入中也能补全
@@ -194,13 +198,13 @@ let g:ycm_show_diagnostics_ui =
 
 " ycm默认需要按ctrl + space 来进行补全，可以在上面的花括号里面加入下面两行代码来直接进行补全
 let g:ycm_semantic_triggers = {
-\   'css': [ 're!^\s{3}', 're!:\s+', '</' ],
-\   'scss': [ 're!^\s{3}', 're!:\s+', '</' ],
-\   'js': [ 're!^\s{3}', 're!:\s+', '</' ],
-\   'jsx': [ 're!^\s{3}', 're!:\s+', '</' ],
-\   'vue': [ 're!^\s{3}', 're!:\s+', '</' ],
-\   'ts': [ 're!^\s{3}', 're!:\s+', '</' ],
-\   'tsx': [ 're!^\s{3}', 're!:\s+', '</' ],
+\   'css': [ 're!^\s{2}', 're!:\s+', '</' ],
+\   'scss': [ 're!^\s{2}', 're!:\s+', '</' ],
+\   'js': [ 're!^\s{2}', 're!:\s+', '</' ],
+\   'jsx': [ 're!^\s{2}', 're!:\s+', '</' ],
+\   'vue': [ 're!^\s{2}', 're!:\s+', '</' ],
+\   'ts': [ 're!^\s{2}', 're!:\s+', '</' ],
+\   'tsx': [ 're!^\s{2}', 're!:\s+', '</' ],
 \ }
 "
 " 关闭函数原型提示
@@ -214,6 +218,19 @@ let g:ycm_show_diagnostics_ui = 0
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
+let g:javascript_conceal_function ="ƒ"
+let g:javascript_conceal_null ="ø"
+let g:javascript_conceal_this ="@"
+let g:javascript_conceal_return ="⇚"
+let g:javascript_conceal_undefined ="¿"
+let g:javascript_conceal_NaN ="ℕ"
+let g:javascript_conceal_prototype ="¶"
+let g:javascript_conceal_static ="•"
+let g:javascript_conceal_super ="Ω"
+let g:javascript_conceal_arrow_function ="⇒"
+let g:javascript_conceal_noarg_arrow_function ="ˆ"
+let g:javascript_conceal_underscore_arrow_function ="¬"
+
 set conceallevel=1
 
 " mxw/vim-jsx
@@ -263,19 +280,19 @@ fu! <SID>EnableJSX()
   if g:jsx_ext_required && !exists('b:jsx_ext_found') | return 0 | endif
   return 1
 endfu
-augroup FiletypeGroup
-    autocmd!
-    autocmd FileType vue syntax sync fromstart
-    autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
-    autocmd BufNewFile,BufRead *.jsx let b:jsx_ext_found = 1
-    autocmd BufNewFile,BufRead *.js
-  \ if <SID>EnableJSX() | set filetype=javascript.jsx | endif
-    autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
-    autocmd BufRead,BufNewFIle *.html setlocal filetype=html
-    autocmd BufRead,BufNewFIle *.css setlocal filetype=css
-    autocmd BufRead,BufNewFIle *.less setlocal filetype=less
-    autocmd BufRead,BufNewFIle *.ts setlocal filetype=typescript
-augroup END
+" augroup FiletypeGroup
+"     autocmd!
+" augroup END
+autocmd FileType vue syntax sync fromstart
+autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+autocmd BufNewFile,BufRead *.jsx let b:jsx_ext_found = 1
+autocmd BufNewFile,BufRead *.js
+\ if <SID>EnableJSX() | set filetype=javascript.jsx | endif
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+autocmd BufRead,BufNewFIle *.html setlocal filetype=html
+autocmd BufRead,BufNewFIle *.css setlocal filetype=css
+autocmd BufRead,BufNewFIle *.less setlocal filetype=less
+autocmd BufRead,BufNewFIle *.ts setlocal filetype=typescript
 
 " json 不隐藏引号
 " let g:vim_json_syntax_conceal = 0
@@ -292,7 +309,8 @@ let NERDTreeShowLineNumbers=0
 let NERDTreeAutoCenter=1
 let NERDTreeShowBookmarks=0
 let NERDTreeQuitOnOpen=1
-let NERDTreeWinSize=60
+" let NERDTreeWinSize=60
+ 
 " 启动就显示Tree
 " autocmd vimenter * NERDTree
 " 没指定文件时，启动显示Tree
@@ -526,13 +544,15 @@ nmap a I
 nmap <leader>@git :GitGutterSignsToggle<cr>
 nmap <leader>@nu! :set nu!<cr>
 nmap su <leader>@git<leader>@nu!
+" 取消高亮显示当前行
+nmap sU :set cursorline!<cr>
 
 " 切换NERDTreeMirror插件
-nmap si :NERDTreeMirror<CR>
-nmap si :NERDTreeToggle<CR>
+nmap so :NERDTreeMirror<CR>
+nmap so :NERDTreeToggle<CR>
 " 焦距当前页面
-nmap <leader>@so :NERDTreeTabsFind<CR>
-nmap so sisl<leader>@so
+nmap <leader>@si :NERDTreeTabsFind<CR>
+nmap si sosl<leader>@si
 "flet g:nerdtree_tabs_autofind=1
 " map si :NERDTreeTabsToggle<CR>
 " 代替ctrl+w分屏幕
