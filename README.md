@@ -83,7 +83,7 @@ And other feature:
 ## Diffent Default VIM config:
 
 - `a, e, s, f, ; -, =, <space>` is diffent VIM keys, Please look `.vimrc` file
-- <space> is vim-easymotion-s
+- `<space>` is vim-easymotion-s
 
 
 ## Ok, enjoy it.
