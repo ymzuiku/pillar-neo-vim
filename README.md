@@ -4,7 +4,7 @@
 - React
 - Vue
 
-a, e, s, f, ; -, = is diffent VIM keys, Please look .vimrc file
+a, e, s, f, ; -, = is diffent VIM keys, Please look `.vimrc` file
 
 ## Install
 
