@@ -69,7 +69,7 @@ Wait all dependent installed.
 
 ![](./img/ag.png)
 
-#### GitChangeFile Search(fzf):
+#### Git change files Search(fzf):
 
 ![](./img/gitfile.png)
 
