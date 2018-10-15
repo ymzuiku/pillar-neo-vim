@@ -20,17 +20,20 @@ Plug 'leafgarland/typescript-vim'
 Plug 'posva/vim-vue'
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 Plug 'tyru/caw.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'groenewege/vim-less'
 Plug 'easymotion/vim-easymotion'
-call plug#end()
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
+call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""系统设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+autocmd QuickFixCmdPost *grep* cwindow
 set encoding=utf-8
 set fileencoding=utf-8
 " set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提示
@@ -172,7 +175,6 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " autocmd FileType apache setlocal commentstring=#\ %s
 let g:AutoPairsFlyMode = 1
 let g:javascript_enable_domhtmlcss = 1
-
 let g:gitgutter_max_signs = 500  " default value
 
 let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
@@ -450,6 +452,12 @@ let g:prettier#config#config_precedence = 'prefer-file'
 " always|never|preserve
 let g:prettier#config#prose_wrap = 'preserve'
 
+" airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='zenburn'
+" 修复airline模式切换延迟
+set ttimeoutlen=0
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""热键设置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -459,6 +467,7 @@ let g:prettier#config#prose_wrap = 'preserve'
 syntax enable
 colorscheme seoul256
 " colorscheme bubblegum-256-light
+" let mapleader="\\"
 nmap <leader>c1 :colorscheme seoul256<cr>
 nmap <leader>c2 :colorscheme bubblegum-256-light<cr>
 nmap <leader>c3 :colorscheme bubblegum-256-dark<cr>
@@ -475,10 +484,10 @@ map ; :
 nmap fj :Files<cr>
 " nmap fj :GFiles<cr>
 nmap fk :GFiles?<cr>
-nmap ff :Ag<cr>
+nmap fa :Ag<cr>
 nmap fs @:
 nmap fl :Marks<cr>
-nmap fb :Buffers<cr>
+nmap ff :Buffers<cr>
 nmap fh :History<cr>
 nmap fw :FZF ~/work<cr>
 nmap f~ :FZF ~/<cr> 
@@ -618,3 +627,7 @@ imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
 if has("autocmd")
  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""结束
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

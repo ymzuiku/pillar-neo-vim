@@ -106,9 +106,10 @@ And other feature:
 - `sm = commenter one line`
 - `si = show files tree`
 - `so = find now file in tree`
-- `ff = :Ag`
+- `fa = :Ag`
 - `fj = :Files`
 - `fk = :GFiles?`
+- `ff = :Buffers change opened buffer`
 - `fl = :Masks`
 - `fs = @:` 
 - `f/ = :%s/`
