@@ -31,6 +31,8 @@ Waiting all plugin installed.
 
 ### 3. Install details
 
+Use `secondInstall.sh` script install these:
+
 - cmake
 - ctags
 - YouCompleteMe
