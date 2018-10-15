@@ -4,7 +4,6 @@
 - React
 - Vue
 
-a, e, s, f, ; -, = is diffent VIM keys, Please look `.vimrc` file
 
 ## Install
 
@@ -80,6 +79,10 @@ And other feature:
 - Use sm (hotKey) commenter one line, or In Select Mode user `m`(hotkey) commeter mutiLine
 - Use gitgutter show git change in every line
 - Other some detile feature look `.vimrc` Plugs
+
+> `a, e, s, f, ; -, =, <space>` is diffent VIM keys, Please look `.vimrc` file
+
+> <space> is vim-easymotion-s
 
 ## Ok, enjoy it.
 
