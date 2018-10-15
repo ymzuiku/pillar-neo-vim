@@ -1,8 +1,11 @@
 # Front end Vim
 
-- html, js, css
+This VIM config focus Javascript:
+
+- Nodejs
 - React
 - Vue
+- html, js, css
 
 ## Install
 
