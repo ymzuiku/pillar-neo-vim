@@ -49,7 +49,9 @@ Wait all dependent installed.
 
 ## After installed, let me preview
 
-#### YouCompleteteMe:
+#### YouCompleteMe:
+
+Use YouCompleteMe and tern_for_vim:
 
 ![](./img/YouCompleteMe.png)
 
