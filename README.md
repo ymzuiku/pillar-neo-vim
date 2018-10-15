@@ -126,11 +126,12 @@ And other feature:
 - `<cr>` select YouCompleteMe info
 - `<c-space>` show YouCompleteMe
 
+These is self hot keys, if you don't like, you can change `.vimrc` easy.
+
 ## UltiSnips
 
 Add `javascript.snippets` in `~/.vim/UltiSnips`, can setting snippets
 
-These is self hot keys, if you don't like, you can change `.vimrc` easy.
 
 ## Ok, enjoy it.
 
