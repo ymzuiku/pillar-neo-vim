@@ -453,7 +453,8 @@ let g:prettier#config#config_precedence = 'prefer-file'
 let g:prettier#config#prose_wrap = 'preserve'
 
 " airline
-let g:airline#extensions#tabline#enabled = 1
+" 显示buffer-tabline 
+" let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='zenburn'
 " 修复airline模式切换延迟
 set ttimeoutlen=0
@@ -482,31 +483,31 @@ nmap <leader>c0 :colorscheme
 map ; :
 " 文件、文件内容搜索
 nmap fj :Files<cr>
-" nmap fj :GFiles<cr>
 nmap fk :GFiles?<cr>
 nmap fa :Ag<cr>
-nmap fs @:
 nmap fl :Marks<cr>
 nmap ff :Buffers<cr>
 nmap fh :History<cr>
 nmap fw :FZF ~/work<cr>
 nmap f~ :FZF ~/<cr> 
+nmap f/ :FZF /<cr> 
+nmap fr :%s/
+nmap fs @:
 
-" 跳转导航
-" nnoremap fo <c-o>
-" nnoremap fi <c-i>
 " 搜索替换
 " :%s/aaa/bbb/c 把aaa换成bbb，/c表示需要询问确认
-nmap f/ :%s/
 
 " 书签设置
 " nmap mm :marks<cr>
 nmap M :delm!
 
 " 移动屏幕
-"
 nmap - <c-b>
 nmap = <c-f>
+
+" c-v在编辑时可用
+inoremap <c-v> <c-r>"
+
 " 针对行，换行
 nmap K ddkP
 nmap J ddp
@@ -520,13 +521,18 @@ nmap cd bvEd
 " 快速编辑
 nmap e A
 nmap a I
-" 切换NERDTreeMirror插件
 
+" su隐藏行号和git,为了鼠标复制方便，有时候要隐藏行号
+nmap <leader>@git :GitGutterSignsToggle<cr>
+nmap <leader>@nu! :set nu!<cr>
+nmap su <leader>@git<leader>@nu!
+
+" 切换NERDTreeMirror插件
 nmap si :NERDTreeMirror<CR>
 nmap si :NERDTreeToggle<CR>
 " 焦距当前页面
-nmap <leader>so :NERDTreeTabsFind<CR>
-nmap so sisl<leader>so
+nmap <leader>@so :NERDTreeTabsFind<CR>
+nmap so sisl<leader>@so
 "flet g:nerdtree_tabs_autofind=1
 " map si :NERDTreeTabsToggle<CR>
 " 代替ctrl+w分屏幕

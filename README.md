@@ -106,6 +106,7 @@ And other feature:
 - `sm = commenter one line`
 - `si = show files tree`
 - `so = find now file in tree`
+- `su = hidden git and number sign, facility mouse copy multiline`
 - `fa = :Ag`
 - `fj = :Files`
 - `fk = :GFiles?`
