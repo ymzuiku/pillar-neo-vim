@@ -30,6 +30,12 @@ Waiting all plugin installed.
 
 ### 3. Install details
 
+```sh
+bash secondInstall.sh
+```
+
+Use `secondInstall.sh` script install these:
+
 - cmake
 - ctags
 - YouCompleteMe
@@ -39,11 +45,6 @@ Waiting all plugin installed.
 - eslint
 - eslint_d
 
-Use `secondInstall.sh` script install these:
-
-```sh
-bash secondInstall.sh
-```
 
 Wait all dependent installed.
 
