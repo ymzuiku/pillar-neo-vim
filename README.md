@@ -53,7 +53,7 @@ Wait all dependent installed.
 
 ![](./img/YouCompleteMe.png)
 
-#### Tree:
+#### Mark git change in tree:
 
 ![](./img/tree.png)
 
@@ -77,7 +77,6 @@ And other feature:
 
 - Use Prettier format
 - Use eslint & eslint_d lint
-- Use sm (hotKey) commenter one line, or In Select Mode user `m`(hotkey) commeter mutiLine
 - Use gitgutter show git change in every line
 - Other some detile feature look `.vimrc` Plugs
 
@@ -103,7 +102,7 @@ And other feature:
 - `fl = :Masks`
 - `fs = @:` 
 - `fm = format file`
-- `xmap m = commenter`
+- `m = commenter multiline in Selected Mode`
 - `<space>` is vim-easymotion-s
 
 These is self hot keys, if you don't like, you can change `.vimrc` easy.
