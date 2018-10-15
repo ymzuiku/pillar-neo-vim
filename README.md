@@ -8,6 +8,8 @@ a, e, s, f, ; -, = is diffent VIM keys, Please look `.vimrc` file
 
 ## Install
 
+First, you must isntall `nodejs` and `brew`, and do it:
+
 1. Clone and init vim-front-end
 
 ```sh
@@ -27,7 +29,7 @@ $ :PlugInstall
 
 Waiting all Plugin Installed...
 
-3. Install YouCompleteMe
+3. Install cmake, ctags, YouCompleteMe, fzf, ag
 ```
 bash YouCompleteMe.sh
 ```
