@@ -114,7 +114,21 @@ And other feature:
 - `f/ = :%s/`
 - `fm = format file`
 - `m = commenter multiline in Selected Mode`
+- `cd = delete word`
+- `cy = copy word`
+- `ci = delete word and input`
+- `da = delete to line start`
+- `J = move line down`
+- `K = move line up`
+- `M = :delm!`
 - `<space>` is vim-easymotion-s
+- `<tab>` select snippets
+- `<cr>` select YouCompleteMe info
+- `<c-space>` show YouCompleteMe
+
+## UltiSnips
+
+Add `javascript.snippets` in `~/.vim/UltiSnips`, can setting snippets
 
 These is self hot keys, if you don't like, you can change `.vimrc` easy.
 
