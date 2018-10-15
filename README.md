@@ -28,7 +28,7 @@ $ :PlugInstall
 
 Waiting all plugin installed.
 
-### 3. Install details
+### 3. Install dependents
 
 ```sh
 bash secondInstall.sh
