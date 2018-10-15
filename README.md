@@ -23,7 +23,7 @@ bash init.sh
 $ vim
 $ :PlugInstall
 ```
-[](img/installPlug.png)
+![](./img/installPlug.png)
 
 Waiting all Plugin Installed...
 
