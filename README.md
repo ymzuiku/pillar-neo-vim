@@ -61,17 +61,21 @@ Wait all dependent installed.
 
 ![](./img/eslint.png)
 
-#### file Search(fzf):
+#### file Search(hotKey: fj):
 
 ![](./img/fzf.png)
 
-#### code Search(ag):
+#### code Search(hotKey: ff):
 
 ![](./img/ag.png)
 
-#### Git change files Search(fzf):
+#### Git change files Search(hotKey: fk):
 
 ![](./img/gitfile.png)
+
+#### vim.easymotion (hotKey: <space>):
+
+![](./img/easymotion.png)
 
 And other feature:
 
