@@ -25,33 +25,66 @@ bash init.sh
 $ vim
 $ :PlugInstall
 ```
+
 ![](./img/installPlug.png)
 
-Waiting all Plugin Installed...
+Waiting all plugin installed.
 
-### 3. Install cmake, ctags, YouCompleteMe, fzf, ag
+### 3. Install details
+
+- cmake
+- ctags
+- YouCompleteMe
+- fzf
+- ag
+- prettier
+- eslint
+- eslint_d
+
+```sh
+bash secondInstall.sh
 ```
-bash YouCompleteMe.sh
-```
 
+Wait all dependent installed.
 
-## Preview
+## Installed, Let me preview
+
 #### YouCompleteteMe:
+
 ![](./img/YouCompleteMe.png)
+
 #### Tree:
+
 ![](./img/tree.png)
+
 #### ESLint:
+
 ![](./img/eslint.png)
+
 #### file Search(fzf):
+
 ![](./img/fzf.png)
+
 #### code Search(ag):
+
 ![](./img/ag.png)
+
 #### GitChangeFile Search(fzf):
+
 ![](./img/gitfile.png)
+
+And other feature:
+
+- Use Prettier format
+- Use eslint & eslint_d lint
+- Use sm (hotKey) commenter one line, or In Select Mode user `m`(hotkey) commeter mutiLine
+- Use gitgutter show git change in every line
+- Other some detile feature look `.vimrc` Plugs
 
 ## Ok, enjoy it.
 
 ## Licenes
+
 ```
 MIT License
 
