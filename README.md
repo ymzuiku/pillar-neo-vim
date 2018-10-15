@@ -23,6 +23,9 @@ bash init.sh
 $ vim
 $ :PlugInstall
 ```
+[](img/installPlug.png)
+
+Waiting all Plugin Installed...
 
 3. Install YouCompleteMe
 ```
