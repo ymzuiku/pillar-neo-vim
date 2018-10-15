@@ -4,7 +4,6 @@
 - React
 - Vue
 
-
 ## Install
 
 First, you must isntall `nodejs` and `brew`, and do it:
@@ -31,8 +30,6 @@ Waiting all plugin installed.
 
 ### 3. Install details
 
-Use `secondInstall.sh` script install these:
-
 - cmake
 - ctags
 - YouCompleteMe
@@ -41,6 +38,8 @@ Use `secondInstall.sh` script install these:
 - prettier
 - eslint
 - eslint_d
+
+Use `secondInstall.sh` script install these:
 
 ```sh
 bash secondInstall.sh
@@ -84,9 +83,30 @@ And other feature:
 
 ## Diffent Default VIM config:
 
-- `a, e, s, f, ; -, =, <space>` is diffent VIM keys, Please look `.vimrc` file
+`a, e, s, w, f, ; -, =, <space>` is diffent VIM keys, Please look `.vimrc` file:
+
+- `; = :`
+- `- = <c-b>`
+- `= = <c-f>`
+- `a = A`
+- `e = I`
+- `s+v\h\j\k\l\c = <c-w>+v\h\j\k\l\c`
+- `ss = :w`
+- `sq = :q`
+- `s1~9 = 1~9gt`
+- `st = :tabnew`
+- `sT = :tabo`
+- `sm = commenter one line`
+- `ff = :Ag`
+- `fj = :Files`
+- `fk = :GFiles?`
+- `fl = :Masks`
+- `fs = @:` 
+- `fm = format file`
+- `xmap m = commenter`
 - `<space>` is vim-easymotion-s
 
+These self hot keys, if you don't like, you can easy change `.vimrc`.
 
 ## Ok, enjoy it.
 

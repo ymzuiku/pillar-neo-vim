@@ -550,23 +550,23 @@ nmap sc <c-w>c
 nmap sn :nohl<cr>
 " 快速保存
 nmap ss :w<cr>
-nmap wq :q<cr> 
+nmap sq :q<cr> 
 " 重新载入文件
-nmap wr :bufdo e<cr>
+nmap sr :bufdo e<cr>
 " 关闭标签
-nmap wo :tabo<cr>
-nmap wn :tabnew<cr>
-nmap wc :tabc<cr>
-nmap w1 1gt
-nmap w2 2gt
-nmap w3 3gt
-nmap w4 4gt
-nmap w5 5gt
-nmap w6 6gt
-nmap w7 7gt
-nmap w8 8gt
-nmap w9 9gt
-nmap w0 :tablast<cr>
+nmap sT :tabo<cr>
+nmap st :tabnew<cr>
+" nmap wc :tabc<cr>
+nmap s1 1gt
+nmap s2 2gt
+nmap s3 3gt
+nmap s4 4gt
+nmap s5 5gt
+nmap s6 6gt
+nmap s7 7gt
+nmap s8 8gt
+nmap s9 9gt
+nmap s0 :tablast<cr>
 
 " 使用系统的tree
 " nmap si :Explore<cr>
