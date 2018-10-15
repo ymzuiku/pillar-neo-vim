@@ -100,10 +100,9 @@ And other feature:
 - `e = I`
 - `s+v\h\j\k\l\c = <c-w>+v\h\j\k\l\c`
 - `ss = :w`
-- `sq = :q`
 - `s1~9 = 1~9gt`
-- `st = :tabnew`
-- `sT = :tabo`
+- `sn = :tabnew`
+- `st = :tabo`
 - `sm = commenter one line`
 - `si = show files tree`
 - `so = find now file in tree`
@@ -112,6 +111,7 @@ And other feature:
 - `fk = :GFiles?`
 - `fl = :Masks`
 - `fs = @:` 
+- `f/ = :%s/`
 - `fm = format file`
 - `m = commenter multiline in Selected Mode`
 - `<space>` is vim-easymotion-s

@@ -547,15 +547,15 @@ nmap sc <c-w>c
 " 打开Tab
 " nmap wt :Te<cr>
 " 搜索后主动取消搜索高亮
-nmap sn :nohl<cr>
+nmap s, :nohl<cr>
 " 快速保存
 nmap ss :w<cr>
-nmap sq :q<cr> 
+" nmap sq :q<cr> 
 " 重新载入文件
 nmap sr :bufdo e<cr>
 " 关闭标签
-nmap sT :tabo<cr>
-nmap st :tabnew<cr>
+nmap st :tabo<cr>
+nmap sn :tabnew<cr>
 " nmap wc :tabc<cr>
 nmap s1 1gt
 nmap s2 2gt
