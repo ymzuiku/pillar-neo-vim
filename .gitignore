@@ -1,0 +1,16 @@
+**/plugged*
+**/.swp
+**/.undo
+**/.backup
+**/.editorconfig
+**/.netrwhist
+**/.DS_Store
+*.sln
+.idea
+.idea
+.gradle
+node_modules/
+**/node_modules/
+npm-debug.log
+*.keystore
+.vscode/
