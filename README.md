@@ -106,7 +106,7 @@ And other feature:
 - `xmap m = commenter`
 - `<space>` is vim-easymotion-s
 
-These self hot keys, if you don't like, you can easy change `.vimrc`.
+These is self hot keys, if you don't like, you can easy change `.vimrc`.
 
 ## Ok, enjoy it.
 
