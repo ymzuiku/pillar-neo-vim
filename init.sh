@@ -1,17 +1,22 @@
 
 # init .vimrc
 nowTime="`date +%Y-%m-%d-%H-%m`"
+vimFrontEnd=~/vim-front-end
+
+cd $vimFrontEnd
 
 if [ -f "~/.vimrc" ];then
   mv ~/.vimrc ~/.vimrc-backup-$nowTime
 fi
+
 if [ -d "~/.vim" ];then
   mv ~/.vim ~/.vimrc-backup-$nowTime
 fi
 
-ln -s .vim ~/.vim
-ls -s .vimrc ~/.vimrc
+mkdir $vimFrontEnd/.vim/.swp || echo ''
+mkdir $vimFrontEnd/.vim/.undo || echo ''
+mkdir $vimFrontEnd/.vim/.backup || echo ''
 
-cd ~/.vim
-mkdir .swp .undo .backup
+ln -s $vimFrontEnd/.vim ~/.vim
+ln -s $vimFrontEnd/.vimrc ~/.vimrc
 
