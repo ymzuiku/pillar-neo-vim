@@ -53,7 +53,7 @@ Wait all dependent installed.
 
 ![](./img/YouCompleteMe.png)
 
-#### Mark git change in tree:
+#### Mark git change in tree(hotKey: `so`):
 
 ![](./img/tree.png)
 
@@ -61,19 +61,19 @@ Wait all dependent installed.
 
 ![](./img/eslint.png)
 
-#### file Search(hotKey: fj):
+#### file Search(hotKey: `fj`):
 
 ![](./img/fzf.png)
 
-#### code Search(hotKey: ff):
+#### code Search(hotKey: `ff`):
 
 ![](./img/ag.png)
 
-#### Git change files Search(hotKey: fk):
+#### Git change files Search(hotKey: `fk`):
 
 ![](./img/gitfile.png)
 
-#### vim.easymotion (hotKey: <space>):
+#### vim.easymotion (hotKey: `<space>`):
 
 ![](./img/easymotion.png)
 
@@ -100,6 +100,8 @@ And other feature:
 - `st = :tabnew`
 - `sT = :tabo`
 - `sm = commenter one line`
+- `si = show files tree`
+- `so = find now file in tree`
 - `ff = :Ag`
 - `fj = :Files`
 - `fk = :GFiles?`
