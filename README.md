@@ -47,7 +47,7 @@ Use `secondInstall.sh` script install these:
 
 Wait all dependent installed.
 
-## After installed, Let me preview
+## After installed, let me preview
 
 #### YouCompleteteMe:
 
