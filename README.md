@@ -133,7 +133,7 @@ These is self hot keys, if you don't like, you can change `.vimrc` easy.
 Add `javascript.snippets` in `~/.vim/UltiSnips`, can setting snippets
 
 
-## Ok, enjoy it.
+## That's all, enjoy it.
 
 ## Licenes
 
