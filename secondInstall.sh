@@ -8,7 +8,9 @@ brew install ctags
 cd ~/.vim/plugged/YouCompleteMe
 ./install.py --js-completer
 ./install.py --tern-complete
-cd ~/.vim/plugged/tern_for_vim
-yarn
+
+# tern对scss的支持不好，所以不使用
+# cd ~/.vim/plugged/tern_for_vim
+# yarn
 
 npm i -g prettier eslint eslint_d

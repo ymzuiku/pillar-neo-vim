@@ -5,7 +5,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Valloric/YouCompleteMe'
-Plug 'ternjs/tern_for_vim'
+" Plug 'ternjs/tern_for_vim'
 Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -309,6 +309,7 @@ let NERDTreeShowLineNumbers=0
 let NERDTreeAutoCenter=1
 let NERDTreeShowBookmarks=0
 let NERDTreeQuitOnOpen=1
+let NERDTreeWinPos=1
 " let NERDTreeWinSize=60
  
 " 启动就显示Tree
@@ -525,7 +526,7 @@ nmap = <c-f>
 
 " c-v在编辑时可用
 inoremap <c-v> <c-r>0
-
+nmap sp "0p
 " 针对行，换行
 nmap K ddkP
 nmap J ddp
@@ -533,8 +534,19 @@ nmap J ddp
 xmap m gcc
 nmap sm gcc
 " 针对单词的操作
-nmap vi, vi< 
-nmap ci, ci<
+" 替换单词方法： yiw 先复制单词，viwp再替换另一个单词
+" vi{ 选中{}中间的内容,不包括{}
+" va{ 选中{}中间内容，包括{}
+" vi( 选中()中间内容
+" vi< 选中<>中间内容
+" vi[ 选中[]中间内容
+" vit 选中中间的内容
+" vi” 选中”"中间内容
+" vi’ 选中”中间的内容
+" vis 选中一个句子
+" vib 选中一个block
+" viw选中一个单词
+" vip 选中一个段落
 
 "12312312321
 "fghijk
@@ -558,7 +570,7 @@ nmap so :NERDTreeMirror<CR>
 nmap so :NERDTreeToggle<CR>
 " 焦距当前页面
 nmap <leader>@si :NERDTreeTabsFind<CR>
-nmap si sosl<leader>@si
+nmap si so<c-w>w<leader>@si
 "flet g:nerdtree_tabs_autofind=1
 " map si :NERDTreeTabsToggle<CR>
 " 代替ctrl+w分屏幕
