@@ -30,12 +30,16 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'mbbill/undotree'
 
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""系统设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd QuickFixCmdPost *grep* cwindow
+" 颜色设置
+syntax enable
+colorscheme seoul256
+" colorscheme bubblegum-256-light
 " 突出显示当前行
 " set cursorline
 set encoding=utf-8
@@ -173,10 +177,19 @@ set completeopt=longest,menu
 "离开插入模式后自动关闭预览窗口
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
+" 修复airline模式切换延迟
+set ttimeoutlen=0
+
+" 打开上次光标位置
+if has("autocmd")
+ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""插件的设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd FileType apache setlocal commentstring=#\ %s
+autocmd QuickFixCmdPost *grep* cwindow
 let g:AutoPairsFlyMode = 1
 let g:javascript_enable_domhtmlcss = 1
 let g:gitgutter_max_signs = 500  " default value
@@ -192,7 +205,7 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
 "注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
-let g:ycm_show_diagnostics_ui = 
+let g:ycm_show_diagnostics_ui =
  \ get( g:, 'ycm_show_diagnostics_ui',
  \ get( g:, 'ycm_register_as_syntastic_checker', 0))
 
@@ -210,7 +223,7 @@ let g:ycm_semantic_triggers = {
 " 关闭函数原型提示
 let g:ycm_add_preview_to_completeopt = 0
 "  关闭错误提示
-let g:ycm_show_diagnostics_ui = 0 
+let g:ycm_show_diagnostics_ui = 0
 
 "set tags+=~/.vim/tags/testtags
 "let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/ycmd/tests/testdata/extra_conf/global_extra_conf.py'
@@ -294,8 +307,6 @@ autocmd BufRead,BufNewFIle *.css setlocal filetype=css
 autocmd BufRead,BufNewFIle *.less setlocal filetype=less
 autocmd BufRead,BufNewFIle *.ts setlocal filetype=typescript
 
-" json 不隐藏引号
-" let g:vim_json_syntax_conceal = 0
 " NERDTree
 " 是否显示隐藏文件
 let NERDTreeShowHidden=1
@@ -311,12 +322,12 @@ let NERDTreeShowBookmarks=0
 let NERDTreeQuitOnOpen=1
 let NERDTreeWinPos=1
 " let NERDTreeWinSize=60
- 
+
 " 启动就显示Tree
 " autocmd vimenter * NERDTree
 " 没指定文件时，启动显示Tree
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " NERDTree的git显示
 let g:NERDTreeIndicatorMapCustom = {
@@ -374,8 +385,6 @@ augroup VimCSS3Syntax
   autocmd FileType css setlocal iskeyword+=-
 augroup END
 
-
-
 " UltiSnips
 " let g:UltiSnipsEditSplit="vertical"
 
@@ -386,7 +395,7 @@ let g:vue_disable_pre_processors=1
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
-" Use compact syntax for prettified multi-line 
+" Use compact syntax for prettified multi-line
 " " let g:NERDCompactSexyComs = 1
 
 " Align line-wise comment delimiters flush left instead of following code indentation
@@ -404,7 +413,7 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
+" Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
 let g:ft = ''
@@ -420,6 +429,7 @@ function! NERDCommenter_before()
     endif
   endif
 endfunction
+
 function! NERDCommenter_after()
   if g:ft == 'vue'
     setf vue
@@ -472,22 +482,16 @@ let g:prettier#config#config_precedence = 'prefer-file'
 let g:prettier#config#prose_wrap = 'preserve'
 
 " airline
-" 显示buffer-tabline 
+" 显示buffer-tabline
 " let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='zenburn'
-" 修复airline模式切换延迟
-set ttimeoutlen=0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""热键设置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 更新vim配置
-" nmap wr :so ~/.vimrc<cr>
-" 颜色设置
-syntax enable
-colorscheme seoul256
-" colorscheme bubblegum-256-light
+" <header> 设置，默认为\
 " let mapleader="\\"
+" 切换不同的主题
 nmap <leader>c1 :colorscheme seoul256<cr>
 nmap <leader>c2 :colorscheme bubblegum-256-light<cr>
 nmap <leader>c3 :colorscheme bubblegum-256-dark<cr>
@@ -497,9 +501,13 @@ nmap <leader>c6 :colorscheme xoria256<cr>
 nmap <leader>c7 :colorscheme 256-grayvim<cr>
 nmap <leader>c8 :colorscheme 256-jungle<cr>
 nmap <leader>c9 :colorscheme babymate256<cr>
-nmap <leader>c0 :colorscheme
 
 map ; :
+" 快速保存
+nmap w :w<cr>
+" 快速编辑
+nmap e A
+nmap a I
 " 文件、文件内容搜索
 nmap fj :Files<cr>
 nmap fk :GFiles?<cr>
@@ -507,18 +515,17 @@ nmap fa :Ag<cr>
 nmap fl :Marks<cr>
 nmap ff :Buffers<cr>
 nmap fh :History<cr>
-nmap fw :FZF ~/work<cr>
-nmap f~ :FZF ~/<cr> 
-nmap f/ :FZF /<cr> 
-nmap fr :%s/
+nmap fg :FZF ~/
 nmap fs @:
-
 " 搜索替换
 " :%s/aaa/bbb/c 把aaa换成bbb，/c表示需要询问确认
+nmap fr :%s/
 
 " 书签设置
 " nmap mm :marks<cr>
 nmap M :delm!
+" 由于K是帮助，没什么用，用来代替<c-o>
+nmap K <c-o>
 
 " 移动屏幕
 nmap - <c-b>
@@ -528,36 +535,12 @@ nmap = <c-f>
 inoremap <c-v> <c-r>0
 nmap sp "0p
 " 针对行，换行
-nmap K ddkP
-nmap J ddp
+nmap <c-k> ddkP
+nmap <c-j> ddp
 " 在选择模式时，按m注释
 xmap m gcc
 nmap sm gcc
-" 针对单词的操作
-" 替换单词方法： yiw 先复制单词，viwp再替换另一个单词
-" vi{ 选中{}中间的内容,不包括{}
-" va{ 选中{}中间内容，包括{}
-" vi( 选中()中间内容
-" vi< 选中<>中间内容
-" vi[ 选中[]中间内容
-" vit 选中中间的内容
-" vi” 选中”"中间内容
-" vi’ 选中”中间的内容
-" vis 选中一个句子
-" vib 选中一个block
-" viw选中一个单词
-" vip 选中一个段落
 
-"12312312321
-"fghijk
-"fjdksajfdkasf
-"12312312321
-"1fjdksajfdkasf123123123212312312321
-"
-
-" 快速编辑
-nmap e A
-nmap a I
 " su隐藏行号和git,为了鼠标复制方便，有时候要隐藏行号
 nmap <leader>@git :GitGutterSignsToggle<cr>
 nmap <leader>@nu! :set nu!<cr>
@@ -566,13 +549,13 @@ nmap su <leader>@git<leader>@nu!
 nmap sU :set cursorline!<cr>
 
 " 切换NERDTreeMirror插件
-nmap so :NERDTreeMirror<CR>
-nmap so :NERDTreeToggle<CR>
+nmap so :NERDTreeMirror<cr>
+nmap so :NERDTreeToggle<cr>
 " 焦距当前页面
-nmap <leader>@si :NERDTreeTabsFind<CR>
+nmap <leader>@si :NERDTreeTabsFind<cr>
 nmap si so<c-w>w<leader>@si
 "flet g:nerdtree_tabs_autofind=1
-" map si :NERDTreeTabsToggle<CR>
+" map si :NERDTreeTabsToggle<cr>
 " 代替ctrl+w分屏幕
 " 上下分割当前屏
 nmap sw <c-w>s
@@ -594,21 +577,23 @@ nmap s, <c-w><
 nmap s= <c-w>+
 nmap s- <c-w>-
 " 切换屏焦点
-nmap ss <c-w>w
+nmap sw <c-w>w
 " 关闭当前屏
 nmap sc <c-w>c
 " 打开Tab
 " nmap wt :Te<cr>
 " 搜索后主动取消搜索高亮
 nmap s, :nohl<cr>
-" 快速保存
-nmap ss :w<cr>
-" nmap sq :q<cr> 
-" 重新载入文件
+" nmap sq :q<cr>
+" 重新载入当前文件
 nmap sr :bufdo e<cr>
+" 更新vim配置
+nmap sR :so ~/.vimrc<cr>
 " 关闭标签
 nmap st :tabo<cr>
 nmap sn :tabnew<cr>
+" 清理所有行尾空格
+nmap s<space> :%s/\s\+$//<cr>:let @/=''<CR>
 " nmap wc :tabc<cr>
 nmap s1 1gt
 nmap s2 2gt
@@ -623,8 +608,7 @@ nmap s0 :tablast<cr>
 
 " 使用系统的tree
 " nmap si :Explore<cr>
-"ctrl+a全选
-map <c-a> ggVG
+
 " 删除当前行但是保留空行
 nmap da v^d
 "格式化
@@ -637,41 +621,64 @@ map <space> <Plug>(easymotion-s)
 " 跳转错误
 nmap <silent> s[ <Plug>(ale_previous_wrap)
 nmap <silent> s] <Plug>(ale_next_wrap)
-" 提示路径
-"imap <c-m> <c-x><c-f>
-" 补全和snip的热键设置
+
+" ycm和snip的热键设置
 let g:UltiSnipsExpandTrigger="<tab>"
 " " let g:UltiSnipsJumpForwardTrigger="<tab>"
 " " let g:UltiSnipsJumpBackwardTrgger="<leader><tab>"
 let g:UltiSnipsListSnippets="<c-e>"
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-nnoremap fp :YcmCompleter GoToDeclaration<CR>
-nnoremap fo :YcmCompleter GoToDefinition<CR>
-nnoremap fi :YcmCompleter GoToDefinitionElseDeclaration<CR>
+inoremap <expr> <cr>       pumvisible() ? "\<c-y>" : "\<cr>"
+inoremap <expr> <Down>     pumvisible() ? "\<c-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<c-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<c-p>\<c-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<c-p>\<c-n>" : "\<PageUp>"
+nnoremap fp :YcmCompleter GoToDeclaration<cr>
+nnoremap fo :YcmCompleter GoToDefinition<cr>
+nnoremap fi :YcmCompleter GoToDefinitionElseDeclaration<cr>
 " 直接触发自动补全
-let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_key_invoke_completion = '<c-space>'
 
-inoremap <silent><expr> ( complete_parameter#pre_complete("()")
-smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
-imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+" smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+" imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+" smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+" imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""再编程
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 打开上次光标位置
-if has("autocmd")
- au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+" undo-tree
+nnoremap ss :UndotreeToggle<cr>
+" g- g+ 切换 undotree
+nmap g= g+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""结束
+""VIM默认热荐记录
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 打开路径的文件是gf，跳回是<c-o>
+
+" 30G 等于跳转到第三十行
+" gd等于用当前单词搜搜
+" `` 在两个编辑的地方来回跳转
+" <c-a> 当前光标往后遇到的第一个数字加1, 3<c-a>加3
+" <c-x> 和<c-a>类似，减少1
+
+" selectMode模式下按=，vim的默格式代码
+
+" d/xxx<cr> 从当前光标删除至跳转的位置
+
+" 针对单词的操作
+" 替换单词方法： yiw 先复制单词，viwp再替换另一个单词
+" 以下v都可以使用c、d、y来代替以达到不同的效果，vi表示某范围内，va表示某范围内加范围边缘
+" vi{ 选中{}中间的内容,不包括{}
+" va{ 选中{}中间内容，包括{}
+" vi( 选中()中间内容
+" vi< 选中<>中间内容
+" vi[ 选中[]中间内容
+" vit 选中中间的内容
+" vi” 选中”"中间内容
+" vi’ 选中”中间的内容
+" vis 选中一个句子
+" vib 选中一个block
+" viw选中一个单词
+" vip 选中一个段落
+"
+"

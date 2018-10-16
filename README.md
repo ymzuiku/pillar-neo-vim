@@ -47,7 +47,6 @@ Use `secondInstall.sh` script install these:
 - prettier
 - eslint, eslint_d
 
-
 Wait all dependent installed.
 
 ## After installed, let me preview
@@ -98,8 +97,8 @@ And other feature:
 - `= = <c-f>`
 - `a = A`
 - `e = I`
+- `w = :w`
 - `s+v\h\j\k\l\c = <c-w>+v\h\j\k\l\c`
-- `ss = :w`
 - `s1~9 = 1~9gt`
 - `sn = :tabnew`
 - `st = :tabo`
@@ -107,18 +106,20 @@ And other feature:
 - `si = find now file in tree`
 - `so = show files tree`
 - `su = hidden git and number sign, facility mouse copy multiline`
+- `s<space> 去除文件行尾空格`
+- `ss 显示undo-tree，g-, g= 切换undo-tree`
 - `fa = :Ag`
 - `fj = :Files`
 - `fk = :GFiles?`
 - `ff = :Buffers change opened buffer`
 - `fl = :Masks`
-- `fs = @:` 
-- `f/ = :%s/`
+- `fs = @:`
+- `fr = :%s/`
 - `fm = format file`
 - `m = commenter multiline in Selected Mode`
 - `da = delete to line start`
-- `J = move line down`
-- `K = move line up`
+- `<c-j> = move line down`
+- `<c-k> = move line up`
 - `M = :delm!`
 - `<space>` is vim-easymotion-s
 - `<tab>` select snippets
@@ -130,7 +131,6 @@ These is self hot keys, if you don't like, you can change `.vimrc` easy.
 ## UltiSnips
 
 Add `javascript.snippets` in `~/.vim/UltiSnips`, can setting snippets
-
 
 ## That's all, enjoy it.
 
