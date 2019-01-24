@@ -510,8 +510,8 @@ map ' "
 " nmap w :w<cr>
 
 " 移动屏幕
-" nmap - <c-b>
-" nmap = <c-f>
+nmap - <c-b>
+nmap = <c-f>
 
 " 文件、文件内容搜索
 nmap fj :Files<cr>

@@ -124,10 +124,12 @@ Use: `v file.js` open vim
 
 ## Diffent Default VIM config:
 
-`s, f, ; <space>` is diffent VIM keys, Please look `.vimrc` file:
+`s, f, ;, ', -, =, <space>` is diffent VIM keys, Please look `.vimrc` file:
 
 - `; = :`
 - `' = "`
+- `- = <c-b> -flip page up, because tmux uesd <c-b>`
+- `= = <c-f> -flip page down`
 - `s+v\h\j\k\l\c = <c-w>+v\h\j\k\l\c`
 - `s1~9 = 1~9gt`
 - `sn = :tabnew`
