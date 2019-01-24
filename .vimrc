@@ -322,7 +322,7 @@ let NERDTreeAutoCenter=1
 let NERDTreeShowBookmarks=0
 let NERDTreeQuitOnOpen=1
 let NERDTreeWinPos=1
-" let NERDTreeWinSize=60
+let NERDTreeWinSize=70
 
 " 启动就显示Tree
 " autocmd vimenter * NERDTree
