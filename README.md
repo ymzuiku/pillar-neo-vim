@@ -71,7 +71,7 @@ Use YouCompleteMe and tern_for_vim:
 
 ![](./img/fzf.png)
 
-#### code Search(hotKey: `ff`):
+#### code Search(hotKey: `fa`):
 
 ![](./img/ag.png)
 
