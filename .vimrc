@@ -35,6 +35,7 @@ Plug 'mbbill/undotree'
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""系统设置
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 颜色设置
 syntax enable
@@ -503,11 +504,15 @@ nmap <leader>c8 :colorscheme 256-jungle<cr>
 nmap <leader>c9 :colorscheme babymate256<cr>
 
 map ; :
+map ' "
+
 " 快速保存
-nmap w :w<cr>
-" 快速编辑
-nmap e A
-nmap a I
+" nmap w :w<cr>
+
+" 移动屏幕
+" nmap - <c-b>
+" nmap = <c-f>
+
 " 文件、文件内容搜索
 nmap fj :Files<cr>
 nmap fk :GFiles?<cr>
@@ -527,9 +532,6 @@ nmap M :delm!
 " 由于K是帮助，没什么用，用来代替<c-o>
 nmap K <c-o>
 
-" 移动屏幕
-nmap - <c-b>
-nmap = <c-f>
 
 " c-v在编辑时可用
 inoremap <c-v> <c-r>0
@@ -544,9 +546,9 @@ nmap sm gcc
 " su隐藏行号和git,为了鼠标复制方便，有时候要隐藏行号
 nmap <leader>@git :GitGutterSignsToggle<cr>
 nmap <leader>@nu! :set nu!<cr>
-nmap su <leader>@git<leader>@nu!
+nmap sg <leader>@git<leader>@nu!
 " 取消高亮显示当前行
-nmap sU :set cursorline!<cr>
+nmap sG :set cursorline!<cr>
 
 " 切换NERDTreeMirror插件
 nmap so :NERDTreeMirror<cr>

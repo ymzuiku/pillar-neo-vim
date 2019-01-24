@@ -1,5 +1,7 @@
 # Front end Vim
 
+> This package testing Mac OS, other System please look and edit `init.sh` and `sectiondInstall.sh`
+
 This VIM config focus Javascript:
 
 - Nodejs
@@ -88,16 +90,44 @@ And other feature:
 - Use gitgutter show git change in every line
 - Other some detile feature look `.vimrc` Plugs
 
+### If mac use vim open file, have this error:
+
+`YouCompleteMe unavailable: cannot import name _remove_dead_weakref`
+
+And close vim, print this:
+
+```
+Vim: Caught deadly signal SEGV
+Vim: Finished.
+```
+
+This error is python path unused system python, need use system python, fix bug like this:
+
+```sh
+$ python -V # echo like: Python 2.7.15
+$ export PATH=/usr/bin:$PATH
+$ python -V # echo like: Python 2.7.10
+```
+
+If you need always chagne python PATH, you need `export PATH` in `.bash_profile`
+
+If you didn't want always change PATH, you can add `function` in `.bash_profile`, like this:
+
+```sh
+function v(){
+  export path=/usr/bin:$path
+  vim $1 $2 $3 $4 $5 $6 $7 $8 $9
+}
+```
+
+Use: `v file.js` open vim
+
 ## Diffent Default VIM config:
 
-`a, e, s, w, f, ; -, =, <space>` is diffent VIM keys, Please look `.vimrc` file:
+`s, f, ; <space>` is diffent VIM keys, Please look `.vimrc` file:
 
 - `; = :`
-- `- = <c-b>`
-- `= = <c-f>`
-- `a = A`
-- `e = I`
-- `w = :w`
+- `' = "`
 - `s+v\h\j\k\l\c = <c-w>+v\h\j\k\l\c`
 - `s1~9 = 1~9gt`
 - `sn = :tabnew`
@@ -105,18 +135,19 @@ And other feature:
 - `sm = commenter one line`
 - `si = find now file in tree`
 - `so = show files tree`
-- `su = hidden git and number sign, facility mouse copy multiline`
-- `s<space> 去除文件行尾空格`
-- `ss 显示undo-tree，g-, g= 切换undo-tree`
-- `fa = :Ag`
-- `fj = :Files`
-- `fk = :GFiles?`
-- `ff = :Buffers change opened buffer`
-- `fl = :Masks`
+- `sg = hidden/show git and number sign, facility mouse copy multiline`
+- `sG = hidden/show hight line`
+- `s<space> delete line end space`
+- `su hidden/show undo-tree，g-, g= switch undo-tree`
+- `fa = :Ag -find code`
+- `fj = :Files -find file`
+- `fk = :GFiles? -find git change file`
+- `ff = :Buffers -change opened buffer`
+- `fl = :Masks -find masks`
 - `fs = @:`
-- `fr = :%s/`
+- `fr = :%s/ -replace`
 - `fm = format file`
-- `m = commenter multiline in Selected Mode`
+- `m = commenter multiline in Selected Mode 在多行选择下, 注释多行`
 - `da = delete to line start`
 - `<c-j> = move line down`
 - `<c-k> = move line up`
@@ -131,6 +162,10 @@ These is self hot keys, if you don't like, you can change `.vimrc` easy.
 ## UltiSnips
 
 Add `javascript.snippets` in `~/.vim/UltiSnips`, can setting snippets
+
+## Markdown
+
+This package have markdow code hightlight, but not install markdow preview, you can use vim edit markdown, and use other Application preview markdown, because `Entities should not be multiplied unnecessarily`
 
 ## That's all, enjoy it.
 
