@@ -491,7 +491,7 @@ let g:airline_theme='zenburn'
 ""热键设置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " <header> 设置，默认为\
-" let mapleader="\\"
+let mapleader="\<space>"
 " 切换不同的主题
 nmap <leader>c1 :colorscheme seoul256<cr>
 nmap <leader>c2 :colorscheme bubblegum-256-light<cr>
@@ -618,7 +618,7 @@ nmap da v^d
 " map fM :Neoformat jsbeautify<cr>
 nmap fm <Plug>(Prettier)
 " easymotion 跳转
-map <space> <Plug>(easymotion-s)
+nmap \ <Plug>(easymotion-s)
 
 " 跳转错误
 nmap <silent> s[ <Plug>(ale_previous_wrap)

@@ -124,8 +124,9 @@ Use: `v file.js` open vim
 
 ## Diffent Default VIM config:
 
-`s, f, ;, ', -, =, <space>` is diffent VIM keys, Please look `.vimrc` file:
+`s, f, ;, ', -, =, \` is diffent VIM keys, Please look `.vimrc` file:
 
+- `space = <Leader>`
 - `; = :`
 - `' = "`
 - `- = <c-b> -flip page up, because tmux uesd <c-b>`
@@ -154,7 +155,7 @@ Use: `v file.js` open vim
 - `<c-j> = move line down`
 - `<c-k> = move line up`
 - `M = :delm!`
-- `<space>` is vim-easymotion-s
+- `\` is vim-easymotion-s
 - `<tab>` select snippets
 - `<cr>` select YouCompleteMe info
 - `<c-space>` show YouCompleteMe
