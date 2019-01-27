@@ -124,18 +124,17 @@ Use: `v file.js` open vim
 
 ## Diffent Default VIM config:
 
-`s, f, ;, ', -, =, \` is diffent VIM keys, Please look `.vimrc` file:
+`s, f, ;, -, =, \` is diffent VIM keys, Please look `.vimrc` file:
 
 - `space = <Leader>`
 - `; = :`
-- `' = "`
 - `- = <c-b> -flip page up, because tmux uesd <c-b>`
 - `= = <c-f> -flip page down`
 - `s+v\h\j\k\l\c = <c-w>+v\h\j\k\l\c`
-- `s1~9 = 1~9gt`
 - `sn = :tabnew`
 - `st = :tabo`
 - `sm = commenter one line`
+- `m = commenter multiline in VISUAL Mode`
 - `si = find now file in tree`
 - `so = show files tree`
 - `sg = hidden/show git and number sign, facility mouse copy multiline`
@@ -147,18 +146,25 @@ Use: `v file.js` open vim
 - `fk = :GFiles? -find git change file`
 - `ff = :Buffers -change opened buffer`
 - `fl = :Masks -find masks`
-- `fs = @:`
+- `f2 = @:`
+- `fs = :w`
 - `fr = :%s/ -replace`
 - `fm = format file`
-- `m = commenter multiline in Selected Mode 在多行选择下, 注释多行`
 - `da = delete to line start`
 - `<c-j> = move line down`
 - `<c-k> = move line up`
 - `M = :delm!`
+- `K = <c-o>
 - `\` is vim-easymotion-s
 - `<tab>` select snippets
 - `<cr>` select YouCompleteMe info
 - `<c-space>` show YouCompleteMe
+
+Fast copy and paste:
+
+- `0~9 = "0~9y in VISUAL mode`
+- `f0~9 = "0~9p`
+- `F0~9 = "0~0P`
 
 These is self hot keys, if you don't like, you can change `.vimrc` easy.
 

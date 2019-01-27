@@ -512,7 +512,6 @@ nmap <leader>c8 :colorscheme 256-jungle<cr>
 nmap <leader>c9 :colorscheme babymate256<cr>
 
 map ; :
-map ' "
 
 " 快速保存
 nmap fs :w<cr>
@@ -528,7 +527,7 @@ nmap fl :Marks<cr>
 nmap ff :Buffers<cr>
 nmap fh :History<cr>
 nmap fg :FZF ~/
-nmap f2 @:
+nmap f@ @:
 " 搜索替换
 " :%s/aaa/bbb/c 把aaa换成bbb，/c表示需要询问确认
 nmap fr :%s/
@@ -550,6 +549,39 @@ nmap <c-j> ddp
 " 在选择模式时，按m注释
 xmap m gcc
 nmap sm gcc
+
+xmap 1 "1y
+xmap 2 "2y
+xmap 3 "3y
+xmap 4 "4y
+xmap 5 "5y
+xmap 6 "6y
+xmap 7 "7y
+xmap 8 "8y
+xmap 9 "9y
+xmap 0 "0y
+
+nmap f1 "1p
+nmap f2 "2p
+nmap f3 "3p
+nmap f4 "4p
+nmap f5 "5p
+nmap f6 "6p
+nmap f7 "7p
+nmap f8 "8p
+nmap f9 "9p
+nmap f0 "0p
+
+nmap F1 "1P
+nmap F2 "2P
+nmap F3 "3P
+nmap F4 "4P
+nmap F5 "5P
+nmap F6 "6P
+nmap F7 "7P
+nmap F8 "8P
+nmap F9 "9P
+nmap F0 "0P
 
 " su隐藏行号和git,为了鼠标复制方便，有时候要隐藏行号
 nmap <leader>@git :GitGutterSignsToggle<cr>
@@ -605,16 +637,7 @@ nmap sn :tabnew<cr>
 " 清理所有行尾空格
 nmap s<space> :%s/\s\+$//<cr>:let @/=''<CR>
 " nmap wc :tabc<cr>
-nmap s1 1gt
-nmap s2 2gt
-nmap s3 3gt
-nmap s4 4gt
-nmap s5 5gt
-nmap s6 6gt
-nmap s7 7gt
-nmap s8 8gt
-nmap s9 9gt
-nmap s0 :tablast<cr>
+nmap <leader>0 :tablast<cr>
 
 " 使用系统的tree
 " nmap si :Explore<cr>
