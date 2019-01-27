@@ -124,17 +124,17 @@ Use: `v file.js` open vim
 
 ## Diffent Default VIM config:
 
-`s, f, ;, -, =, \` is diffent VIM keys, Please look `.vimrc` file:
+`s, f, J, K, \` is diffent VIM keys, Please look `.vimrc` file:
 
 - `space = <Leader>`
-- `; = :`
 - `- = <c-b> -flip page up, because tmux uesd <c-b>`
 - `= = <c-f> -flip page down`
 - `s+v\h\j\k\l\c = <c-w>+v\h\j\k\l\c`
 - `sn = :tabnew`
 - `st = :tabo`
-- `sm = commenter one line`
+- `M = commenter one line`
 - `m = commenter multiline in VISUAL Mode`
+- `sm = :Masks -find masks`
 - `si = find now file in tree`
 - `so = show files tree`
 - `sg = hidden/show git and number sign, facility mouse copy multiline`
@@ -142,19 +142,18 @@ Use: `v file.js` open vim
 - `s<space> delete line end space`
 - `su hidden/show undo-tree，g-, g= switch undo-tree`
 - `fa = :Ag -find code`
-- `fj = :Files -find file`
-- `fk = :GFiles? -find git change file`
-- `ff = :Buffers -change opened buffer`
-- `fl = :Masks -find masks`
-- `f2 = @:`
+- `ff = :Files -find file`
+- `fg = :GFiles? -find git change file`
+- `fb = :Buffers -change opened buffer`
+- `fm = format file`
+- `f@ = @:`
 - `fs = :w`
 - `fr = :%s/ -replace`
-- `fm = format file`
-- `da = delete to line start`
+- `fM = :delm!`
 - `<c-j> = move line down`
 - `<c-k> = move line up`
-- `M = :delm!`
-- `K = <c-o>
+- `J = <c-f>
+- `K = <c-b>
 - `\` is vim-easymotion-s
 - `<tab>` select snippets
 - `<cr>` select YouCompleteMe info

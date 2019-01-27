@@ -28,8 +28,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'groenewege/vim-less'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'easymotion/vim-easymotion'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
+Plug 'liuchengxu/eleline.vim'
 Plug 'mbbill/undotree'
 
 call plug#end()
@@ -43,7 +42,7 @@ colorscheme seoul256
 
 " colorscheme bubblegum-256-light
 " 突出显示当前行
-" set cursorline
+set cursorline
 set encoding=utf-8
 set fileencoding=utf-8
 " set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提示
@@ -60,7 +59,7 @@ set showcmd         " 输入的命令显示出来，看的清楚些
 set scrolloff=12     " 光标移动到buffer的顶部和底部时保持3行距离
 set novisualbell    " 不要闪烁(不明白)
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容
-set laststatus=1    " 永远不显示0 启动显示状态行(1),总是显示状态行(2)
+set laststatus=2    " 永远不显示0 启动显示状态行(1),总是显示状态行(2)
 "set foldenable      " 允许折叠
 set nofoldenable " 不允许折叠
 "set foldmethod=manual   " 手动折叠
@@ -179,8 +178,6 @@ set completeopt=longest,menu
 "离开插入模式后自动关闭预览窗口
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
-" 修复airline模式切换延迟
-"set ttimeoutlen=0
 
 
 " 打开上次光标位置
@@ -490,16 +487,18 @@ let g:prettier#config#config_precedence = 'prefer-file'
 " always|never|preserve
 let g:prettier#config#prose_wrap = 'preserve'
 
-" airline
-" 显示buffer-tabline
-" let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='zenburn'
+" 简化eleline的样式,不显示右边
+let g:eleline_slim = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""热键设置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " <header> 设置，默认为\
 let mapleader="\<space>"
+
+" 重新加载vimrc
+nmap <leader>r :source ~/.vimrc<cr>
+
 " 切换不同的主题
 nmap <leader>c1 :colorscheme seoul256<cr>
 nmap <leader>c2 :colorscheme bubblegum-256-light<cr>
@@ -511,45 +510,51 @@ nmap <leader>c7 :colorscheme 256-grayvim<cr>
 nmap <leader>c8 :colorscheme 256-jungle<cr>
 nmap <leader>c9 :colorscheme babymate256<cr>
 
-map ; :
+" map ; :
 
 " 快速保存
 nmap fs :w<cr>
 " 移动屏幕
-nmap - <c-b>
-nmap = <c-f>
+nmap K <c-b>
+nmap J <c-f>
+nmap <leader>j J
 
 " 文件、文件内容搜索
-nmap fj :Files<cr>
-nmap fk :GFiles?<cr>
+nmap ff :Files<cr>
+nmap fg :GFiles?<cr>
 nmap fa :Ag<cr>
-nmap fl :Marks<cr>
-nmap ff :Buffers<cr>
+nmap fb :Buffers<cr>
 nmap fh :History<cr>
-nmap fg :FZF ~/
+nmap f~ :FZF ~/
+nmap f/ :FZF /
 nmap f@ @:
+"格式化
+nmap fm <Plug>(Prettier)
+nmap sm :Marks<cr>
 " 搜索替换
 " :%s/aaa/bbb/c 把aaa换成bbb，/c表示需要询问确认
 nmap fr :%s/
 
+nnoremap fp :YcmCompleter GoToDeclaration<cr>
+nnoremap fo :YcmCompleter GoToDefinition<cr>
+nnoremap fi :YcmCompleter GoToDefinitionElseDeclaration<cr>
+
 " 书签设置
 " nmap mm :marks<cr>
-nmap M :delm!
+nmap fM :delm!<cr>
 
 
 " 由于K是帮助，没什么用，用来代替c-o
-nmap K <c-o>
+" nmap K <c-o>
 
-" c-v在编辑时可用
-inoremap <c-v> <c-r>0
-nmap sp "0p
 " 针对行，换行
 nmap <c-k> ddkP
 nmap <c-j> ddp
 " 在选择模式时，按m注释
 xmap m gcc
-nmap sm gcc
+nmap M gcc
 
+" 更科学的复制粘贴
 xmap 1 "1y
 xmap 2 "2y
 xmap 3 "3y
@@ -590,6 +595,7 @@ nmap sg <leader>@git<leader>@nu!
 " 取消高亮显示当前行
 nmap sG :set cursorline!<cr>
 
+
 " 切换NERDTreeMirror插件
 nmap so :NERDTreeMirror<cr>
 nmap so :NERDTreeToggle<cr>
@@ -618,14 +624,8 @@ nmap s. <c-w>>
 nmap s, <c-w><
 nmap s= <c-w>+
 nmap s- <c-w>-
-" 切换屏焦点
-nmap sw <c-w>w
-" 关闭当前屏
-nmap sc <c-w>c
-" 打开Tab
-" nmap wt :Te<cr>
 " 搜索后主动取消搜索高亮
-nmap s, :nohl<cr>
+nmap sn :nohl<cr>
 " nmap sq :q<cr>
 " 重新载入当前文件
 nmap sr :bufdo e<cr>
@@ -633,7 +633,12 @@ nmap sr :bufdo e<cr>
 nmap sR :so ~/.vimrc<cr>
 " 关闭标签
 nmap st :tabo<cr>
-nmap sn :tabnew<cr>
+" 打开Tab
+nmap sc :tabnew<cr>
+" 切换屏焦点
+nmap sw <c-w>w
+" 关闭当前屏
+nmap sx <c-w>c
 " 清理所有行尾空格
 nmap s<space> :%s/\s\+$//<cr>:let @/=''<CR>
 " nmap wc :tabc<cr>
@@ -642,12 +647,6 @@ nmap <leader>0 :tablast<cr>
 " 使用系统的tree
 " nmap si :Explore<cr>
 
-" 删除当前行但是保留空行
-nmap da v^d
-"格式化
-" map fm :Neoformat<cr>
-" map fM :Neoformat jsbeautify<cr>
-nmap fm <Plug>(Prettier)
 " easymotion 跳转
 nmap \ <Plug>(easymotion-s)
 
@@ -667,9 +666,6 @@ inoremap <expr> <Down>     pumvisible() ? "\<c-n>" : "\<Down>"
 inoremap <expr> <Up>       pumvisible() ? "\<c-p>" : "\<Up>"
 inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<c-p>\<c-n>" : "\<PageDown>"
 inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<c-p>\<c-n>" : "\<PageUp>"
-nnoremap fp :YcmCompleter GoToDeclaration<cr>
-nnoremap fo :YcmCompleter GoToDefinition<cr>
-nnoremap fi :YcmCompleter GoToDefinitionElseDeclaration<cr>
 " 直接触发自动补全
 let g:ycm_key_invoke_completion = '<c-space>'
 
