@@ -488,7 +488,7 @@ let g:prettier#config#config_precedence = 'prefer-file'
 let g:prettier#config#prose_wrap = 'preserve'
 
 " 简化eleline的样式,不显示右边
-let g:eleline_slim = 1
+" let g:eleline_slim = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""热键设置
@@ -514,6 +514,8 @@ nmap <leader>c9 :colorscheme babymate256<cr>
 
 " 快速保存
 nmap fs :w<cr>
+nmap fq :q<cr>
+
 " 移动屏幕
 nmap K <c-b>
 nmap J <c-f>
@@ -554,7 +556,7 @@ nmap <c-j> ddp
 xmap m gcc
 nmap M gcc
 
-" 更科学的复制粘贴
+" 更科学的复制粘贴, "+y 是系统剪切板
 xmap 1 "1y
 xmap 2 "2y
 xmap 3 "3y
@@ -565,6 +567,7 @@ xmap 7 "7y
 xmap 8 "8y
 xmap 9 "9y
 xmap 0 "0y
+xmap - "+y
 
 nmap f1 "1p
 nmap f2 "2p
@@ -576,6 +579,7 @@ nmap f7 "7p
 nmap f8 "8p
 nmap f9 "9p
 nmap f0 "0p
+nmap f- "+p
 
 nmap F1 "1P
 nmap F2 "2P
@@ -587,6 +591,7 @@ nmap F7 "7P
 nmap F8 "8P
 nmap F9 "9P
 nmap F0 "0P
+nmap F- "+P
 
 " su隐藏行号和git,为了鼠标复制方便，有时候要隐藏行号
 nmap <leader>@git :GitGutterSignsToggle<cr>

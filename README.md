@@ -147,7 +147,8 @@ Use: `v file.js` open vim
 - `fb = :Buffers -change opened buffer`
 - `fm = format file`
 - `f@ = @:`
-- `fs = :w`
+- `fs = :w<cr>`
+- `fq = :q<cr>`
 - `fr = :%s/ -replace`
 - `fM = :delm!`
 - `<c-j> = move line down`
