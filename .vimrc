@@ -28,8 +28,8 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'groenewege/vim-less'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'mbbill/undotree'
 
 call plug#end()
@@ -40,6 +40,7 @@ call plug#end()
 " 颜色设置
 syntax enable
 colorscheme seoul256
+
 " colorscheme bubblegum-256-light
 " 突出显示当前行
 " set cursorline
@@ -59,7 +60,7 @@ set showcmd         " 输入的命令显示出来，看的清楚些
 set scrolloff=12     " 光标移动到buffer的顶部和底部时保持3行距离
 set novisualbell    " 不要闪烁(不明白)
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容
-set laststatus=0    " 启动显示状态行(1),总是显示状态行(2)
+set laststatus=1    " 永远不显示0 启动显示状态行(1),总是显示状态行(2)
 "set foldenable      " 允许折叠
 set nofoldenable " 不允许折叠
 "set foldmethod=manual   " 手动折叠
@@ -179,7 +180,8 @@ set completeopt=longest,menu
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " 修复airline模式切换延迟
-set ttimeoutlen=0
+"set ttimeoutlen=0
+
 
 " 打开上次光标位置
 if has("autocmd")
@@ -200,15 +202,21 @@ let g:ycm_collect_identifiers_from_tags_files=1	" 开启 YCM 基于标签引擎
 let g:ycm_min_num_of_chars_for_completion=2	" 从第90个键入字符就开始罗列匹配项
 let g:ycm_cache_omnifunc=0	" 禁止缓存匹配项,每次都重新生成匹配项
 let g:ycm_seed_identifiers_with_syntax=1	" 语法关键字补全
-"在注释输入中也能补全
+" 在注释输入中也能补全
 let g:ycm_complete_in_comments = 1
-"在字符串输入中也能补全
+" 在字符串输入中也能补全
 let g:ycm_complete_in_strings = 1
-"注释和字符串中的文字也会被收入补全
+" 注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_show_diagnostics_ui =
  \ get( g:, 'ycm_show_diagnostics_ui',
  \ get( g:, 'ycm_register_as_syntastic_checker', 0))
+
+" ycm读取typescript插件
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
 
 " ycm默认需要按ctrl + space 来进行补全，可以在上面的花括号里面加入下面两行代码来直接进行补全
 let g:ycm_semantic_triggers = {
@@ -474,7 +482,7 @@ let g:prettier#config#trailing_comma = 'all'
 
 " flow|babylon|typescript|css|less|scss|json|graphql|markdown
 " Prettier default: babylon
-let g:prettier#config#parser = 'flow'
+let g:prettier#config#parser = 'typescript'
 
 " cli-override|file-override|prefer-file
 let g:prettier#config#config_precedence = 'prefer-file'
@@ -507,8 +515,7 @@ map ; :
 map ' "
 
 " 快速保存
-" nmap w :w<cr>
-
+nmap fs :w<cr>
 " 移动屏幕
 nmap - <c-b>
 nmap = <c-f>
@@ -521,7 +528,7 @@ nmap fl :Marks<cr>
 nmap ff :Buffers<cr>
 nmap fh :History<cr>
 nmap fg :FZF ~/
-nmap fs @:
+nmap f2 @:
 " 搜索替换
 " :%s/aaa/bbb/c 把aaa换成bbb，/c表示需要询问确认
 nmap fr :%s/
@@ -529,9 +536,10 @@ nmap fr :%s/
 " 书签设置
 " nmap mm :marks<cr>
 nmap M :delm!
-" 由于K是帮助，没什么用，用来代替<c-o>
-nmap K <c-o>
 
+
+" 由于K是帮助，没什么用，用来代替c-o
+nmap K <c-o>
 
 " c-v在编辑时可用
 inoremap <c-v> <c-r>0
