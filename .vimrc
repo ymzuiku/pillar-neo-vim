@@ -72,6 +72,7 @@ set autoread
 set completeopt-=preview
 "共享剪贴板
 set clipboard=unnamed
+
 "自动保存
 set autowrite
 " set ruler                   " 打开状态栏标尺
@@ -235,20 +236,21 @@ let g:ycm_show_diagnostics_ui = 0
 "let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/ycmd/tests/testdata/extra_conf/global_extra_conf.py'
 
 " vim-javascript
+" 用符号替换js中的一些代码
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
-let g:javascript_conceal_function ="ƒ"
-let g:javascript_conceal_null ="ø"
-let g:javascript_conceal_this ="@"
-let g:javascript_conceal_return ="⇚"
-let g:javascript_conceal_undefined ="¿"
-let g:javascript_conceal_NaN ="ℕ"
-let g:javascript_conceal_prototype ="¶"
-let g:javascript_conceal_static ="•"
-let g:javascript_conceal_super ="Ω"
-let g:javascript_conceal_arrow_function ="⇒"
-let g:javascript_conceal_noarg_arrow_function ="ˆ"
-let g:javascript_conceal_underscore_arrow_function ="¬"
+" let g:javascript_conceal_function ="ƒ"
+" let g:javascript_conceal_null ="ø"
+" let g:javascript_conceal_this ="@"
+" let g:javascript_conceal_return ="⇚"
+" let g:javascript_conceal_undefined ="¿"
+" let g:javascript_conceal_NaN ="ℕ"
+" let g:javascript_conceal_prototype ="¶"
+" let g:javascript_conceal_static ="•"
+" let g:javascript_conceal_super ="Ω"
+" let g:javascript_conceal_arrow_function ="⇒"
+" let g:javascript_conceal_noarg_arrow_function ="ˆ"
+" let g:javascript_conceal_underscore_arrow_function ="¬"
 
 set conceallevel=1
 
@@ -495,9 +497,10 @@ let g:prettier#config#prose_wrap = 'preserve'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " <header> 设置，默认为\
 let mapleader="\<space>"
+" On OSX
+" vmap <C-c> y:call system("pbcopy", getreg("/""))<CR>
+" nmap <C-v> :call setreg("/"",system("pbpaste"))<CR>p
 
-" 重新加载vimrc
-nmap <leader>r :source ~/.vimrc<cr>
 
 " 切换不同的主题
 nmap <leader>c1 :colorscheme seoul256<cr>
@@ -545,6 +548,9 @@ nnoremap fi :YcmCompleter GoToDefinitionElseDeclaration<cr>
 " nmap mm :marks<cr>
 nmap fM :delm!<cr>
 
+" 跳转错误
+nmap <silent> f[ <Plug>(ale_previous_wrap)
+nmap <silent> f] <Plug>(ale_next_wrap)
 
 " 由于K是帮助，没什么用，用来代替c-o
 " nmap K <c-o>
@@ -596,22 +602,28 @@ nmap F- "+P
 " su隐藏行号和git,为了鼠标复制方便，有时候要隐藏行号
 nmap <leader>@git :GitGutterSignsToggle<cr>
 nmap <leader>@nu! :set nu!<cr>
-nmap sg <leader>@git<leader>@nu!
+nmap so <leader>@git<leader>@nu!
 " 取消高亮显示当前行
-nmap sG :set cursorline!<cr>
+nmap sO :set cursorline!<cr>
 
 
 " 切换NERDTreeMirror插件
-nmap so :NERDTreeMirror<cr>
-nmap so :NERDTreeToggle<cr>
+" nmap sO :NERDTreeMirror<cr>
+nmap sI :NERDTreeToggle<cr>
+
 " 焦距当前页面
 nmap <leader>@si :NERDTreeTabsFind<cr>
-nmap si so<c-w>w<leader>@si
+nmap si :NERDTreeToggle<cr><c-w>w<leader>@si
+
 "flet g:nerdtree_tabs_autofind=1
 " map si :NERDTreeTabsToggle<cr>
+
+" 全选
+nmap sa ggVG
+
 " 代替ctrl+w分屏幕
 " 上下分割当前屏
-nmap sw <c-w>s
+nmap sV <c-w>s
 " 左右分割当前屏
 nmap sv <c-w>v
 " 移动屏焦点
@@ -633,15 +645,33 @@ nmap s- <c-w>-
 nmap sn :nohl<cr>
 " nmap sq :q<cr>
 " 重新载入当前文件
-nmap sr :bufdo e<cr>
-" 更新vim配置
-nmap sR :so ~/.vimrc<cr>
+nmap sR :bufdo e<cr>
+" 重新加载vimrc
+nmap sr :source ~/.vimrc<cr>
 " 关闭标签
-nmap st :tabo<cr>
+nmap sT :tabo<cr>
 " 打开Tab
 nmap sc :tabnew<cr>
+
+" 快速切换到bash, 使用exit命令返回vim
+nmap sb :!bash<cr>
+
+" 切换tab上一个下一个
+nmap s[ :tabp<cr>
+nmap s] :tabn<cr>
+nmap s1 1gt
+nmap s2 2gt
+nmap s3 3gt
+nmap s4 4gt
+nmap s5 5gt
+nmap s6 6gt
+nmap s7 7gt
+nmap s8 8gt
+nmap s9 9gt
+
 " 切换屏焦点
-nmap sw <c-w>w
+" nmap sw <c-w>w
+
 " 关闭当前屏
 nmap sx <c-w>c
 " 清理所有行尾空格
@@ -655,9 +685,6 @@ nmap <leader>0 :tablast<cr>
 " easymotion 跳转
 nmap \ <Plug>(easymotion-s)
 
-" 跳转错误
-nmap <silent> s[ <Plug>(ale_previous_wrap)
-nmap <silent> s] <Plug>(ale_next_wrap)
 
 " ycm和snip的热键设置
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -680,7 +707,7 @@ let g:ycm_key_invoke_completion = '<c-space>'
 " imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
 
 " undo-tree
-nnoremap ss :UndotreeToggle<cr>
+nnoremap su :UndotreeToggle<cr> <c-w>h
 " g- g+ 切换 undotree
 nmap g= g+
 

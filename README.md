@@ -130,16 +130,22 @@ Use: `v file.js` open vim
 - `- = <c-b> -flip page up, because tmux uesd <c-b>`
 - `= = <c-f> -flip page down`
 - `s+v\h\j\k\l\c = <c-w>+v\h\j\k\l\c`
-- `sn = :tabnew`
-- `st = :tabo`
-- `M = commenter one line`
-- `m = commenter multiline in VISUAL Mode`
+- `sc = :tabnew`
+- `sT = :tabo`
+-  `s[ = last tab`
+- `s] = next tab`
+- `sb = :!bash open bash, and input exec goback vim`
+- `sr = source ~/.vimrc`
+- `sa = ggVG -select all line`
+
 - `sm = :Masks -find masks`
 - `si = find now file in tree`
-- `so = show files tree`
-- `sg = hidden/show git and number sign, facility mouse copy multiline`
-- `sG = hidden/show hight line`
+- `sI = show files tree`
+- `so = hidden/show git and number sign, facility mouse copy multiline`
+- `sO = hidden/show hight line`
+- `s1~9 = switch tab 1~9`
 - `s<space> delete line end space`
+
 - `su hidden/show undo-tree，g-, g= switch undo-tree`
 - `fa = :Ag -find code`
 - `ff = :Files -find file`
@@ -151,14 +157,21 @@ Use: `v file.js` open vim
 - `fq = :q<cr>`
 - `fr = :%s/ -replace`
 - `fM = :delm!`
+- `f[ = last eslint error line`
+- `f] = next eslint error line`
+
 - `<c-j> = move line down`
 - `<c-k> = move line up`
 - `J = <c-f>
 - `K = <c-b>
-- `\` is vim-easymotion-s
+- `\ = vim-easymotion`
 - `<tab>` select snippets
 - `<cr>` select YouCompleteMe info
 - `<c-space>` show YouCompleteMe
+
+- `M = commenter one line`
+- `m = commenter multiline in VISUAL Mode`
+
 
 Fast copy and paste:
 
