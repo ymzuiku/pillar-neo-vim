@@ -124,7 +124,7 @@ Use: `v file.js` open vim
 
 ## Diffent Default VIM config:
 
-`s, f, J, K, \` is diffent VIM keys, Please look `.vimrc` file:
+`s, f, -, =, \` is diffent VIM keys, Please look `.vimrc` file:
 
 - `space = <Leader>`
 - `- = <c-b> -flip page up, because tmux uesd <c-b>`
@@ -132,7 +132,7 @@ Use: `v file.js` open vim
 - `s+v\h\j\k\l\c = <c-w>+v\h\j\k\l\c`
 - `sc = :tabnew`
 - `sT = :tabo`
--  `s[ = last tab`
+- `s[ = last tab`
 - `s] = next tab`
 - `sb = :!bash open bash, and input exec goback vim`
 - `sr = source ~/.vimrc`
@@ -162,8 +162,8 @@ Use: `v file.js` open vim
 
 - `<c-j> = move line down`
 - `<c-k> = move line up`
-- `J = <c-f>
-- `K = <c-b>
+- `= = <c-f>
+- `- = <c-b>
 - `\ = vim-easymotion`
 - `<tab>` select snippets
 - `<cr>` select YouCompleteMe info
@@ -171,7 +171,6 @@ Use: `v file.js` open vim
 
 - `M = commenter one line`
 - `m = commenter multiline in VISUAL Mode`
-
 
 Fast copy and paste:
 

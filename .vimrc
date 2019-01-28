@@ -520,9 +520,8 @@ nmap fs :w<cr>
 nmap fq :q<cr>
 
 " 移动屏幕
-nmap K <c-b>
-nmap J <c-f>
-nmap <leader>j J
+nmap - <c-b>
+nmap = <c-f>
 
 " 文件、文件内容搜索
 nmap ff :Files<cr>
