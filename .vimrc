@@ -38,11 +38,11 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 颜色设置
 syntax enable
-colorscheme seoul256
+" colorscheme seoul256
+colorscheme bubblegum-256-light
 
-" colorscheme bubblegum-256-light
 " 突出显示当前行
-set cursorline
+" set cursorline
 set encoding=utf-8
 set fileencoding=utf-8
 " set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提示
