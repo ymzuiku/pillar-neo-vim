@@ -33,7 +33,7 @@
       "commands": ["bookmarks.list"]
     },
     {
-      "before": ["s", "M"],
+      "before": ["s", "s", "m"],
       "commands": ["bookmarks.listFromAllFiles"]
     },
     {
