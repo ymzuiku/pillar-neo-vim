@@ -16,6 +16,13 @@
     {
       "before": ["K"],
       "commands": ["editor.action.moveLinesUpAction"]
+    },    {
+      "before": ["["],
+      "commands": ["workbench.action.navigateBack"]
+    },
+    {
+      "before": ["]"],
+      "commands": ["workbench.action.navigateForward"]
     },
     {
       "before": ["m"],
@@ -195,7 +202,7 @@
     },
     {
       "before": ["s", "a"],
-      "commands": ["editor.action.selectAll"]
+      "after": ["g", "g", "V", "G"]
     },
     {
       "before": ["s", "i"],
@@ -239,7 +246,7 @@
     },
     {
       "before": ["f", "s"],
-      "commands": ["workbench.view.search"]
+      "commands": ["workbench.action.files.save"]
     },
     {
       "before": ["f", "l"],
