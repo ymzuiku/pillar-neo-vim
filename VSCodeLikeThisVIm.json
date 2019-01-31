@@ -1,0 +1,381 @@
+{
+  "vim.disableExtension": false,
+  "vim.leader": "space",
+  "vim.easymotion": true,
+  "vim.sneak": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.mouseSelectionGoesIntoVisualMode": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["J"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.moveLinesUpAction"]
+    },
+    {
+      "before": ["m"],
+      "commands": ["bookmarks.toggle"]
+    },
+    {
+      "before": ["s", "m"],
+      "commands": ["bookmarks.list"]
+    },
+    {
+      "before": ["s", "M"],
+      "commands": ["bookmarks.listFromAllFiles"]
+    },
+    {
+      "before": ["<leader>", "m"],
+      "commands": ["bookmarks.clear"]
+    },
+    {
+      "before": ["<leader>", "<leader>", "m"],
+      "commands": ["bookmarks.clearFromAllFiles"]
+    },
+    {
+      "before": ["Z", "Z"],
+      "commands": [":wq"]
+    },
+    {
+      "before": ["\\"],
+      "after": ["<leader>", "<leader>", "s"]
+    },
+    {
+      "before": ["<leader", "e"],
+      "after": ["<leader>", "<leader>", "<leader>", "b", "d", "e"]
+    },
+    {
+      "before": ["-"],
+      "after": ["4", "0", "k"]
+    },
+    {
+      "before": ["="],
+      "after": ["4", "0", "j"]
+    },
+    {
+      "before": ["s", "1"],
+      "commands": ["workbench.action.openEditorAtIndex1"]
+    },
+    {
+      "before": ["s", "2"],
+      "commands": ["workbench.action.openEditorAtIndex2"]
+    },
+    {
+      "before": ["s", "3"],
+      "commands": ["workbench.action.openEditorAtIndex3"]
+    },
+    {
+      "before": ["s", "4"],
+      "commands": ["workbench.action.openEditorAtIndex4"]
+    },
+    {
+      "before": ["s", "5"],
+      "commands": ["workbench.action.openEditorAtIndex5"]
+    },
+    {
+      "before": ["s", "6"],
+      "commands": ["workbench.action.openEditorAtIndex6"]
+    },
+    {
+      "before": ["s", "7"],
+      "commands": ["workbench.action.openEditorAtIndex7"]
+    },
+    {
+      "before": ["s", "8"],
+      "commands": ["workbench.action.openEditorAtIndex8"]
+    },
+    {
+      "before": ["s", "9"],
+      "commands": ["workbench.action.closeEditorsToTheRight"]
+    },
+    {
+      "before": ["s", "0"],
+      "commands": ["workbench.action.closeOtherEditors"]
+    },
+    {
+      "before": ["s", "u"],
+      "commands": ["gitlens.diffWithPreviousInDiff"]
+    },
+    {
+      "before": ["s", "y"],
+      "commands": ["gitlens.diffWithNext"]
+    },
+    {
+      "before": ["s", "k"],
+      "commands": ["gitlens.openWorkingFile"]
+    },
+    {
+      "before": ["f", "1"],
+      "after": ["\"", "1", "p"]
+    },
+    {
+      "before": ["f", "2"],
+      "after": ["\"", "2", "p"]
+    },
+    {
+      "before": ["f", "3"],
+      "after": ["\"", "3", "p"]
+    },
+    {
+      "before": ["f", "4"],
+      "after": ["\"", "4", "p"]
+    },
+    {
+      "before": ["f", "5"],
+      "after": ["\"", "5", "p"]
+    },
+    {
+      "before": ["f", "6"],
+      "after": ["\"", "6", "p"]
+    },
+    {
+      "before": ["f", "7"],
+      "after": ["\"", "7", "p"]
+    },
+    {
+      "before": ["f", "8"],
+      "after": ["\"", "8", "p"]
+    },
+    {
+      "before": ["f", "9"],
+      "after": ["\"", "9", "p"]
+    },
+    {
+      "before": ["f", "0"],
+      "after": ["\"", "0", "p"]
+    },
+    {
+      "before": ["F", "1"],
+      "after": ["\"", "1", "P"]
+    },
+    {
+      "before": ["F", "2"],
+      "after": ["\"", "2", "P"]
+    },
+    {
+      "before": ["F", "3"],
+      "after": ["\"", "3", "P"]
+    },
+    {
+      "before": ["F", "4"],
+      "after": ["\"", "4", "P"]
+    },
+    {
+      "before": ["F", "5"],
+      "after": ["\"", "5", "P"]
+    },
+    {
+      "before": ["F", "6"],
+      "after": ["\"", "6", "P"]
+    },
+    {
+      "before": ["F", "7"],
+      "after": ["\"", "7", "P"]
+    },
+    {
+      "before": ["F", "8"],
+      "after": ["\"", "8", "P"]
+    },
+    {
+      "before": ["F", "9"],
+      "after": ["\"", "9", "P"]
+    },
+    {
+      "before": ["F", "0"],
+      "after": ["\"", "0", "P"]
+    },
+    {
+      "before": ["s", "r"],
+      "commands": ["revealFileInOS"]
+    },
+    {
+      "before": ["s", "a"],
+      "commands": ["editor.action.selectAll"]
+    },
+    {
+      "before": ["s", "i"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["s", "c"],
+      "commands": ["workbench.action.files.newUntitledFile"]
+    },
+    {
+      "before": ["s", "n"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["s", "x"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["f", "r"],
+      "commands": ["workbench.action.openRecent"]
+    },
+    {
+      "before": ["f", "k"],
+      "commands": ["workbench.action.showCommands"]
+    },
+    {
+      "before": ["f", "j"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["f", "g"],
+      "commands": ["workbench.view.scm"]
+    },
+    {
+      "before": ["f", "m"],
+      "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": ["f", "a"],
+      "commands": ["workbench.view.search"]
+    },
+    {
+      "before": ["f", "s"],
+      "commands": ["workbench.view.search"]
+    },
+    {
+      "before": ["f", "l"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },    {
+      "before": ["f", "o"],
+      "commands": ["editor.action.revealDefinition"]
+    },
+    {
+      "before": ["f", "i"],
+      "commands": ["workbench.action.terminal.toggleTerminal"]
+    },
+    {
+      "before": ["M"],
+      "commands": ["editor.action.commentLine"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["J"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.moveLinesUpAction"]
+    },
+    {
+      "before": ["m"],
+      "commands": ["editor.action.commentLine"]
+    },
+    {
+      "before": ["1"],
+      "after": ["\"", "1", "y"]
+    },
+    {
+      "before": ["2"],
+      "after": ["\"", "2", "y"]
+    },
+    {
+      "before": ["3"],
+      "after": ["\"", "3", "y"]
+    },
+    {
+      "before": ["4"],
+      "after": ["\"", "4", "y"]
+    },
+    {
+      "before": ["5"],
+      "after": ["\"", "5", "y"]
+    },
+    {
+      "before": ["6"],
+      "after": ["\"", "6", "y"]
+    },
+    {
+      "before": ["7"],
+      "after": ["\"", "7", "y"]
+    },
+    {
+      "before": ["8"],
+      "after": ["\"", "8", "y"]
+    },
+    {
+      "before": ["9"],
+      "after": ["\"", "9", "y"]
+    },
+    {
+      "before": ["0"],
+      "after": ["\"", "0", "y"]
+    }
+  ],
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.handleKeys": {
+    "s": false,
+    "f": false,
+    "<C-a>": false,
+    "<C-f>": false
+  },
+  "workbench.panel.defaultLocation": "right",
+  "git.enabled": true,
+  "files.autoSave": "off",
+  "terminal.external.osxExec": "iterm.app",
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "editor.tabSize": 2,
+  "editor.minimap.enabled": false,
+  "gitlens.codeLens.enabled": false,
+  "workbench.settings.editor": "json",
+  "editor.fontSize": 13,
+  "editor.fontWeight": "600",
+  "editor.wordWrap": "on",
+  "window.zoomLevel": 0,
+  "workbench.startupEditor": "newUntitledFile",
+  "git.enableSmartCommit": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/node_modules": true,
+    "**/coverage": true,
+    "**/.vscode": false,
+    "**/.eslintcache": true,
+    "**/yarn-error.log": true,
+    "**/.DS_Store": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/__snapshots__": true,
+    "**/.idea": true,
+    "**/.git": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/.storybook": true,
+    "**/yarn.lock": true,
+    "dist": true,
+    "**/out": true,
+    "**/.cache": true,
+    "**/public": true,
+    "**/.next": true,
+    "**/cypress/videos": true,
+    "**/videos": true,
+    "**/yarn-error.log": true,
+    "**/.gitignore": true
+  },
+  "breadcrumbs.enabled": false,
+  "search.followSymlinks": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "workbench.colorTheme": "Solarized Light",
+  "git.autofetch": true
+}
