@@ -42,7 +42,7 @@ syntax enable
 colorscheme bubblegum-256-light
 
 " 突出显示当前行
-" set cursorline
+set cursorline
 set encoding=utf-8
 set fileencoding=utf-8
 " set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提示
@@ -76,7 +76,7 @@ set clipboard=unnamed
 "自动保存
 set autowrite
 " set ruler                   " 打开状态栏标尺
-"set cursorline              " 突出显示当前行
+set cursorline              " 突出显示当前行
 set magic                   " 设置魔术
 set guioptions-=T           " 隐藏工具栏
 set guioptions-=m           " 隐藏菜单栏
@@ -329,7 +329,7 @@ let NERDTreeAutoCenter=1
 let NERDTreeShowBookmarks=0
 let NERDTreeQuitOnOpen=1
 let NERDTreeWinPos=1
-let NERDTreeWinSize=70
+let NERDTreeWinSize=50
 
 " 启动就显示Tree
 " autocmd vimenter * NERDTree
@@ -524,10 +524,10 @@ nmap - <c-b>
 nmap = <c-f>
 
 " 文件、文件内容搜索
-nmap ff :Files<cr>
+nmap fj :Files<cr>
 nmap fg :GFiles?<cr>
 nmap fa :Ag<cr>
-nmap fb :Buffers<cr>
+nmap fk :Buffers<cr>
 nmap fh :History<cr>
 nmap f~ :FZF ~/
 nmap f/ :FZF /
@@ -545,7 +545,7 @@ nnoremap fi :YcmCompleter GoToDefinitionElseDeclaration<cr>
 
 " 书签设置
 " nmap mm :marks<cr>
-nmap fM :delm!<cr>
+nmap <leader>m :delm!<cr>
 
 " 跳转错误
 nmap <silent> f[ <Plug>(ale_previous_wrap)

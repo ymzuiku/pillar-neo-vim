@@ -148,9 +148,9 @@ Use: `v file.js` open vim
 
 - `su hidden/show undo-tree，g-, g= switch undo-tree`
 - `fa = :Ag -find code`
-- `ff = :Files -find file`
+- `fj = :Files -find file`
 - `fg = :GFiles? -find git change file`
-- `fb = :Buffers -change opened buffer`
+- `fk = :Buffers -change opened buffer`
 - `fm = format file`
 - `f@ = @:`
 - `fs = :w<cr>`
