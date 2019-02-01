@@ -105,6 +105,14 @@
       "commands": ["workbench.action.closeOtherEditors"]
     },
     {
+      "before": ["s", "v"],
+      "commands": ["workbench.action.splitEditor"]
+    },
+    {
+      "before": ["s", "h"],
+      "commands": ["workbench.action.splitEditorOrthogonal"]
+    },
+    {
       "before": ["s", "u"],
       "commands": ["gitlens.diffWithPreviousInDiff"]
     },
