@@ -16,7 +16,8 @@
     {
       "before": ["K"],
       "commands": ["editor.action.moveLinesUpAction"]
-    },    {
+    },
+    {
       "before": ["["],
       "commands": ["workbench.action.navigateBack"]
     },
@@ -244,7 +245,7 @@
       "before": ["s", "x"],
       "commands": ["workbench.action.closeActiveEditor"]
     },
-{
+    {
       "before": ["f", "q"],
       "commands": ["workbench.action.closeActiveEditor"]
     },
@@ -274,12 +275,16 @@
     },
     {
       "before": ["f", "s"],
-      "commands": ["workbench.action.files.save"]
+      "commands": [
+        "editor.action.formatDocument",
+        "workbench.action.files.save"
+      ]
     },
     {
       "before": ["f", "l"],
       "commands": ["workbench.action.gotoSymbol"]
-    },    {
+    },
+    {
       "before": ["f", "o"],
       "commands": ["editor.action.revealDefinition"]
     },
