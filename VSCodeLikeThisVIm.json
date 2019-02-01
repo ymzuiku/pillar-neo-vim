@@ -1,4 +1,6 @@
 {
+  "editor.cursorBlinking": "solid",
+  "vim.cursorStylePerMode.normal": "block-outline",
   "vim.disableExtension": false,
   "vim.leader": "space",
   "vim.easymotion": true,
@@ -295,10 +297,6 @@
     {
       "before": ["M"],
       "commands": ["editor.action.commentLine"]
-    },
-    {
-      "before": ["f", "c"],
-      "after": ["y", "i", "w"]
     },
     {
       "before": ["f", "v"],
