@@ -109,8 +109,24 @@
       "commands": ["workbench.action.splitEditor"]
     },
     {
-      "before": ["s", "h"],
+      "before": ["s", "V"],
       "commands": ["workbench.action.splitEditorOrthogonal"]
+    },
+    {
+      "before": ["s", "h"],
+      "commands": ["workbench.action.focusLeftGroup"]
+    },
+    {
+      "before": ["s", "j"],
+      "commands": ["workbench.action.focusBelowGroup"]
+    },
+    {
+      "before": ["s", "k"],
+      "commands": ["workbench.action.focusAboveGroup"]
+    },
+    {
+      "before": ["s", "l"],
+      "commands": ["workbench.action.focusRightGroup"]
     },
     {
       "before": ["s", "u"],
@@ -121,7 +137,7 @@
       "commands": ["gitlens.diffWithNext"]
     },
     {
-      "before": ["s", "k"],
+      "before": ["s", "t"],
       "commands": ["gitlens.openWorkingFile"]
     },
     {
