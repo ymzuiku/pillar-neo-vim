@@ -244,6 +244,10 @@
       "before": ["s", "x"],
       "commands": ["workbench.action.closeActiveEditor"]
     },
+{
+      "before": ["f", "q"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
     {
       "before": ["f", "r"],
       "commands": ["workbench.action.openRecent"]
