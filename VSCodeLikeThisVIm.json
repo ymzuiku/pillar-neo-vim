@@ -1,6 +1,6 @@
 {
   "editor.cursorBlinking": "solid",
-  "vim.cursorStylePerMode.normal": "block-outline",
+  "vim.cursorStylePerMode.normal": "block",
   "vim.disableExtension": false,
   "vim.leader": "space",
   "vim.easymotion": true,
@@ -422,6 +422,6 @@
   "breadcrumbs.enabled": false,
   "search.followSymlinks": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "workbench.colorTheme": "Solarized Light",
+  "workbench.colorTheme": "Quiet Light",
   "git.autofetch": true
 }
