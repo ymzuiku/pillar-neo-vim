@@ -295,6 +295,14 @@
     {
       "before": ["M"],
       "commands": ["editor.action.commentLine"]
+    },
+    {
+      "before": ["f", "c"],
+      "after": ["y", "i", "w"]
+    },
+    {
+      "before": ["f", "v"],
+      "after": ["d", "i", "w", "\"", "0", "P"]
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
