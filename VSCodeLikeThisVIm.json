@@ -28,7 +28,7 @@
       "commands": ["workbench.action.navigateForward"]
     },
     {
-      "before": ["m"],
+      "before": ["M"],
       "commands": ["bookmarks.toggle"]
     },
     {
@@ -295,12 +295,20 @@
       "commands": ["workbench.action.terminal.toggleTerminal"]
     },
     {
-      "before": ["M"],
+      "before": ["m"],
       "commands": ["editor.action.commentLine"]
     },
     {
       "before": ["f", "v"],
       "after": ["d", "i", "w", "\"", "0", "P"]
+    },
+    {
+      "before": ["<leader>", "u"],
+      "commands": ["editor.action.transformToUppercase"]
+    },
+    {
+      "before": ["<leader>", "i"],
+      "commands": ["editor.action.transformToLowercase"]
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
@@ -407,6 +415,7 @@
     "**/.git": true,
     "**/build": true,
     "**/dist": true,
+    "**/.eslintcache": true,
     "**/.storybook": true,
     "**/yarn.lock": true,
     "dist": true,
