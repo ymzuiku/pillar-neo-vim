@@ -39,7 +39,7 @@ call plug#end()
 " 颜色设置
 syntax enable
 " colorscheme seoul256
-colorscheme bubblegum-256-light
+colorscheme github
 
 " 突出显示当前行
 set cursorline
@@ -159,9 +159,9 @@ set wrap "设置自动换行
 set linebreak
 " mouse=a可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
 " mouse=v 默认使用系统的鼠标,这样可以使用系统复制
-set mouse=v
+set mouse=a
 set selection=exclusive
-set selectmode=mouse,key
+" set selectmode=mouse,key
 " 通过使用: commands命令，告诉我们文件的哪一行被改变过
 set report=0
 " 在被分割的窗口间显示空白，便于阅读
@@ -195,10 +195,11 @@ let g:AutoPairsFlyMode = 1
 let g:javascript_enable_domhtmlcss = 1
 let g:gitgutter_max_signs = 500  " default value
 
+"ycm的配置
 let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
 let g:ycm_collect_identifiers_from_tags_files=1	" 开启 YCM 基于标签引擎
-let g:ycm_min_num_of_chars_for_completion=2	" 从第90个键入字符就开始罗列匹配项
-let g:ycm_cache_omnifunc=0	" 禁止缓存匹配项,每次都重新生成匹配项
+let g:ycm_min_num_of_chars_for_completion=4	" 从第90个键入字符就开始罗列匹配项
+" let g:ycm_cache_omnifunc=0	" 禁止缓存匹配项,每次都重新生成匹配项
 let g:ycm_seed_identifiers_with_syntax=1	" 语法关键字补全
 " 在注释输入中也能补全
 let g:ycm_complete_in_comments = 1
@@ -506,17 +507,20 @@ let mapleader="\<space>"
 nmap <leader>c1 :colorscheme seoul256<cr>
 nmap <leader>c2 :colorscheme bubblegum-256-light<cr>
 nmap <leader>c3 :colorscheme bubblegum-256-dark<cr>
-nmap <leader>c4 :colorscheme beauty256<cr>
-nmap <leader>c5 :colorscheme devbox-dark-256<cr>
-nmap <leader>c6 :colorscheme xoria256<cr>
-nmap <leader>c7 :colorscheme 256-grayvim<cr>
-nmap <leader>c8 :colorscheme 256-jungle<cr>
-nmap <leader>c9 :colorscheme babymate256<cr>
+nmap <leader>c4 :colorscheme github<cr>
+nmap <leader>c5 :colorscheme office-dark<cr>
+nmap <leader>c6 :colorscheme office-light<cr>
+nmap <leader>c7 :colorscheme <cr>
+nmap <leader>c8 :colorscheme beauty256<cr>
+nmap <leader>c9 :colorscheme devbox-dark-256<cr>
+nmap <leader>c0 :colorscheme xoria256<cr>
+nmap <leader>c- :colorscheme 256-grayvim<cr>
+nmap <leader>c= :colorscheme 256-jungle<cr>
 
 " map ; :
 
 " 快速保存
-nmap fs :w<cr>
+nmap fs <Plug>(Prettier) :w<cr>
 nmap fq :q<cr>
 
 " 移动屏幕
@@ -558,8 +562,8 @@ nmap <silent> f] <Plug>(ale_next_wrap)
 nmap <c-k> ddkP
 nmap <c-j> ddp
 " 在选择模式时，按m注释
-xmap m gcc
-nmap M gcc
+xmap t gcc
+nmap t gcc
 
 " 更科学的复制粘贴, "+y 是系统剪切板
 xmap 1 "1y
@@ -682,10 +686,12 @@ nmap <leader>0 :tablast<cr>
 " nmap si :Explore<cr>
 
 " easymotion 跳转
-nmap \ <Plug>(easymotion-s)
+nmap q <Plug>(easymotion-s)
 
 
 " ycm和snip的热键设置
+set completeopt=longest,menu
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
 let g:UltiSnipsExpandTrigger="<tab>"
 " " let g:UltiSnipsJumpForwardTrigger="<tab>"
 " " let g:UltiSnipsJumpBackwardTrgger="<leader><tab>"

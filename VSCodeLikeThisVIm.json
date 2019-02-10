@@ -52,7 +52,7 @@
       "commands": [":wq"]
     },
     {
-      "before": ["\\"],
+      "before": ["q"],
       "after": ["<leader>", "<leader>", "s"]
     },
     {
@@ -295,7 +295,7 @@
       "commands": ["workbench.action.terminal.toggleTerminal"]
     },
     {
-      "before": ["m"],
+      "before": ["t"],
       "commands": ["editor.action.commentLine"]
     },
     {
@@ -321,7 +321,7 @@
       "commands": ["editor.action.moveLinesUpAction"]
     },
     {
-      "before": ["m"],
+      "before": ["t"],
       "commands": ["editor.action.commentLine"]
     },
     {
@@ -373,7 +373,9 @@
   ],
   "vim.handleKeys": {
     "s": false,
+    "q": false,
     "f": false,
+    "t": false,
     "<C-a>": false,
     "<C-f>": false
   },
