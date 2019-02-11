@@ -39,12 +39,6 @@ Waiting all plugin installed.
 bash secondInstall.sh
 ```
 
-### 4. Install markdown preview in nodejs
-
-```
-npm i -g instant-markdown-d
-```
-
 Use `secondInstall.sh` script install these:
 
 - cmake
@@ -178,6 +172,9 @@ Use: `v file.js` open vim
 - `t = commenter one line`
 - `t = commenter multiline in VISUAL Mode`
 
+- `<leader>m = preview markdown`
+- `<leader>M = stop preview markdown`
+
 Fast copy and paste:
 
 - `0~9 = "0~9y in VISUAL mode`
@@ -189,10 +186,6 @@ These is self hot keys, if you don't like, you can change `.vimrc` easy.
 ## UltiSnips
 
 Add `javascript.snippets` in `~/.vim/UltiSnips`, can setting snippets
-
-## Markdown
-
-This package have markdow code hightlight, and use nodejs preview markdow. you need use other Application preview markdown, please install other. because `Entities should not be multiplied unnecessarily`
 
 ## That's all, enjoy it.
 

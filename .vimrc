@@ -1,37 +1,40 @@
-" test-cat
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 插件配置
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Valloric/YouCompleteMe'
-" Plug 'ternjs/tern_for_vim'
 Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
-Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot' "语言包, 只会加载当前语言的种类
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'w0rp/ale'
+Plug 'w0rp/ale' "错误提示,配合eslint可以显示错误
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
 Plug 'mxw/vim-jsx'
-" Plug 'valloric/MatchTagAlways'
 Plug 'leafgarland/typescript-vim'
-Plug 'posva/vim-vue'
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'tyru/caw.vim'
-Plug 'jiangmiao/auto-pairs'
+Plug 'tyru/caw.vim'  "注释插件,支持300种语言
 Plug 'hail2u/vim-css3-syntax'
 Plug 'groenewege/vim-less'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'liuchengxu/eleline.vim'
 Plug 'mbbill/undotree'
-Plug 'plasticboy/vim-markdown'
-Plug 'suan/vim-instant-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+
+" 不使用ternjs也一样补全,禁用
+" Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置,
+" Plug 'valloric/MatchTagAlways'
+" Plug 'posva/vim-vue'  "不怎么开发vue, 禁用,需要的人自行打开
+" Plug 'jiangmiao/auto-pairs' "自动补充括弧插件, 经常补充不必要的,所以禁用
+" 带来的干扰多过效用,禁用
+" Plug 'liuchengxu/eleline.vim' "底部状态条,显示git状态,
+" Plug 'tpope/vim-repeat' "插件的重复只能重复一条,使用这个可以多条
 
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -42,6 +45,12 @@ call plug#end()
 syntax enable
 " colorscheme seoul256
 colorscheme github
+
+" highlight StatusLineNC guifg=Gray guibg=White
+filetype on
+
+" 禁用markdown语言包, 解决markdown关键字显常
+let g:polyglot_disabled = ['markdown']
 
 " 突出显示当前行
 set cursorline
@@ -60,8 +69,8 @@ set showcmd         " 输入的命令显示出来，看的清楚些
 "set whichwrap+=<,>,h,l   " 允许backspace和光标键跨越行边界(不建议)
 set scrolloff=12     " 光标移动到buffer的顶部和底部时保持3行距离
 set novisualbell    " 不要闪烁(不明白)
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容
-set laststatus=2    " 永远不显示0 启动显示状态行(1),总是显示状态行(2)
+" set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容
+set laststatus=0    " 永远不显示0 启动显示状态行(1),总是显示状态行(2)
 "set foldenable      " 允许折叠
 set nofoldenable " 不允许折叠
 "set foldmethod=manual   " 手动折叠
@@ -192,6 +201,8 @@ endif
 ""插件的设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd FileType apache setlocal commentstring=#\ %s
+
+let g:vim_markdown_frontmatter=1
 autocmd QuickFixCmdPost *grep* cwindow
 let g:AutoPairsFlyMode = 1
 let g:javascript_enable_domhtmlcss = 1
@@ -332,7 +343,7 @@ let NERDTreeAutoCenter=1
 let NERDTreeShowBookmarks=0
 let NERDTreeQuitOnOpen=1
 let NERDTreeWinPos=1
-let NERDTreeWinSize=50
+let NERDTreeWinSize=32
 
 " 启动就显示Tree
 " autocmd vimenter * NERDTree
@@ -522,7 +533,8 @@ nmap <leader>c= :colorscheme 256-jungle<cr>
 " map ; :
 
 " 快速保存
-nmap fs <Plug>(Prettier) :w<cr>
+nmap fw <Plug>(Prettier) :w<cr>
+nmap fs :w<cr>
 nmap fq :q<cr>
 
 " 移动屏幕
@@ -603,6 +615,10 @@ nmap F8 "8P
 nmap F9 "9P
 nmap F0 "0P
 nmap F- "+P
+
+" 开启markdown或停止预览
+nmap <leader>m :MarkdownPreview<cr>
+nmap <leader>M :MarkdownPreviewStop<cr>
 
 " su隐藏行号和git,为了鼠标复制方便，有时候要隐藏行号
 nmap <leader>@git :GitGutterSignsToggle<cr>
@@ -749,4 +765,4 @@ nmap g= g+
 " viw选中一个单词
 " vip 选中一个段落
 "
-"
+" vim xxx.md --clean 清除vim的设置, 解决一些特殊问题
