@@ -51,6 +51,8 @@ filetype on
 
 " 禁用markdown语言包, 解决markdown关键字显常
 let g:polyglot_disabled = ['markdown']
+" 自动打开markdown预览
+let g:mkdp_auto_start = 0
 
 " 突出显示当前行
 set cursorline
@@ -341,7 +343,7 @@ let g:nerdtree_tabs_synchronize_focus=1
 let NERDTreeShowLineNumbers=0
 let NERDTreeAutoCenter=1
 let NERDTreeShowBookmarks=0
-let NERDTreeQuitOnOpen=1
+let NERDTreeQuitOnOpen=0 "当NERDTree打开文件时退出
 let NERDTreeWinPos=1
 let NERDTreeWinSize=32
 
@@ -636,7 +638,8 @@ nmap sI :NERDTreeToggle<cr>
 nmap <leader>@si :NERDTreeTabsFind<cr>
 nmap si :NERDTreeToggle<cr><c-w>w<leader>@si
 
-"flet g:nerdtree_tabs_autofind=1
+" 切换文件,自动切换 nerdtree 位置
+let g:nerdtree_tabs_autofind=1
 " map si :NERDTreeTabsToggle<cr>
 
 " 全选
