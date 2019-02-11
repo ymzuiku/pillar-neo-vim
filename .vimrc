@@ -28,8 +28,7 @@ Plug 'mbbill/undotree'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'jiangmiao/auto-pairs' "自动补充括弧插件, 经常补充不必要的,所以禁用
 
-" 不使用ternjs也一样补全,禁用
-" Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置,
+" Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
 " Plug 'valloric/MatchTagAlways'
 " Plug 'posva/vim-vue'  "不怎么开发vue, 禁用,需要的人自行打开
 " Plug 'liuchengxu/eleline.vim' "底部状态条,显示git状态,
