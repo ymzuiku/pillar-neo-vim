@@ -7,16 +7,17 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Valloric/YouCompleteMe'
 Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+ \ 'do': 'yarn install',
+ \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 Plug 'sheerun/vim-polyglot' "语言包, 只会加载当前语言的种类
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'w0rp/ale' "错误提示,配合eslint可以显示错误
+Plug 'w0rp/ale' "异步的错误提示,配合eslint可以显示错误, 现在会导致ycm自动错误补全
+" Plug 'vim-syntastic/syntastic' "同步的错误提示,性能较差
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
-Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips' "snip插件
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tyru/caw.vim'  "注释插件,支持300种语言
@@ -204,6 +205,21 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd FileType apache setlocal commentstring=#\ %s
 
+" syntastic语法检测, 代替ale 
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+"
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_error_symbol = '✗'
+" let g:syntastic_warning_symbol = '⚠'
+" let g:syntastic_style_error_symbol = '✗'
+" let g:syntastic_style_warning_symbol = '⚠'
+
 let g:vim_markdown_frontmatter=1
 autocmd QuickFixCmdPost *grep* cwindow
 let g:AutoPairsFlyMode = 1
@@ -211,20 +227,24 @@ let g:javascript_enable_domhtmlcss = 1
 let g:gitgutter_max_signs = 500  " default value
 
 "ycm的配置
+
+"解决没有选中也自动补全的错误
+set completeopt=menu,menuone,preview,noselect,noinsert
 let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
-let g:ycm_collect_identifiers_from_tags_files=1	" 开启 YCM 基于标签引擎
-let g:ycm_min_num_of_chars_for_completion=4	" 从第90个键入字符就开始罗列匹配项
-" let g:ycm_cache_omnifunc=0	" 禁止缓存匹配项,每次都重新生成匹配项
+let g:ycm_collect_identifiers_from_tags_files=0	" 开启 YCM 基于标签引擎
+let g:ycm_min_num_of_chars_for_completion=0	" 从第90个键入字符就开始罗列匹配项
+let g:ycm_cache_omnifunc=0	" 禁止缓存匹配项,每次都重新生成匹配项
 let g:ycm_seed_identifiers_with_syntax=1	" 语法关键字补全
+
 " 在注释输入中也能补全
-let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_comments = 0
 " 在字符串输入中也能补全
-let g:ycm_complete_in_strings = 1
+let g:ycm_complete_in_strings = 0
 " 注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_show_diagnostics_ui =
- \ get( g:, 'ycm_show_diagnostics_ui',
- \ get( g:, 'ycm_register_as_syntastic_checker', 0))
+\ get( g:, 'ycm_show_diagnostics_ui',
+\ get( g:, 'ycm_register_as_syntastic_checker', 0))
 
 " ycm读取typescript插件
 if !exists("g:ycm_semantic_triggers")
@@ -232,16 +252,39 @@ if !exists("g:ycm_semantic_triggers")
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
 
+" ycm和snip的热键设置
+set completeopt=longest,menu
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
+let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrgger="<leader><tab>"
+let g:UltiSnipsListSnippets="<c-e>"
+let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_key_list_select_completion = ['<Down>']
+inoremap <expr> <cr>       pumvisible() ? "\<c-y>" : "\<cr>"
+inoremap <expr> <Down>     pumvisible() ? "\<c-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<c-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<c-p>\<c-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<c-p>\<c-n>" : "\<PageUp>"
+" 直接触发自动补全
+let g:ycm_key_invoke_completion = '<c-space>'
+" let g:ycm_key_select_completion= '<tab>'
+"
+" smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+" imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+" smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+" imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+
 " ycm默认需要按ctrl + space 来进行补全，可以在上面的花括号里面加入下面两行代码来直接进行补全
-let g:ycm_semantic_triggers = {
-\   'css': [ 're!^\s{2}', 're!:\s+', '</' ],
-\   'scss': [ 're!^\s{2}', 're!:\s+', '</' ],
-\   'js': [ 're!^\s{2}', 're!:\s+', '</' ],
-\   'jsx': [ 're!^\s{2}', 're!:\s+', '</' ],
-\   'vue': [ 're!^\s{2}', 're!:\s+', '</' ],
-\   'ts': [ 're!^\s{2}', 're!:\s+', '</' ],
-\   'tsx': [ 're!^\s{2}', 're!:\s+', '</' ],
-\ }
+" let g:ycm_semantic_triggers = {
+"\   'css': [ 're!^\s{4}', 're!:\s+', '</' ],
+"\   'scss': [ 're!^\s{4}', 're!:\s+', '</' ],
+"\   'js': [ 're!^\s{4}', 're!:\s+', '</' ],
+"\   'jsx': [ 're!^\s{4}', 're!:\s+', '</' ],
+"\   'vue': [ 're!^\s{4}', 're!:\s+', '</' ],
+"\   'ts': [ 're!^\s{4}', 're!:\s+', '</' ],
+"\   'tsx': [ 're!^\s{4}', 're!:\s+', '</' ],
+"\ }
 "
 " 关闭函数原型提示
 let g:ycm_add_preview_to_completeopt = 0
@@ -368,15 +411,15 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 
 " ale 设置
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 0
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_error_str = '✗'
+let g:ale_echo_msg_warning_str = '⚠'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " let g:ale_linters = {'javascript': ['eslint'], 'vue':['eslint']}
 let g:ale_fixers = {
@@ -388,11 +431,13 @@ let g:ale_fixers = {
 " Do not lint or fix minified files.
 let g:ale_pattern_options = {
 \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+\ 'dll.*\.js$': {'ale_linters': [], 'ale_fixers': []},
+\ '\.map$': {'ale_linters': [], 'ale_fixers': []},
 \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
 \}
 " If you configure g:ale_pattern_options outside of vimrc, you need this.
 let g:ale_pattern_options_enabled = 1
-let g:ale_list_window_size = 5
+" let g:ale_list_window_size = 5
 " let g:ale_open_list = 1
 " let g:ale_keep_list_window_open = 0
 
@@ -710,27 +755,6 @@ nmap <leader>0 :tablast<cr>
 nmap q <Plug>(easymotion-s)
 
 
-" ycm和snip的热键设置
-set completeopt=longest,menu
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
-let g:UltiSnipsExpandTrigger="<tab>"
-" " let g:UltiSnipsJumpForwardTrigger="<tab>"
-" " let g:UltiSnipsJumpBackwardTrgger="<leader><tab>"
-let g:UltiSnipsListSnippets="<c-e>"
-let g:ycm_key_list_select_completion = ['<Down>']
-let g:ycm_key_list_previous_completion = ['<Up>']
-inoremap <expr> <cr>       pumvisible() ? "\<c-y>" : "\<cr>"
-inoremap <expr> <Down>     pumvisible() ? "\<c-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<c-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<c-p>\<c-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<c-p>\<c-n>" : "\<PageUp>"
-" 直接触发自动补全
-let g:ycm_key_invoke_completion = '<c-space>'
-
-" smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-" imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-" smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
-" imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
 
 " undo-tree
 nnoremap su :UndotreeToggle<cr> <c-w>h
