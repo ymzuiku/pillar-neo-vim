@@ -30,6 +30,8 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'liuchengxu/eleline.vim'
 Plug 'mbbill/undotree'
+Plug 'plasticboy/vim-markdown'
+Plug 'suan/vim-instant-markdown'
 
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -480,9 +482,9 @@ let g:prettier#config#arrow_parens = 'always'
 " Prettier default: none
 let g:prettier#config#trailing_comma = 'all'
 
-" flow|babylon|typescript|css|less|scss|json|graphql|markdown
+" flow|babylon|typescript|css|less|scss|json|graphql|markdown|babel
 " Prettier default: babylon
-let g:prettier#config#parser = 'typescript'
+let g:prettier#config#parser = 'babel'
 
 " cli-override|file-override|prefer-file
 let g:prettier#config#config_precedence = 'prefer-file'

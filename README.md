@@ -25,8 +25,8 @@ bash init.sh
 ### 2. Install Plug
 
 ```sh
-$ vim
-$ :PlugInstall
+vim
+:PlugInstall
 ```
 
 ![](./img/installPlug.png)
@@ -37,6 +37,12 @@ Waiting all plugin installed.
 
 ```sh
 bash secondInstall.sh
+```
+
+### 4. Install markdown preview in nodejs
+
+```
+npm i -g instant-markdown-d
 ```
 
 Use `secondInstall.sh` script install these:
@@ -186,7 +192,7 @@ Add `javascript.snippets` in `~/.vim/UltiSnips`, can setting snippets
 
 ## Markdown
 
-This package have markdow code hightlight, but not install markdow preview, you can use vim edit markdown, and use other Application preview markdown, because `Entities should not be multiplied unnecessarily`
+This package have markdow code hightlight, and use nodejs preview markdow. you need use other Application preview markdown, please install other. because `Entities should not be multiplied unnecessarily`
 
 ## That's all, enjoy it.
 
