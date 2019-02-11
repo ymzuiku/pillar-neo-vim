@@ -12,8 +12,7 @@ Plug 'prettier/vim-prettier', {
 Plug 'sheerun/vim-polyglot' "语言包, 只会加载当前语言的种类
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'w0rp/ale' "异步的错误提示,配合eslint可以显示错误, 现在会导致ycm自动错误补全
-" Plug 'vim-syntastic/syntastic' "同步的错误提示,性能较差
+Plug 'w0rp/ale' "异步的错误提示,配合eslint可以显示错误
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
@@ -27,13 +26,12 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'mbbill/undotree'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'jiangmiao/auto-pairs' "自动补充括弧插件, 经常补充不必要的,所以禁用
 
 " 不使用ternjs也一样补全,禁用
 " Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置,
 " Plug 'valloric/MatchTagAlways'
 " Plug 'posva/vim-vue'  "不怎么开发vue, 禁用,需要的人自行打开
-" Plug 'jiangmiao/auto-pairs' "自动补充括弧插件, 经常补充不必要的,所以禁用
-" 带来的干扰多过效用,禁用
 " Plug 'liuchengxu/eleline.vim' "底部状态条,显示git状态,
 " Plug 'tpope/vim-repeat' "插件的重复只能重复一条,使用这个可以多条
 
@@ -220,6 +218,7 @@ endif
 " let g:syntastic_style_error_symbol = '✗'
 " let g:syntastic_style_warning_symbol = '⚠'
 
+
 let g:vim_markdown_frontmatter=1
 autocmd QuickFixCmdPost *grep* cwindow
 let g:AutoPairsFlyMode = 1
@@ -233,7 +232,7 @@ set completeopt=menu,menuone,preview,noselect,noinsert
 let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
 let g:ycm_collect_identifiers_from_tags_files=0	" 开启 YCM 基于标签引擎
 let g:ycm_min_num_of_chars_for_completion=0	" 从第90个键入字符就开始罗列匹配项
-let g:ycm_cache_omnifunc=0	" 禁止缓存匹配项,每次都重新生成匹配项
+let g:ycm_cache_omnifunc=1	" 禁止缓存匹配项,每次都重新生成匹配项
 let g:ycm_seed_identifiers_with_syntax=1	" 语法关键字补全
 
 " 在注释输入中也能补全
@@ -583,6 +582,9 @@ nmap <leader>c= :colorscheme 256-jungle<cr>
 nmap fw <Plug>(Prettier) :w<cr>
 nmap fs :w<cr>
 nmap fq :q<cr>
+
+"yiw, fv替换内容
+nmap fv viwp 
 
 " 移动屏幕
 nmap - <c-b>
