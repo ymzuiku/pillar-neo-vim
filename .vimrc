@@ -6,14 +6,14 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Valloric/YouCompleteMe'
 Plug 'tenfyzhong/CompleteParameter.vim'
+Plug 'sheerun/vim-polyglot' "语言包, 只会加载当前语言的种类
 Plug 'prettier/vim-prettier', {
  \ 'do': 'yarn install',
  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
-Plug 'sheerun/vim-polyglot' "语言包, 只会加载当前语言的种类
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale' "异步的错误提示,配合eslint可以显示错误
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html'] }
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'SirVer/ultisnips' "snip插件
@@ -24,15 +24,16 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'groenewege/vim-less'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'mbbill/undotree'
+" Plug 'mbbill/undotree'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'jiangmiao/auto-pairs' "自动补充括弧插件, 经常补充不必要的,所以禁用
+Plug 'jiangmiao/auto-pairs' "自动补充括弧插件
 
-" Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
+Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
 " Plug 'valloric/MatchTagAlways'
 " Plug 'posva/vim-vue'  "不怎么开发vue, 禁用,需要的人自行打开
 " Plug 'liuchengxu/eleline.vim' "底部状态条,显示git状态,
 " Plug 'tpope/vim-repeat' "插件的重复只能重复一条,使用这个可以多条
+" Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
 
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -41,8 +42,6 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 颜色设置
 syntax enable
-" colorscheme seoul256
-colorscheme github
 
 " highlight StatusLineNC guifg=Gray guibg=White
 filetype on
@@ -201,21 +200,6 @@ endif
 ""插件的设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd FileType apache setlocal commentstring=#\ %s
-
-" syntastic语法检测, 代替ale 
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-"
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_error_symbol = '✗'
-" let g:syntastic_warning_symbol = '⚠'
-" let g:syntastic_style_error_symbol = '✗'
-" let g:syntastic_style_warning_symbol = '⚠'
 
 
 let g:vim_markdown_frontmatter=1
@@ -566,14 +550,16 @@ nmap <leader>c1 :colorscheme seoul256<cr>
 nmap <leader>c2 :colorscheme bubblegum-256-light<cr>
 nmap <leader>c3 :colorscheme bubblegum-256-dark<cr>
 nmap <leader>c4 :colorscheme github<cr>
-nmap <leader>c5 :colorscheme office-dark<cr>
-nmap <leader>c6 :colorscheme office-light<cr>
-nmap <leader>c7 :colorscheme <cr>
+nmap <leader>c5 :colorscheme monokai-ym<cr>
+nmap <leader>c6 :colorscheme monokai<cr>
+nmap <leader>c7 :colorscheme molokai<cr>
 nmap <leader>c8 :colorscheme beauty256<cr>
 nmap <leader>c9 :colorscheme devbox-dark-256<cr>
 nmap <leader>c0 :colorscheme xoria256<cr>
 nmap <leader>c- :colorscheme 256-grayvim<cr>
 nmap <leader>c= :colorscheme 256-jungle<cr>
+
+colorscheme monokai-ym
 
 " map ; :
 
@@ -582,10 +568,11 @@ nmap fw <Plug>(Prettier) :w<cr>
 nmap fs :w<cr>
 nmap fq :q<cr>
 
-"yiw, fv替换内容
-nmap fv viwp 
+"fc, fv替换内容
+nmap fc "tyiw
+nmap fv viw"tp 
 
-" 移动屏幕
+"移动屏幕
 nmap - <c-b>
 nmap = <c-f>
 
