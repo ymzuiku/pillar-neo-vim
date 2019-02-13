@@ -1,6 +1,8 @@
-# Front end Vim
+# Javascript \ React \ Nodejs Vimrc
 
-> This package testing Mac OS, other System please look and edit `init.sh` and `sectiondInstall.sh`
+> One script installed VIM config and Plugins
+
+> This package testing Mac OS, other System please look and edit `init.sh`
 
 This VIM config focus Javascript:
 
@@ -149,6 +151,10 @@ Fast copy and paste:
 - `0~9 = "0~9y in VISUAL mode`
 - `f0~9 = "0~9p`
 - `F0~9 = "0~0P`
+
+Change Theme:
+
+- `<leader>c1~9 - Change Theme colors`
 
 These is self hot keys, if you don't like, you can change `.vimrc` easy.
 
