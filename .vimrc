@@ -551,7 +551,7 @@ nmap <leader>c2 :colorscheme bubblegum-256-light<cr>
 nmap <leader>c3 :colorscheme bubblegum-256-dark<cr>
 nmap <leader>c4 :colorscheme github<cr>
 nmap <leader>c5 :colorscheme monokai-ym<cr>
-nmap <leader>c6 :colorscheme monokai<cr>
+nmap <leader>c6 :colorscheme space<cr>
 nmap <leader>c7 :colorscheme molokai<cr>
 nmap <leader>c8 :colorscheme beauty256<cr>
 nmap <leader>c9 :colorscheme devbox-dark-256<cr>

@@ -15,6 +15,8 @@ First, you must isntall `nodejs` and `brew`, and do it:
 
 ### 1. Clone and init vim-front-end
 
+copy this script in your Terminal:
+
 ```sh
 cd ~/
 git clone -b master --single-branch https://github.com/ymzuiku/vim-front-end
@@ -22,24 +24,16 @@ cd vim-front-end
 bash init.sh
 ```
 
-### 2. Install Plug
-
-```sh
-vim
-:PlugInstall
-```
+### 2. Waiting Install Plug
 
 ![](./img/installPlug.png)
 
 Waiting all plugin installed.
 
-### 3. Install dependents
+### 3. Waiting Install dependents
 
-```sh
-bash secondInstall.sh
-```
 
-Use `secondInstall.sh` script install these:
+Waiting install these dependents:
 
 - cmake
 - ctags
@@ -48,6 +42,7 @@ Use `secondInstall.sh` script install these:
 - ag
 - prettier
 - eslint, eslint_d
+- ternjs
 
 Wait all dependent installed.
 
