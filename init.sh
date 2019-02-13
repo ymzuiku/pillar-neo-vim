@@ -42,6 +42,7 @@ yarn
 
 npm i -g prettier eslint eslint_d
 
+echo "  "
 echo "Done! you can use vim-front-end."
 echo "  "
 echo "if you need use Mac-System-Clipboard, you need use 'brew install vim'"

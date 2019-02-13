@@ -11,11 +11,7 @@ This VIM config focus Javascript:
 
 ## Install
 
-First, you must isntall `nodejs` and `brew`, and do it:
-
-### 1. Clone and init vim-front-end
-
-copy this script in your Terminal:
+First, you must isntall `nodejs` and `brew`, copy this script in your Terminal:
 
 ```sh
 cd ~/
@@ -23,28 +19,6 @@ git clone -b master --single-branch https://github.com/ymzuiku/vim-front-end
 cd vim-front-end
 bash init.sh
 ```
-
-### 2. Waiting Install Plug
-
-![](./img/installPlug.png)
-
-Waiting all plugin installed.
-
-### 3. Waiting Install dependents
-
-
-Waiting install these dependents:
-
-- cmake
-- ctags
-- Start YouCompleteMe Server
-- fzf
-- ag
-- prettier
-- eslint, eslint_d
-- ternjs
-
-Wait all dependent installed.
 
 ## After installed, let me preview
 
