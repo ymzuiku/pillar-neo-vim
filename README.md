@@ -30,7 +30,7 @@ Use YouCompleteMe and tern_for_vim:
 
 ![](./img/YouCompleteMe.png)
 
-#### Mark git change in tree(hotKey: `so`):
+#### Mark git change in tree(hotKey: `si`):
 
 ![](./img/tree.png)
 
@@ -42,15 +42,15 @@ Use YouCompleteMe and tern_for_vim:
 
 ![](./img/fzf.png)
 
-#### code Search(hotKey: `fa`):
+#### code Search(hotKey: `fk`):
 
 ![](./img/ag.png)
 
-#### Git change files Search(hotKey: `fk`):
+#### Git change files Search(hotKey: `fg`):
 
 ![](./img/gitfile.png)
 
-#### vim.easymotion (hotKey: `<space>`):
+#### vim.easymotion (hotKey: `q`):
 
 ![](./img/easymotion.png)
 
@@ -118,10 +118,10 @@ Use: `v file.js` open vim
 - `s<space> delete line end space`
 
 - `su hidden/show undo-tree，g-, g= switch undo-tree`
-- `fa = :Ag -find code`
+- `fk = :Ag -find code`
 - `fj = :Files -find file`
 - `fg = :GFiles? -find git change file`
-- `fk = :Buffers -change opened buffer`
+- `fa = :Buffers -change opened buffer`
 - `fm = format file`
 - `f@ = @:`
 - `fs = :w<cr>`

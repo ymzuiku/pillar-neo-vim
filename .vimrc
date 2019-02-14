@@ -579,8 +579,8 @@ nmap = <c-f>
 " 文件、文件内容搜索
 nmap fj :Files<cr>
 nmap fg :GFiles?<cr>
-nmap fa :Ag<cr>
-nmap fk :Buffers<cr>
+nmap fk :Ag<cr>
+nmap fa :Buffers<cr>
 nmap fh :History<cr>
 nmap f~ :FZF ~/
 nmap f/ :FZF /
