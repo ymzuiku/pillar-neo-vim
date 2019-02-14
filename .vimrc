@@ -312,7 +312,7 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 
 " [Tags] Command to generate tags file
 let g:fzf_tags_command = 'ctags -R'
-let g:FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+let g:FZF_DEFAULT_COMMAND='ag --hidden --ignore node_modules -g""'
 
 " [Commands] --expect expression for directly executing the command
 " let g:fzf_commands_expect = 'alt-enter,ctrl-x'
@@ -581,6 +581,7 @@ nmap fj :Files<cr>
 nmap fg :GFiles?<cr>
 nmap fk :Ag<cr>
 nmap fa :Buffers<cr>
+imap fk <plug>(fzf-complete-file-ag)
 nmap fh :History<cr>
 nmap f~ :FZF ~/
 nmap f/ :FZF /
