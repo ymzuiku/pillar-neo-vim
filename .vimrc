@@ -565,6 +565,8 @@ colorscheme monokai-ym
 nmap dw <Plug>(Prettier) :w<cr>
 nmap ds :w<cr>
 nmap dq :q<cr>
+nmap dp :reg<cr>
+
 
 "dc, dv替换内容
 nmap dc "tyiw
@@ -591,9 +593,9 @@ nmap sm :Marks<cr>
 " :%s/aaa/bbb/c 把aaa换成bbb，/c表示需要询问确认
 nmap dr :%s/
 
-nnoremap dp :YcmCompleter GoToDeclaration<cr>
-nnoremap do :YcmCompleter GoToDefinition<cr>
-nnoremap di :YcmCompleter GoToDefinitionElseDeclaration<cr>
+nnoremap du :YcmCompleter GoToDefinitionElseDeclaration<cr>
+nnoremap di :YcmCompleter GoToDefinition<cr>
+nnoremap do :YcmCompleter GoToDeclaration<cr>
 
 " 书签设置
 " nmap mm :marks<cr>
