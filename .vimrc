@@ -13,7 +13,7 @@ Plug 'prettier/vim-prettier', {
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale' "异步的错误提示,配合eslint可以显示错误
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html'] }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'SirVer/ultisnips' "snip插件
@@ -23,17 +23,16 @@ Plug 'tyru/caw.vim'  "注释插件,支持300种语言
 Plug 'hail2u/vim-css3-syntax'
 Plug 'groenewege/vim-less'
 Plug 'cakebaker/scss-syntax.vim'
-Plug 'easymotion/vim-easymotion'
 " Plug 'mbbill/undotree'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'jiangmiao/auto-pairs' "自动补充括弧插件
 
-Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
+" Plug 'easymotion/vim-easymotion'
+" Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
 " Plug 'valloric/MatchTagAlways'
 " Plug 'posva/vim-vue'  "不怎么开发vue, 禁用,需要的人自行打开
 " Plug 'liuchengxu/eleline.vim' "底部状态条,显示git状态,
 " Plug 'tpope/vim-repeat' "插件的重复只能重复一条,使用这个可以多条
-" Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
 
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -403,7 +402,7 @@ let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_echo_msg_error_str = '✗'
 let g:ale_echo_msg_warning_str = '⚠'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" let g:ale_linters = {'javascript': ['eslint'], 'vue':['eslint']}
+let g:ale_linters = {'javascript': ['eslint'], 'vue':['eslint']}
 let g:ale_fixers = {
 \   '*': ['prettier', 'eslint'],
 \   'javascript': ['prettier', 'eslint'],
@@ -413,7 +412,6 @@ let g:ale_fixers = {
 " Do not lint or fix minified files.
 let g:ale_pattern_options = {
 \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-\ 'dll.*\.js$': {'ale_linters': [], 'ale_fixers': []},
 \ '\.map$': {'ale_linters': [], 'ale_fixers': []},
 \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
 \}
@@ -539,7 +537,7 @@ let g:prettier#config#prose_wrap = 'preserve'
 ""热键设置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " <header> 设置，默认为\
-let mapleader="\<space>"
+" let mapleader="\<space>"
 " On OSX
 " vmap <C-c> y:call system("pbcopy", getreg("/""))<CR>
 " nmap <C-v> :call setreg("/"",system("pbpaste"))<CR>p
@@ -564,56 +562,56 @@ colorscheme monokai-ym
 " map ; :
 
 " 快速保存
-nmap fw <Plug>(Prettier) :w<cr>
-nmap fs :w<cr>
-nmap fq :q<cr>
+nmap dw <Plug>(Prettier) :w<cr>
+nmap ds :w<cr>
+nmap dq :q<cr>
 
-"fc, fv替换内容
-nmap fc "tyiw
-nmap fv viw"tp 
+"dc, dv替换内容
+nmap dc "tyiw
+nmap dv viw"tp 
 
 "移动屏幕
-nmap - <c-b>
-nmap = <c-f>
+nmap K <c-b>
+nmap J <c-f>
 
 " 文件、文件内容搜索
-nmap fj :Files<cr>
-nmap fg :GFiles?<cr>
-nmap fk :Ag<cr>
-nmap fa :Buffers<cr>
-imap fk <plug>(fzf-complete-file-ag)
-nmap fh :History<cr>
-nmap f~ :FZF ~/
-nmap f/ :FZF /
-nmap f@ @:
+nmap dj :Files<cr>
+nmap dg :GFiles?<cr>
+nmap dk :Ag<cr>
+nmap da :Buffers<cr>
+imap dk <plug>(fzf-complete-file-ag)
+nmap dh :History<cr>
+nmap d~ :FZF ~/
+nmap d/ :FZF /
+nmap d@ @:
 "格式化
-nmap fm <Plug>(Prettier)
+nmap = <Plug>(Prettier)
 nmap sm :Marks<cr>
 " 搜索替换
 " :%s/aaa/bbb/c 把aaa换成bbb，/c表示需要询问确认
-nmap fr :%s/
+nmap dr :%s/
 
-nnoremap fp :YcmCompleter GoToDeclaration<cr>
-nnoremap fo :YcmCompleter GoToDefinition<cr>
-nnoremap fi :YcmCompleter GoToDefinitionElseDeclaration<cr>
+nnoremap dp :YcmCompleter GoToDeclaration<cr>
+nnoremap do :YcmCompleter GoToDefinition<cr>
+nnoremap di :YcmCompleter GoToDefinitionElseDeclaration<cr>
 
 " 书签设置
 " nmap mm :marks<cr>
 nmap <leader>m :delm!<cr>
 
 " 跳转错误
-nmap <silent> f[ <Plug>(ale_previous_wrap)
-nmap <silent> f] <Plug>(ale_next_wrap)
+nmap <silent> d[ <Plug>(ale_previous_wrap)
+nmap <silent> d] <Plug>(ale_next_wrap)
 
 " 由于K是帮助，没什么用，用来代替c-o
 " nmap K <c-o>
 
 " 针对行，换行
-nmap <c-k> ddkP
-nmap <c-j> ddp
+" nmap <c-k> ddkP
+" nmap <c-j> ddp
 " 在选择模式时，按m注释
-xmap t gcc
-nmap t gcc
+xmap q gcc
+nmap q gcc
 
 " 更科学的复制粘贴, "+y 是系统剪切板
 xmap 1 "1y
@@ -625,32 +623,26 @@ xmap 6 "6y
 xmap 7 "7y
 xmap 8 "8y
 xmap 9 "9y
-xmap 0 "0y
-xmap - "+y
 
-nmap f1 "1p
-nmap f2 "2p
-nmap f3 "3p
-nmap f4 "4p
-nmap f5 "5p
-nmap f6 "6p
-nmap f7 "7p
-nmap f8 "8p
-nmap f9 "9p
-nmap f0 "0p
-nmap f- "+p
+nmap d1 "1p
+nmap d2 "2p
+nmap d3 "3p
+nmap d4 "4p
+nmap d5 "5p
+nmap d6 "6p
+nmap d7 "7p
+nmap d8 "8p
+nmap d9 "9p
 
-nmap F1 "1P
-nmap F2 "2P
-nmap F3 "3P
-nmap F4 "4P
-nmap F5 "5P
-nmap F6 "6P
-nmap F7 "7P
-nmap F8 "8P
-nmap F9 "9P
-nmap F0 "0P
-nmap F- "+P
+nmap D1 "1P
+nmap D2 "2P
+nmap D3 "3P
+nmap D4 "4P
+nmap D5 "5P
+nmap D6 "6P
+nmap D7 "7P
+nmap D8 "8P
+nmap D9 "9P
 
 " 开启markdown或停止预览
 nmap <leader>m :MarkdownPreview<cr>
@@ -715,17 +707,17 @@ nmap sc :tabnew<cr>
 nmap sb :!bash<cr>
 
 " 切换tab上一个下一个
-nmap s[ :tabp<cr>
-nmap s] :tabn<cr>
-nmap s1 1gt
-nmap s2 2gt
-nmap s3 3gt
-nmap s4 4gt
-nmap s5 5gt
-nmap s6 6gt
-nmap s7 7gt
-nmap s8 8gt
-nmap s9 9gt
+" nmap s[ :tabp<cr>
+" nmap s] :tabn<cr>
+" nmap s1 1gt
+" nmap s2 2gt
+" nmap s3 3gt
+" nmap s4 4gt
+" nmap s5 5gt
+" nmap s6 6gt
+" nmap s7 7gt
+" nmap s8 8gt
+" nmap s9 9gt
 
 " 切换屏焦点
 " nmap sw <c-w>w
@@ -741,7 +733,7 @@ nmap <leader>0 :tablast<cr>
 " nmap si :Explore<cr>
 
 " easymotion 跳转
-nmap q <Plug>(easymotion-s)
+" nmap q <Plug>(easymotion-s)
 
 
 

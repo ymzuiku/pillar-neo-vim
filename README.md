@@ -95,9 +95,8 @@ Use: `v file.js` open vim
 
 ## Diffent Default VIM config:
 
-`s, f, t, q, -, =, <space>` is diffent VIM keys, Please look `.vimrc` file:
+`s, q` is diffent VIM keys, Please look `.vimrc` file:
 
-- `space = <Leader>`
 - `- = <c-b> -flip page up, because tmux uesd <c-b>`
 - `= = <c-f> -flip page down`
 - `s+v\h\j\k\l\c = <c-w>+v\h\j\k\l\c`
@@ -118,30 +117,29 @@ Use: `v file.js` open vim
 - `s<space> delete line end space`
 
 - `su hidden/show undo-tree，g-, g= switch undo-tree`
-- `fk = :Ag -find code`
-- `fj = :Files -find file`
-- `fg = :GFiles? -find git change file`
-- `fa = :Buffers -change opened buffer`
-- `fm = format file`
-- `f@ = @:`
-- `fs = :w<cr>`
-- `fq = :q<cr>`
-- `fr = :%s/ -replace`
-- `fM = :delm!`
-- `f[ = last eslint error line`
-- `f] = next eslint error line`
+- `dk = :Ag -find code`
+- `dj = :Files -find file`
+- `dg = :GFiles? -find git change file`
+- `da = :Buffers -change opened buffer`
+- `= = format file`
+- `d@ = @:`
+- `ds = :w<cr>`
+- `dq = :q<cr>`
+- `dr = :%s/ -replace`
+- `dM = :delm!`
+- `d[ = last eslint error line`
+- `d] = next eslint error line`
 
 - `<c-j> = move line down`
 - `<c-k> = move line up`
 - `= = <c-f>
 - `- = <c-b>
-- `q = vim-easymotion`
 - `<tab>` select snippets
 - `<cr>` select YouCompleteMe info
 - `<c-space>` show YouCompleteMe
 
-- `t = commenter one line`
-- `t = commenter multiline in VISUAL Mode`
+- `q = commenter one line`
+- `q = commenter multiline in VISUAL Mode`
 
 - `<leader>m = preview markdown`
 - `<leader>M = stop preview markdown`
@@ -149,8 +147,8 @@ Use: `v file.js` open vim
 Fast copy and paste:
 
 - `0~9 = "0~9y in VISUAL mode`
-- `f0~9 = "0~9p`
-- `F0~9 = "0~0P`
+- `d0~9 = "0~9p`
+- `D0~9 = "0~0P`
 
 Change Theme:
 
