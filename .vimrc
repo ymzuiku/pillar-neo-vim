@@ -6,6 +6,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Valloric/YouCompleteMe'
 Plug 'tenfyzhong/CompleteParameter.vim'
+Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
 Plug 'sheerun/vim-polyglot' "语言包, 只会加载当前语言的种类
 Plug 'prettier/vim-prettier', {
  \ 'do': 'yarn install',
@@ -24,11 +25,10 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'groenewege/vim-less'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'mbbill/undotree'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'jiangmiao/auto-pairs' "自动补充括弧插件
+" Plug 'jiangmiao/auto-pairs' "自动补充括弧插件
 
-" Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
+" Plug 'mbbill/undotree'
 " Plug 'valloric/MatchTagAlways'
 " Plug 'posva/vim-vue'  "不怎么开发vue, 禁用,需要的人自行打开
 " Plug 'liuchengxu/eleline.vim' "底部状态条,显示git状态,
@@ -213,7 +213,7 @@ let g:gitgutter_max_signs = 500  " default value
 set completeopt=menu,menuone,preview,noselect,noinsert
 let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
 let g:ycm_collect_identifiers_from_tags_files=0	" 开启 YCM 基于标签引擎
-let g:ycm_min_num_of_chars_for_completion=0	" 从第90个键入字符就开始罗列匹配项
+let g:ycm_min_num_of_chars_for_completion=3	" 从第90个键入字符就开始罗列匹配项
 let g:ycm_cache_omnifunc=1	" 禁止缓存匹配项,每次都重新生成匹配项
 let g:ycm_seed_identifiers_with_syntax=1	" 语法关键字补全
 
@@ -257,20 +257,20 @@ let g:ycm_key_invoke_completion = '<c-space>'
 " imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
 
 " ycm默认需要按ctrl + space 来进行补全，可以在上面的花括号里面加入下面两行代码来直接进行补全
-" let g:ycm_semantic_triggers = {
-"\   'css': [ 're!^\s{4}', 're!:\s+', '</' ],
-"\   'scss': [ 're!^\s{4}', 're!:\s+', '</' ],
-"\   'js': [ 're!^\s{4}', 're!:\s+', '</' ],
-"\   'jsx': [ 're!^\s{4}', 're!:\s+', '</' ],
-"\   'vue': [ 're!^\s{4}', 're!:\s+', '</' ],
-"\   'ts': [ 're!^\s{4}', 're!:\s+', '</' ],
-"\   'tsx': [ 're!^\s{4}', 're!:\s+', '</' ],
-"\ }
+let g:ycm_semantic_triggers = {
+\   'css': [ 're!^\s{4}', 're!:\s+', '</' ],
+\   'scss': [ 're!^\s{4}', 're!:\s+', '</' ],
+\   'js': [ 're!^\s{4}', 're!:\s+', '</' ],
+\   'jsx': [ 're!^\s{4}', 're!:\s+', '</' ],
+\   'vue': [ 're!^\s{4}', 're!:\s+', '</' ],
+\   'ts': [ 're!^\s{4}', 're!:\s+', '</' ],
+\   'tsx': [ 're!^\s{4}', 're!:\s+', '</' ],
+\ }
 "
 " 关闭函数原型提示
-let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_add_preview_to_completeopt = 1
 "  关闭错误提示
-let g:ycm_show_diagnostics_ui = 0
+let g:ycm_show_diagnostics_ui = 1
 
 "set tags+=~/.vim/tags/testtags
 "let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/ycmd/tests/testdata/extra_conf/global_extra_conf.py'
@@ -359,7 +359,7 @@ autocmd BufRead,BufNewFIle *.ts setlocal filetype=typescript
 " 是否显示隐藏文件
 let NERDTreeShowHidden=1
 " 忽略显示文件
-let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.DS_Store', '\.meta', 'node_modules']
+let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.DS_Store', '\.meta', '.idea']
 let g:nerdtree_tabs_open_on_console_startup=1 "在终端启动vim时，共享NERDTree
 let g:nerdtree_tabs_open_on_gui_startup=1
 let g:nerdtree_tabs_open_on_new_tab=1
@@ -367,7 +367,7 @@ let g:nerdtree_tabs_synchronize_focus=1
 let NERDTreeShowLineNumbers=0
 let NERDTreeAutoCenter=1
 let NERDTreeShowBookmarks=0
-let NERDTreeQuitOnOpen=0 "当NERDTree打开文件时退出
+let NERDTreeQuitOnOpen=1 "当NERDTree打开文件时退出
 let NERDTreeWinPos=1
 let NERDTreeWinSize=32
 
@@ -376,6 +376,7 @@ let NERDTreeWinSize=32
 " 没指定文件时，启动显示Tree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
 
 " NERDTree的git显示
 let g:NERDTreeIndicatorMapCustom = {
@@ -387,7 +388,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Deleted"   : "✖",
     \ "Dirty"     : "✗",
     \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
+    \ 'Ignored'   : '¡',
     \ "Unknown"   : "?"
     \ }
 
@@ -532,6 +533,11 @@ let g:prettier#config#prose_wrap = 'preserve'
 
 " 简化eleline的样式,不显示右边
 " let g:eleline_slim = 1
+"
+" 自动读取保存Session.vim
+
+" 关闭时自动保存session
+" au VimLeave * mksession! Session.vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""热键设置
@@ -565,7 +571,6 @@ colorscheme monokai-ym
 nmap dw <Plug>(Prettier) :w<cr>
 nmap fs :w<cr>
 nmap fq :q<cr>
-nmap fp :reg<cr>
 
 
 "dc, dv替换内容
@@ -593,9 +598,12 @@ nmap fm :Marks<cr>
 " :%s/aaa/bbb/c 把aaa换成bbb，/c表示需要询问确认
 nmap fr :%s/
 
-nnoremap fu :YcmCompleter GoToDefinitionElseDeclaration<cr>
-nnoremap fi :YcmCompleter GoToDefinition<cr>
-nnoremap fo :YcmCompleter GoToDeclaration<cr>
+nnoremap fi :YcmCompleter GoToDefinitionElseDeclaration<cr>
+" nnoremap fi :YcmCompleter GoToDefinition<cr>
+" nnoremap fo :YcmCompleter GoToDeclaration<cr>
+" nnoremap fp :YcmCompleter GoTo<cr>
+nmap fP :source ~/.vimrc<cr> :YcmRestartServer<cr>
+nmap fp fc :Files<cr><C-v>
 
 " 书签设置
 " nmap mm :marks<cr>
@@ -672,6 +680,7 @@ let g:nerdtree_tabs_autofind=1
 
 " 全选
 nmap sa ggVG
+" nmap sm :source Session.vim<cr> :source ~/.vimrc<cr>
 
 " 代替ctrl+w分屏幕
 " 上下分割当前屏
@@ -700,8 +709,6 @@ nmap sn :nohl<cr>
 nmap sR :bufdo e<cr>
 " 重新加载vimrc
 nmap sr :source ~/.vimrc<cr>
-" 关闭标签
-nmap sT :tabo<cr>
 " 打开Tab
 nmap sc :tabnew<cr>
 
@@ -720,6 +727,9 @@ nmap s6 6gt
 nmap s7 7gt
 nmap s8 8gt
 nmap s9 9gt
+" 关闭其他标签
+nmap s0 :tabo<cr>
+nmap ss :tablast<cr>
 
 " 切换屏焦点
 " nmap sw <c-w>w
@@ -727,9 +737,7 @@ nmap s9 9gt
 " 关闭当前屏
 nmap sx <c-w>c
 " 清理所有行尾空格
-nmap s<space> :%s/\s\+$//<cr>:let @/=''<CR>
-" nmap wc :tabc<cr>
-nmap <leader>0 :tablast<cr>
+nmap s<space> :%s/\s\+$//<cr>:let @/=''<CR> 
 
 " 使用系统的tree
 " nmap si :Explore<cr>
@@ -742,7 +750,11 @@ nmap <space> <Plug>(easymotion-s)
 " undo-tree
 nnoremap su :UndotreeToggle<cr> <c-w>h
 " g- g+ 切换 undotree
-nmap g= g+
+" nmap g= g+
+
+" 设置webpack-alias
+" set inex=substitute(v:fname,'^\\@','src','')
+" set inex=substitute(v:fname,'^\\src','src','')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""VIM默认热荐记录
