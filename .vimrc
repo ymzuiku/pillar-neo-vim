@@ -626,25 +626,25 @@ xmap 7 "7y
 xmap 8 "8y
 xmap 9 "9y
 
-nmap d1 "1p
-nmap d2 "2p
-nmap d3 "3p
-nmap d4 "4p
-nmap d5 "5p
-nmap d6 "6p
-nmap d7 "7p
-nmap d8 "8p
-nmap d9 "9p
+nmap f1 "1p
+nmap f2 "2p
+nmap f3 "3p
+nmap f4 "4p
+nmap f5 "5p
+nmap f6 "6p
+nmap f7 "7p
+nmap f8 "8p
+nmap f9 "9p
 
-nmap D1 "1P
-nmap D2 "2P
-nmap D3 "3P
-nmap D4 "4P
-nmap D5 "5P
-nmap D6 "6P
-nmap D7 "7P
-nmap D8 "8P
-nmap D9 "9P
+nmap F1 "1P
+nmap F2 "2P
+nmap F3 "3P
+nmap F4 "4P
+nmap F5 "5P
+nmap F6 "6P
+nmap F7 "7P
+nmap F8 "8P
+nmap F9 "9P
 
 " 开启markdown或停止预览
 nmap <leader>m :MarkdownPreview<cr>
