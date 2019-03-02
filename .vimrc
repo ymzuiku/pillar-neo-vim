@@ -23,11 +23,11 @@ Plug 'tyru/caw.vim'  "注释插件,支持300种语言
 Plug 'hail2u/vim-css3-syntax'
 Plug 'groenewege/vim-less'
 Plug 'cakebaker/scss-syntax.vim'
-" Plug 'mbbill/undotree'
+Plug 'easymotion/vim-easymotion'
+Plug 'mbbill/undotree'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'jiangmiao/auto-pairs' "自动补充括弧插件
 
-" Plug 'easymotion/vim-easymotion'
 " Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
 " Plug 'valloric/MatchTagAlways'
 " Plug 'posva/vim-vue'  "不怎么开发vue, 禁用,需要的人自行打开
@@ -127,10 +127,10 @@ set incsearch
 " 只有一个大写字母的搜索词，将大小写敏感
 set smartcase
 " 保留撤销历史
-" set undofile
-" set backupdir=~/.vim/.backup//
-" set directory=~/.vim/.swp//
-" set undodir=~/.vim/.undo//
+set undofile
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//
+set undodir=~/.vim/.undo//
 " 出错时，不要发出响声。
 set noerrorbells
 "行内替换
@@ -563,47 +563,47 @@ colorscheme monokai-ym
 
 " 快速保存
 nmap dw <Plug>(Prettier) :w<cr>
-nmap ds :w<cr>
-nmap dq :q<cr>
-nmap dp :reg<cr>
+nmap fs :w<cr>
+nmap fq :q<cr>
+nmap fp :reg<cr>
 
 
 "dc, dv替换内容
-nmap dc "tyiw
-nmap dv viw"tp 
+nmap fc yiw"tyiw
+nmap fv viw"tp
 
 "移动屏幕
 nmap K <c-b>
 nmap J <c-f>
 
 " 文件、文件内容搜索
-nmap dj :Files<cr>
-nmap dg :GFiles?<cr>
-nmap dk :Ag<cr>
-nmap da :Buffers<cr>
-imap dk <plug>(fzf-complete-file-ag)
-nmap dh :History<cr>
-nmap d~ :FZF ~/
-nmap d/ :FZF /
-nmap d@ @:
+nmap fj :Files<cr>
+nmap fg :GFiles?<cr>
+nmap fk :Ag<cr>
+nmap fa :Buffers<cr>
+imap fk <plug>(fzf-complete-file-ag)
+nmap fh :History<cr>
+nmap f~ :FZF ~/
+nmap f/ :FZF /
+nmap f@ @:
 "格式化
 nmap = <Plug>(Prettier)
-nmap sm :Marks<cr>
+nmap fm :Marks<cr>
 " 搜索替换
 " :%s/aaa/bbb/c 把aaa换成bbb，/c表示需要询问确认
-nmap dr :%s/
+nmap fr :%s/
 
-nnoremap du :YcmCompleter GoToDefinitionElseDeclaration<cr>
-nnoremap di :YcmCompleter GoToDefinition<cr>
-nnoremap do :YcmCompleter GoToDeclaration<cr>
+nnoremap fu :YcmCompleter GoToDefinitionElseDeclaration<cr>
+nnoremap fi :YcmCompleter GoToDefinition<cr>
+nnoremap fo :YcmCompleter GoToDeclaration<cr>
 
 " 书签设置
 " nmap mm :marks<cr>
 nmap <leader>m :delm!<cr>
 
 " 跳转错误
-nmap <silent> d[ <Plug>(ale_previous_wrap)
-nmap <silent> d] <Plug>(ale_next_wrap)
+nmap <silent> f[ <Plug>(ale_previous_wrap)
+nmap <silent> f] <Plug>(ale_next_wrap)
 
 " 由于K是帮助，没什么用，用来代替c-o
 " nmap K <c-o>
@@ -709,17 +709,17 @@ nmap sc :tabnew<cr>
 nmap sb :!bash<cr>
 
 " 切换tab上一个下一个
-" nmap s[ :tabp<cr>
-" nmap s] :tabn<cr>
-" nmap s1 1gt
-" nmap s2 2gt
-" nmap s3 3gt
-" nmap s4 4gt
-" nmap s5 5gt
-" nmap s6 6gt
-" nmap s7 7gt
-" nmap s8 8gt
-" nmap s9 9gt
+nmap s[ :tabp<cr>
+nmap s] :tabn<cr>
+nmap s1 1gt
+nmap s2 2gt
+nmap s3 3gt
+nmap s4 4gt
+nmap s5 5gt
+nmap s6 6gt
+nmap s7 7gt
+nmap s8 8gt
+nmap s9 9gt
 
 " 切换屏焦点
 " nmap sw <c-w>w
@@ -735,7 +735,7 @@ nmap <leader>0 :tablast<cr>
 " nmap si :Explore<cr>
 
 " easymotion 跳转
-" nmap q <Plug>(easymotion-s)
+nmap <space> <Plug>(easymotion-s)
 
 
 

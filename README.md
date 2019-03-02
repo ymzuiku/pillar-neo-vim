@@ -95,8 +95,9 @@ Use: `v file.js` open vim
 
 ## Diffent Default VIM config:
 
-`s, q` is diffent VIM keys, Please look `.vimrc` file:
+`q, s, f <space>` is diffent VIM keys, Please look `.vimrc` file:
 
+- `<space> easymove`
 - `- = <c-b> -flip page up, because tmux uesd <c-b>`
 - `= = <c-f> -flip page down`
 - `s+v\h\j\k\l\c = <c-w>+v\h\j\k\l\c`
@@ -117,18 +118,18 @@ Use: `v file.js` open vim
 - `s<space> delete line end space`
 
 - `su hidden/show undo-tree，g-, g= switch undo-tree`
-- `dk = :Ag -find code`
-- `dj = :Files -find file`
-- `dg = :GFiles? -find git change file`
-- `da = :Buffers -change opened buffer`
+- `fk = :Ag -find code`
+- `fj = :Files -find file`
+- `fg = :GFiles? -find git change file`
+- `fa = :Buffers -change opened buffer`
 - `= = format file`
-- `d@ = @:`
-- `ds = :w<cr>`
-- `dq = :q<cr>`
-- `dr = :%s/ -replace`
-- `dM = :delm!`
-- `d[ = last eslint error line`
-- `d] = next eslint error line`
+- `f@ = @:`
+- `fs = :w<cr>`
+- `fq = :q<cr>`
+- `fr = :%s/ -replace`
+- `fM = :delm!`
+- `f[ = last eslint error line`
+- `f] = next eslint error line`
 
 - `<c-j> = move line down`
 - `<c-k> = move line up`
@@ -147,8 +148,8 @@ Use: `v file.js` open vim
 Fast copy and paste:
 
 - `0~9 = "0~9y in VISUAL mode`
-- `d0~9 = "0~9p`
-- `D0~9 = "0~0P`
+- `f0~9 = "0~9p`
+- `F0~9 = "0~0P`
 
 Change Theme:
 
