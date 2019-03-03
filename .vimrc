@@ -26,7 +26,7 @@ Plug 'groenewege/vim-less'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-" Plug 'jiangmiao/auto-pairs' "自动补充括弧插件
+Plug 'jiangmiao/auto-pairs' "自动补充括弧插件
 
 " Plug 'mbbill/undotree'
 " Plug 'valloric/MatchTagAlways'
@@ -200,6 +200,8 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd FileType apache setlocal commentstring=#\ %s
 
+" 设置Files搜索的忽略
+" command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore .git --ignore node_modules --ignore Library --ignore build --ignore .cache --ignore .idea --ignore .sass-cache -g', <bang>0)
 
 let g:vim_markdown_frontmatter=1
 autocmd QuickFixCmdPost *grep* cwindow
@@ -362,12 +364,12 @@ let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.DS_Store', '\.meta', '.idea']
 let g:nerdtree_tabs_open_on_console_startup=1 "在终端启动vim时，共享NERDTree
 let g:nerdtree_tabs_open_on_gui_startup=1
-let g:nerdtree_tabs_open_on_new_tab=1
+let g:nerdtree_tabs_open_on_new_tab=0
 let g:nerdtree_tabs_synchronize_focus=1
 let NERDTreeShowLineNumbers=0
 let NERDTreeAutoCenter=1
 let NERDTreeShowBookmarks=0
-let NERDTreeQuitOnOpen=1 "当NERDTree打开文件时退出
+let NERDTreeQuitOnOpen=0 "当NERDTree打开文件时退出
 let NERDTreeWinPos=1
 let NERDTreeWinSize=32
 
@@ -581,6 +583,7 @@ nmap fv viw"tp
 nmap K <c-b>
 nmap J <c-f>
 
+
 " 文件、文件内容搜索
 nmap fj :Files<cr>
 nmap fg :GFiles?<cr>
@@ -620,8 +623,8 @@ nmap <silent> f] <Plug>(ale_next_wrap)
 " nmap <c-k> ddkP
 " nmap <c-j> ddp
 " 在选择模式时，按m注释
-xmap q gcc
-nmap q gcc
+xmap t gcc
+nmap t gcc
 
 " 更科学的复制粘贴, "+y 是系统剪切板
 xmap 1 "1y
@@ -745,10 +748,56 @@ nmap s<space> :%s/\s\+$//<cr>:let @/=''<CR>
 " easymotion 跳转
 nmap <space> <Plug>(easymotion-s)
 
-
+" 切换AutoPairs
+nmap qq <m-q>
+nmap qw <m-w>
+nmap qe <m-e>
+nmap qr <m-r>
+nmap qt <m-t>
+nmap qy <m-y>
+nmap qu <m-u>
+nmap qi <m-i>
+nmap qo <m-o>
+nmap qp <m-p>
+nmap qa <m-a>
+nmap qs <m-s>
+nmap qd <m-d>
+nmap qf <m-f>
+nmap qg <m-g>
+nmap qh <m-h>
+nmap qj <m-j>
+nmap qk <m-k>
+nmap ql <m-l>
+nmap qz <m-z>
+nmap qx <m-x>
+nmap qc <m-c>
+nmap qv <m-v>
+nmap qb <m-b>
+nmap qn <m-n>
+nmap qm <m-m>
+nmap q1 <m-1>
+nmap q2 <m-2>
+nmap q3 <m-3>
+nmap q4 <m-4>
+nmap q5 <m-5>
+nmap q6 <m-6>
+nmap q7 <m-7>
+nmap q8 <m-8>
+nmap q9 <m-9>
+nmap q0 <m-0>
+nmap q- <m-->
+nmap q= <m-=>
+nmap q[ <m-[>
+nmap q] <m-]>
+nmap q\ <m-\>
+nmap q; <m-;>
+nmap q, <m-,>
+nmap q. <m-.>
+nmap q/ <m-/>
+nmap q<space> <m-space>
 
 " undo-tree
-nnoremap su :UndotreeToggle<cr> <c-w>h
+" nnoremap su :UndotreeToggle<cr> <c-w>h
 " g- g+ 切换 undotree
 " nmap g= g+
 

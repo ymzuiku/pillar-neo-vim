@@ -4,6 +4,7 @@ snippet gitignore
 
 
 # local
+.dev.*
 **/.dev.*
 
 # private
@@ -12,19 +13,32 @@ config/.env.dev.js
 jsconfig.json
 
 # dependencies
+node_modules
+.pnp
+.pnp.js
+
 **/node_modules
 **/.pnp
 **/.pnp.js
 
 # testing
+coverage
 **/coverage
 
 # production
+build
+dist
+public/dll
+
 **/build
 **/dist
 **/public/dll
 
 # cache
+.cache
+.webpack_cache
+.eslintcache
+
 **/.cache
 **/.webpack_cache
 **/.eslintcache
@@ -42,18 +56,26 @@ yarn-debug.log*
 yarn-error.log*
 
 # git ignore files
+local-git
+gitignores
+
 **/local-git
 **/gitignores
 
 # idea
+*.sln
+.idea
+.vscode
+.buckd
+.project
+.settings
+
 **/*.sln
 **/.idea
-**/Session.vim
 **/.vscode
 **/.buckd
 **/.project
 **/.settings
-**/.tern-project
 
 # native files
 **/android/app/release
