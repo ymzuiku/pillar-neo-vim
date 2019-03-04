@@ -58,6 +58,7 @@ yarn-error.log*
 # git ignore files
 local-git
 gitignores
+.tern_project
 
 **/local-git
 **/gitignores
@@ -83,4 +84,25 @@ gitignores
 **/fastlane/Preview.html
 **/fastlane/screenshots
 **/*.ipa
+endsnippet
+
+
+snippet tern_project
+{
+	"libs": [
+		"browser",
+		"ecma6",
+		"lodash",
+		"jquery"
+	],
+	"plugins": {
+		"modules": {},
+		"webpack": {
+			"configPath":"./config/webpack.config.js"
+		},
+		"node": {},
+		"complete_strings":{},
+		"es_modules":{}
+	}
+}
 endsnippet

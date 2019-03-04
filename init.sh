@@ -13,12 +13,17 @@ if [ -d "~/.vim" ];then
   mv ~/.vim ~/.vimrc-backup-$nowTime
 fi
 
+if [ -f "~/.tmux.conf" ];then
+  mv ~/.vimrc ~/.vimrc-backup-$nowTime
+fi
+
 mkdir $vimFrontEnd/.vim/.swp || echo ''
 mkdir $vimFrontEnd/.vim/.undo || echo ''
 mkdir $vimFrontEnd/.vim/.backup || echo ''
 
 ln -s $vimFrontEnd/.vim ~/.vim
 ln -s $vimFrontEnd/.vimrc ~/.vimrc
+ln -s $vimFrontEnd/.tmux.conf ~/.tmux.conf
 
 vim +PlugInstall +qall
 
@@ -40,7 +45,7 @@ cd ~/.vim/plugged/YouCompleteMe
 # cd ~/.vim/plugged/tern_for_vim
 # yarn
 
-npm i -g prettier eslint eslint_d
+npm i -g prettier eslint eslint_d tern-node-mongodb-native tern-node-express
 
 echo "  "
 echo "Done! you can use vim-front-end."
