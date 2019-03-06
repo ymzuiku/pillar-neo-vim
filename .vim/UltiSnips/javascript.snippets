@@ -4,7 +4,153 @@ endsnippet
 
 snippet for
 for (let i = 0; i < ${1}.length; i++ ){
-	 
+
 }
+endsnippet
+
+snippet memoize
+function memoize(fn) {
+  const cache = {};
+
+  return function(...args) {
+    const key = JSON.stringify(args);
+    let value = cache[key];
+
+    if (!value) {
+      value = [fn.apply(this, args)];
+      cache[key] = value;
+    }
+    return value[0];
+  };
+}
+endsnippet
+
+snippet got
+function got(fn) {
+  try {
+    return fn();
+  } catch (error) {
+    return undefined;
+  }
+}
+endsnippet
+
+
+snippet requireFile
+const fs = require('fs');
+const resolve = require('path').resolve;
+
+function requireFile(belongPath, targetPath) {
+  const thePath = resolve(belongPath, targetPath);
+  return fs.readFileSync(thePath, { encoding: 'utf8' });
+}
+endsnippet
+
+
+
+snippet express-example
+const express = require('express');
+const bodyParser = require('body-parser');
+const graphqlHTTP = require('express-graphql');
+const gql = require('graphql');
+const fs = require('fs');
+const resolve = require('path').resolve;
+const { MongoClient, Db } = require('mongodb');
+
+// global.isDev = process.env.DEV === 'true'
+global.isDev = true;
+
+// init ==================================================================
+const app = express();
+let getDb = () => new Db();
+
+// 解析 application/json
+app.use(bodyParser.json());
+
+//设置允许跨域访问该服务.
+if (global.isDev) {
+  app.all('*', function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    //Access-Control-Allow-Headers ,可根据浏览器的F12查看,把对应的粘贴在这里就行
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Methods', '*');
+    res.header('Content-Type', 'application/json;charset=utf-8');
+    next();
+  });
+}
+
+// graphql ==================================================================
+
+// 读取文件内容
+function requireFile(belongPath, targetPath) {
+  const thePath = resolve(belongPath, targetPath);
+  return fs.readFileSync(thePath, { encoding: 'utf8' });
+}
+
+const schemaString = requireFile(__dirname, 'schema.gql');
+const schema = gql.buildSchema(schemaString);
+// 得到qurey方法名
+const queryFuncs = schema._typeMap.Query._fields;
+// 得到mutation方法名
+const mutationFuncs = schema._typeMap.Mutation._fields;
+
+const rootValue = {};
+
+for (const key in queryFuncs) {
+  rootValue[key] = require(`./query/${key}`);
+}
+
+for (const key in mutationFuncs) {
+  rootValue[key] = require(`./mutation/${key}`);
+}
+
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema,
+    rootValue,
+    graphiql: global.isDev,
+  }),
+);
+
+// RESTful ==================================================================
+app.get('/api/dog', (req, res) => {
+  res.status(200).send({ name: 'server-dog', age: 15 });
+});
+
+app.get('/api/error', (req, res) => {
+  res.status(500).send('get url is error~');
+});
+
+app.post('/api/dog', (req, res) => {
+  res.status(200).send({ name: 'server-dog', age: 15, ...req.body });
+  // res.status(500).send({msg:'url is error~'});
+});
+
+app.post('/api/error', (req, res) => {
+  res.status(500).send('post url is error~');
+});
+
+// mongodb ==================================================================
+function initMongodb(dbName = 'test', url = 'mongodb://127.0.0.1:27017') {
+  return new Promise(resolve => {
+    // mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
+    MongoClient.connect(url, { useNewUrlParser: true }, (error, client) => {
+      if (error) {
+        throw errr;
+      }
+      const theDb = client.db(dbName);
+      getDb = () => theDb;
+      global.db = theDb;
+      resolve();
+    });
+  });
+}
+
+// listen server ==================================================================
+initMongodb('test').then(() => {
+  const PORT = 4022;
+  app.listen(PORT, () => console.log('http://127.0.0.1:' + PORT));
+});
 endsnippet
 

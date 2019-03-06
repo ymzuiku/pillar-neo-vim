@@ -6,7 +6,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Valloric/YouCompleteMe'
 Plug 'tenfyzhong/CompleteParameter.vim'
-Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
 Plug 'sheerun/vim-polyglot' "语言包, 只会加载当前语言的种类
 Plug 'prettier/vim-prettier', {
  \ 'do': 'yarn install',
@@ -26,8 +25,9 @@ Plug 'groenewege/vim-less'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'jiangmiao/auto-pairs' "自动补充括弧插件
 
+" Plug 'jiangmiao/auto-pairs' "自动补充括弧插件
+" Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
 " Plug 'mbbill/undotree'
 " Plug 'valloric/MatchTagAlways'
 " Plug 'posva/vim-vue'  "不怎么开发vue, 禁用,需要的人自行打开
@@ -57,28 +57,50 @@ set fileencoding=utf-8
 " set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提示
 set go=             " 不要图形按钮
 set t_Co=256   " 启用256色
+
+
 "color asmanian2     " 设置背景主题
 set guifont=Courier_New:h10:cANSI   " 设置字体
 syntax on           " 语法高亮
+
 "autocmd InsertLeave * se nocul  " 用浅色高亮当前行
 "autocmd InsertEnter * se cul    " 用浅色高亮当前行
 set showcmd         " 输入的命令显示出来，看的清楚些
+
+"括弧不高亮
+function! g:FuckThatMatchParen ()
+    if exists(":NoMatchParen")
+        :NoMatchParen
+    endif
+endfunction
+
+augroup plugin_initialize
+    autocmd!
+    autocmd VimEnter * call FuckThatMatchParen()
+augroup END
+
 "set cmdheight=1     " 命令行（在状态行下）的高度，设置为1
 "set whichwrap+=<,>,h,l   " 允许backspace和光标键跨越行边界(不建议)
 set scrolloff=12     " 光标移动到buffer的顶部和底部时保持3行距离
 set novisualbell    " 不要闪烁(不明白)
+
 " set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容
 set laststatus=0    " 永远不显示0 启动显示状态行(1),总是显示状态行(2)
+
 "set foldenable      " 允许折叠
 set nofoldenable " 不允许折叠
+
 "set foldmethod=manual   " 手动折叠
 "set background=dark "背景使用黑色
 set nocompatible  "去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限
+
 " 设置当文件被改动时自动载入
 set autoread
+
 "代码补全
 " set completeopt=preview,menu
 set completeopt-=preview
+
 "共享剪贴板
 set clipboard=unnamed
 
@@ -89,41 +111,54 @@ set cursorline              " 突出显示当前行
 set magic                   " 设置魔术
 set guioptions-=T           " 隐藏工具栏
 set guioptions-=m           " 隐藏菜单栏
+
 "set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\
 " 设置在状态行显示的信息
 set foldcolumn=0
 set foldmethod=indent
 set foldlevel=3
+
 " 去掉输入错误的提示声音
 set noeb
+
 " 在处理未保存或只读文件的时候，弹出确认
 set confirm
+
 " 自动缩进
 set autoindent
 set cindent
+
 " Tab键的宽度
 set tabstop=2
+
 " 用space替代tab的输入
 set expandtab
+
 " 统一缩进为2
 set softtabstop=2
 set shiftwidth=2
+
 " 不要用空格代替制表符
 "set noexpandtab
 " 在行和段开始处使用制表符
 "set smarttab
 " 显示行号
 set number
+
 " 历史记录数
 set history=1000
+
 "禁止生成临时文件
 set nobackup
 set noswapfile
+
 "搜索忽略大小写
 set ignorecase
+
 "搜索逐字符高亮
 set hlsearch
 set incsearch
+
 " 只有一个大写字母的搜索词，将大小写敏感
 set smartcase
 " 保留撤销历史
@@ -405,11 +440,13 @@ let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_echo_msg_error_str = '✗'
 let g:ale_echo_msg_warning_str = '⚠'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_linters = {'javascript': ['eslint'], 'vue':['eslint']}
+let g:ale_linters = {'javascript': ['eslint'], 'vue':['eslint'], 'graphql':['eslint']}
 let g:ale_fixers = {
 \   '*': ['prettier', 'eslint'],
 \   'javascript': ['prettier', 'eslint'],
-\   'vue': ['prettier', 'eslint']
+\   'vue': ['prettier', 'eslint'],
+\   'graphql': ['prettier', 'eslint'],
+\   'gql': ['prettier', 'eslint']
 \}
 " Write this in your vimrc file
 " Do not lint or fix minified files.
@@ -418,6 +455,7 @@ let g:ale_pattern_options = {
 \ '\.map$': {'ale_linters': [], 'ale_fixers': []},
 \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
 \}
+
 " If you configure g:ale_pattern_options outside of vimrc, you need this.
 let g:ale_pattern_options_enabled = 1
 " let g:ale_list_window_size = 5
@@ -525,7 +563,7 @@ let g:prettier#config#trailing_comma = 'all'
 
 " flow|babylon|typescript|css|less|scss|json|graphql|markdown|babel
 " Prettier default: babylon
-let g:prettier#config#parser = 'babel'
+" let g:prettier#config#parser = 'babel'
 
 " cli-override|file-override|prefer-file
 let g:prettier#config#config_precedence = 'prefer-file'
@@ -586,7 +624,7 @@ nmap J <c-f>
 
 " 文件、文件内容搜索
 nmap fj :Files<cr>
-nmap fg :GFiles?<cr>
+nmap fl :GFiles?<cr>
 nmap fk :Ag<cr>
 nmap fa :Buffers<cr>
 imap fk <plug>(fzf-complete-file-ag)
@@ -837,3 +875,6 @@ nmap q<space> <m-space>
 " vip 选中一个段落
 "
 " vim xxx.md --clean 清除vim的设置, 解决一些特殊问题
+"
+" guiw 单词改小写
+" gUiw 单词改大写
