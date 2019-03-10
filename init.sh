@@ -17,6 +17,7 @@ if [ -f "~/.tmux.conf" ];then
   mv ~/.vimrc ~/.vimrc-backup-$nowTime
 fi
 
+
 mkdir $vimFrontEnd/.vim/.swp || echo ''
 mkdir $vimFrontEnd/.vim/.undo || echo ''
 mkdir $vimFrontEnd/.vim/.backup || echo ''
@@ -24,6 +25,7 @@ mkdir $vimFrontEnd/.vim/.backup || echo ''
 ln -s $vimFrontEnd/.vim ~/.vim
 ln -s $vimFrontEnd/.vimrc ~/.vimrc
 ln -s $vimFrontEnd/.tmux.conf ~/.tmux.conf
+
 
 vim +PlugInstall +qall
 
