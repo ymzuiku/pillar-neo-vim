@@ -1,6 +1,5 @@
 // Place your key bindings in this file to overwrite the defaultsauto[]
-[
-  {
+[{
     "key": "shift+cmd+v",
     "command": "markdown.showPreview"
   },
@@ -229,26 +228,6 @@
   {
     "key": "shift+cmd+e",
     "command": "-workbench.view.explorer"
-  },
-  {
-    "key": "down",
-    "command": "search.action.focusNextSearchResult",
-    "when": "hasSearchResult"
-  },
-  {
-    "key": "f4",
-    "command": "-search.action.focusNextSearchResult",
-    "when": "hasSearchResult"
-  },
-  {
-    "key": "up",
-    "command": "search.action.focusPreviousSearchResult",
-    "when": "hasSearchResult"
-  },
-  {
-    "key": "shift+f4",
-    "command": "-search.action.focusPreviousSearchResult",
-    "when": "hasSearchResult"
   },
   {
     "key": "f",

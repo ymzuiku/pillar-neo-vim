@@ -9,13 +9,12 @@
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
   "vim.mouseSelectionGoesIntoVisualMode": true,
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["J"],
+  "vim.normalModeKeyBindingsNonRecursive": [{
+      "before": ["†"],
       "commands": ["editor.action.moveLinesDownAction"]
     },
     {
-      "before": ["K"],
+      "before": ["¥"],
       "commands": ["editor.action.moveLinesUpAction"]
     },
     {
@@ -59,11 +58,11 @@
       "after": ["<leader>", "<leader>", "<leader>", "b", "d", "e"]
     },
     {
-      "before": ["-"],
+      "before": ["K"],
       "after": ["4", "0", "k"]
     },
     {
-      "before": ["="],
+      "before": ["J"],
       "after": ["4", "0", "j"]
     },
     {
@@ -255,7 +254,7 @@
       "commands": ["workbench.action.openRecent"]
     },
     {
-      "before": ["f", "u"],
+      "before": ["f", "p"],
       "commands": ["workbench.action.showCommands"]
     },
     {
@@ -302,8 +301,12 @@
       "commands": ["editor.action.commentLine"]
     },
     {
+      "before": ["f", "c"],
+      "after": ["y", "i", "w", "\"", "t", "y", "i", "w"]
+    },
+    {
       "before": ["f", "v"],
-      "after": ["d", "i", "w", "\"", "0", "P"]
+      "after": ["v", "i", "w", "\"", "t", "P"]
     },
     {
       "before": ["<leader>", "u"],
@@ -314,8 +317,7 @@
       "commands": ["editor.action.transformToLowercase"]
     }
   ],
-  "vim.visualModeKeyBindingsNonRecursive": [
-    {
+  "vim.visualModeKeyBindingsNonRecursive": [{
       "before": ["J"],
       "commands": ["editor.action.moveLinesDownAction"]
     },
@@ -368,12 +370,10 @@
       "after": ["\"", "0", "y"]
     }
   ],
-  "vim.insertModeKeyBindings": [
-    {
-      "before": ["j", "j"],
-      "after": ["<Esc>"]
-    }
-  ],
+  "vim.insertModeKeyBindings": [{
+    "before": ["j", "j"],
+    "after": ["<Esc>"]
+  }],
   "vim.handleKeys": {
     "s": false,
     "q": false,
