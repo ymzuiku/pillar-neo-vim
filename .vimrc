@@ -239,7 +239,6 @@ endif
 " 设置Files搜索的忽略
 " command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore .git -g --hidden --ignore node_modules -g --hidden --ignore lib -g --hidden --ignore Library -g --hidden --ignore build -g --hidden --ignore .cache -g --hidden --ignore .idea -g --hidden --ignore .vscode -g --hidden --ignore .sass-cache -g', <bang>0)
 
-" command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 3..'}, <bang>0)
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
