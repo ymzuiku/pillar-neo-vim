@@ -39,6 +39,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 brew install cmake
 brew install the_silver_searcher
 brew install ctags
+brew install ripgrep
 cd ~/.vim/plugged/YouCompleteMe
 ./install.py --js-completer
 ./install.py --tern-complete

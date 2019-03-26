@@ -26,6 +26,7 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
+" Plug 'Yggdroot/LeaderF', { 'do': '.\install.bat' }
 " Plug 'jiangmiao/auto-pairs' "自动补充括弧插件
 " Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
 " Plug 'mbbill/undotree'
@@ -236,7 +237,17 @@ endif
 " autocmd FileType apache setlocal commentstring=#\ %s
 
 " 设置Files搜索的忽略
-" command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore .git --ignore node_modules --ignore Library --ignore build --ignore .cache --ignore .idea --ignore .sass-cache -g', <bang>0)
+" command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore .git -g --hidden --ignore node_modules -g --hidden --ignore lib -g --hidden --ignore Library -g --hidden --ignore build -g --hidden --ignore .cache -g --hidden --ignore .idea -g --hidden --ignore .vscode -g --hidden --ignore .sass-cache -g', <bang>0)
+
+" command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 3..'}, <bang>0)
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+" complete -F _fzf_path_completion -o default -o bashdefault ag
+" complete -F _fzf_dir_completion -o default -o bashdefault tree
 
 let g:vim_markdown_frontmatter=1
 autocmd QuickFixCmdPost *grep* cwindow
@@ -440,7 +451,8 @@ let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_echo_msg_error_str = '✗'
 let g:ale_echo_msg_warning_str = '⚠'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_linters = {'javascript': ['eslint'], 'vue':['eslint'], 'graphql':['eslint']}
+let g:ale_open_list = 0
+" let g:ale_keep_list_window_open = 0 g:ale_linters = {'javascript': ['eslint'], 'vue':['eslint'], 'graphql':['eslint']}
 let g:ale_fixers = {
 \   '*': ['prettier', 'eslint'],
 \   'javascript': ['prettier', 'eslint'],
@@ -625,8 +637,9 @@ nmap J <c-f>
 " 文件、文件内容搜索
 nmap fj :Files<cr>
 nmap fl :GFiles?<cr>
-nmap fk :Ag<cr>
-nmap fa :Buffers<cr>
+nmap fg :GFiles<cr>
+nmap fk :Rg!<cr>
+nmap fb :Buffers<cr>
 imap fk <plug>(fzf-complete-file-ag)
 nmap fh :History<cr>
 nmap f~ :FZF ~/
