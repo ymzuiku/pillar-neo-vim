@@ -118,10 +118,11 @@ Use: `v file.js` open vim
 - `s<space> delete line end space`
 
 - `su hidden/show undo-tree，g-, g= switch undo-tree`
-- `fk = :Ag -find code`
+- `fk = :Rg -find code`
 - `fj = :Files -find file`
 - `fg = :GFiles? -find git change file`
-- `fa = :Buffers -change opened buffer`
+- `fb = :Buffers -change opened buffer`
+- `fh = :History -look history open files`
 - `= = format file`
 - `f@ = @:`
 - `fs = :w<cr>`
