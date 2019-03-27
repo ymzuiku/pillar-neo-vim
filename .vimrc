@@ -450,8 +450,15 @@ let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_echo_msg_error_str = '✗'
 let g:ale_echo_msg_warning_str = '⚠'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_open_list = 0
-" let g:ale_keep_list_window_open = 0 g:ale_linters = {'javascript': ['eslint'], 'vue':['eslint'], 'graphql':['eslint']}
+" let g:ale_open_list = 0
+" let g:ale_set_loclist = 0
+" let g:ale_set_quickfix = 0
+" let g:ale_keep_list_window_open = 0 
+" let g:ale_list_window_size = 0
+" let g:ale_lint_on_enter = 0
+" highlight clear ALEErrorSign
+" highlight clear ALEWarningSign
+let g:ale_set_highlights = 0
 let g:ale_fixers = {
 \   '*': ['prettier', 'eslint'],
 \   'javascript': ['prettier', 'eslint'],
@@ -468,7 +475,7 @@ let g:ale_pattern_options = {
 \}
 
 " If you configure g:ale_pattern_options outside of vimrc, you need this.
-let g:ale_pattern_options_enabled = 1
+let g:ale_pattern_options_enabled = 0
 " let g:ale_list_window_size = 5
 " let g:ale_open_list = 1
 " let g:ale_keep_list_window_open = 0
@@ -605,16 +612,16 @@ nmap <leader>c1 :colorscheme seoul256<cr>
 nmap <leader>c2 :colorscheme bubblegum-256-light<cr>
 nmap <leader>c3 :colorscheme bubblegum-256-dark<cr>
 nmap <leader>c4 :colorscheme github<cr>
-nmap <leader>c5 :colorscheme monokai-ym<cr>
+nmap <leader>c5 :colorscheme monokai-ym2<cr>
 nmap <leader>c6 :colorscheme space<cr>
 nmap <leader>c7 :colorscheme molokai<cr>
 nmap <leader>c8 :colorscheme beauty256<cr>
 nmap <leader>c9 :colorscheme devbox-dark-256<cr>
 nmap <leader>c0 :colorscheme xoria256<cr>
 nmap <leader>c- :colorscheme 256-grayvim<cr>
-nmap <leader>c= :colorscheme 256-jungle<cr>
+nmap <leader>c= :colorscheme office-dark<cr>
 
-colorscheme monokai-ym
+colorscheme monokai-ym2
 
 " map ; :
 
@@ -845,6 +852,9 @@ nmap q, <m-,>
 nmap q. <m-.>
 nmap q/ <m-/>
 nmap q<space> <m-space>
+
+nmap [ {
+nmap ] }
 
 " undo-tree
 " nnoremap su :UndotreeToggle<cr> <c-w>h
