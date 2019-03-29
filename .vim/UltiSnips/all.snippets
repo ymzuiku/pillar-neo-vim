@@ -11,6 +11,7 @@ snippet gitignore
 config/.proxies.dev.config.js
 config/.env.dev.js
 jsconfig.json
+**/self-project.js
 
 # dependencies
 node_modules
@@ -32,6 +33,7 @@ public/dll
 
 **/build
 **/dist
+
 **/public/dll
 
 # cache
@@ -59,6 +61,7 @@ yarn-error.log*
 local-git
 gitignores
 .tern_project
+**/.tern_project
 
 **/local-git
 **/gitignores
@@ -89,20 +92,40 @@ endsnippet
 
 snippet tern_project
 {
-	"libs": [
-		"browser",
-		"ecma6",
-		"lodash",
-		"jquery"
-	],
-	"plugins": {
-		"modules": {},
-		"webpack": {
-			"configPath":"./config/webpack.config.js"
-		},
-		"node": {},
-		"complete_strings":{},
-		"es_modules":{}
-	}
+  "ecmaVersion": 8,
+  "libs": [
+    "browser",
+    "ecma6",
+    "lodash",
+    "jquery",
+    "react",
+    "react-dom",
+    "mongodb"
+  ],
+  "loadEagerly": ["src/**/*.js", "**/*.js", "**/src/**/*.js"],
+  "dontLoad": [
+    "**/node_modules/**",
+    "node_modules/**",
+    "**/dist/**",
+    "dist/**",
+    "**/lib/**",
+    "lib/**",
+    "**/public/**",
+    "public/**"
+  ],
+  "plugins": {
+    "modules": {},
+    "node-express": {},
+    "webpack": {
+      "configPath": "**/config/webpack.config.js"
+    },
+    "node": {},
+    "complete_strings": {},
+    "es_modules": {},
+    "doc_comment": {
+      "fullDocs": true,
+      "strong": true
+    }
+  }
 }
 endsnippet

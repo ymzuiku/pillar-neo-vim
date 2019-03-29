@@ -25,10 +25,11 @@ Plug 'groenewege/vim-less'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'vim-scripts/khaki.vim' 
+Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
 
 " Plug 'Yggdroot/LeaderF', { 'do': '.\install.bat' }
 " Plug 'jiangmiao/auto-pairs' "自动补充括弧插件
-" Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
 " Plug 'mbbill/undotree'
 " Plug 'valloric/MatchTagAlways'
 " Plug 'posva/vim-vue'  "不怎么开发vue, 禁用,需要的人自行打开
@@ -259,8 +260,8 @@ let g:gitgutter_max_signs = 500  " default value
 "解决没有选中也自动补全的错误
 set completeopt=menu,menuone,preview,noselect,noinsert
 let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
-let g:ycm_collect_identifiers_from_tags_files=0	" 开启 YCM 基于标签引擎
-let g:ycm_min_num_of_chars_for_completion=3	" 从第90个键入字符就开始罗列匹配项
+let g:ycm_collect_identifiers_from_tags_files=1	" 开启 YCM 基于标签引擎
+let g:ycm_min_num_of_chars_for_completion=2	" 从第90个键入字符就开始罗列匹配项
 let g:ycm_cache_omnifunc=1	" 禁止缓存匹配项,每次都重新生成匹配项
 let g:ycm_seed_identifiers_with_syntax=1	" 语法关键字补全
 
@@ -279,6 +280,10 @@ if !exists("g:ycm_semantic_triggers")
   let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
+let g:typescript_indent_disable = 1
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
+autocmd FileType typescript :set makeprg=tsc
 
 " ycm和snip的热键设置
 set completeopt=longest,menu
@@ -305,22 +310,22 @@ let g:ycm_key_invoke_completion = '<c-space>'
 
 " ycm默认需要按ctrl + space 来进行补全，可以在上面的花括号里面加入下面两行代码来直接进行补全
 let g:ycm_semantic_triggers = {
-\   'css': [ 're!^\s{4}', 're!:\s+', '</' ],
-\   'scss': [ 're!^\s{4}', 're!:\s+', '</' ],
-\   'js': [ 're!^\s{4}', 're!:\s+', '</' ],
-\   'jsx': [ 're!^\s{4}', 're!:\s+', '</' ],
-\   'vue': [ 're!^\s{4}', 're!:\s+', '</' ],
-\   'ts': [ 're!^\s{4}', 're!:\s+', '</' ],
-\   'tsx': [ 're!^\s{4}', 're!:\s+', '</' ],
+\   'css': [ 're!^\s{2}', 're!:\s+', '</' ],
+\   'scss': [ 're!^\s{2}', 're!:\s+', '</' ],
+\   'js': [ 're!^\s{2}', 're!:\s+', '</' ],
+\   'jsx': [ 're!^\s{2}', 're!:\s+', '</' ],
+\   'vue': [ 're!^\s{2}', 're!:\s+', '</' ],
+\   'ts': [ 're!^\s{2}', 're!:\s+', '</' ],
+\   'tsx': [ 're!^\s{2}', 're!:\s+', '</' ],
 \ }
 "
 " 关闭函数原型提示
-let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_add_preview_to_completeopt = 0
 "  关闭错误提示
-let g:ycm_show_diagnostics_ui = 1
+let g:ycm_show_diagnostics_ui = 0
 
-"set tags+=~/.vim/tags/testtags
-"let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/ycmd/tests/testdata/extra_conf/global_extra_conf.py'
+set tags+=~/.vim/tags/testtags
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/ycmd/tests/testdata/extra_conf/global_extra_conf.py'
 
 " vim-javascript
 " 用符号替换js中的一些代码
@@ -458,7 +463,8 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " let g:ale_lint_on_enter = 0
 " highlight clear ALEErrorSign
 " highlight clear ALEWarningSign
-let g:ale_set_highlights = 0
+" 是否错误时显示高亮
+let g:ale_set_highlights = 1
 let g:ale_fixers = {
 \   '*': ['prettier', 'eslint'],
 \   'javascript': ['prettier', 'eslint'],
@@ -608,21 +614,25 @@ let g:prettier#config#prose_wrap = 'preserve'
 
 
 " 切换不同的主题
-nmap <leader>c1 :colorscheme seoul256<cr>
-nmap <leader>c2 :colorscheme bubblegum-256-light<cr>
-nmap <leader>c3 :colorscheme bubblegum-256-dark<cr>
-nmap <leader>c4 :colorscheme github<cr>
-nmap <leader>c5 :colorscheme monokai-ym2<cr>
-nmap <leader>c6 :colorscheme space<cr>
-nmap <leader>c7 :colorscheme molokai<cr>
-nmap <leader>c8 :colorscheme beauty256<cr>
-nmap <leader>c9 :colorscheme devbox-dark-256<cr>
-nmap <leader>c0 :colorscheme xoria256<cr>
-nmap <leader>c- :colorscheme 256-grayvim<cr>
-nmap <leader>c= :colorscheme office-dark<cr>
+nmap <leader>c1 :colorscheme khaki<cr>
+nmap <leader>c2 :colorscheme monokai-ym2<cr>
+nmap <leader>c3 :colorscheme seoul256<cr>
+nmap <leader>c4 :colorscheme bubblegum-256-light<cr>
+nmap <leader>c5 :colorscheme bubblegum-256-dark<cr>
+nmap <leader>c6 :colorscheme github<cr>
+nmap <leader>c7 :colorscheme space<cr>
+nmap <leader>c8 :colorscheme molokai<cr>
+nmap <leader>c9 :colorscheme beauty256<cr>
+nmap <leader>c0 :colorscheme devbox-dark-256<cr>
+nmap <leader>c- :colorscheme xoria256<cr>
+nmap <leader>c= :colorscheme 256-grayvim<cr>
+" nmap <leader>c= :colorscheme office-dark<cr>
 
-colorscheme monokai-ym2
-
+" colorscheme monokai-ym2
+if !has("gui_running")                                          
+    set t_Co=256                                                
+endif                                                                                         
+colorscheme khaki 
 " map ; :
 
 " 快速保存
