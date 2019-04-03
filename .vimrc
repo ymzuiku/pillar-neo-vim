@@ -651,13 +651,13 @@ nmap J <c-f>
 
 
 " 文件、文件内容搜索
-nmap fj :Files<cr>
+nmap fh :Files<cr>
+nmap fj :History<cr>
 nmap fl :GFiles?<cr>
 nmap fg :GFiles<cr>
 nmap fk :Rg!<cr>
 nmap fb :Buffers<cr>
 imap fk <plug>(fzf-complete-file-ag)
-nmap fh :History<cr>
 nmap f~ :FZF ~/
 nmap f/ :FZF /
 nmap f@ @:
