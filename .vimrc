@@ -27,6 +27,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'vim-scripts/khaki.vim' 
 Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
+Plug 'fatih/vim-go' "golang-vim 插件
 
 " Plug 'Yggdroot/LeaderF', { 'do': '.\install.bat' }
 " Plug 'jiangmiao/auto-pairs' "自动补充括弧插件
@@ -287,20 +288,18 @@ autocmd FileType typescript :set makeprg=tsc
 
 " ycm和snip的热键设置
 set completeopt=longest,menu
-" autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
+
+" 这样让YCM通过回车和向下的箭头来做list item正向选择，通过向上箭头做反向选择。通过ctrl+space来原地触发补齐提示。
+" 而ultisnips则是用tab做snippet展开，ctrl+b正向切换占位符，ctrl+z反向切换占位符。
+" YCM settings
+let g:ycm_key_list_select_completion = ['', '']
+let g:ycm_key_list_previous_completion = ['']
+let g:ycm_key_invoke_completion = '<C-Space>'
+" UltiSnips setting
 let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrgger="<leader><tab>"
-let g:UltiSnipsListSnippets="<c-e>"
-let g:ycm_key_list_previous_completion = ['<Up>']
-let g:ycm_key_list_select_completion = ['<Down>']
-inoremap <expr> <cr>       pumvisible() ? "\<c-y>" : "\<cr>"
-inoremap <expr> <Down>     pumvisible() ? "\<c-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<c-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<c-p>\<c-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<c-p>\<c-n>" : "\<PageUp>"
-" 直接触发自动补全
-let g:ycm_key_invoke_completion = '<c-space>'
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
 " let g:ycm_key_select_completion= '<tab>'
 "
 " smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
@@ -621,7 +620,7 @@ nmap <leader>c4 :colorscheme bubblegum-256-light<cr>
 nmap <leader>c5 :colorscheme bubblegum-256-dark<cr>
 nmap <leader>c6 :colorscheme github<cr>
 nmap <leader>c7 :colorscheme space<cr>
-nmap <leader>c8 :colorscheme molokai<cr>
+nmap <leader>c8 :colorscheme molokai3<cr>
 nmap <leader>c9 :colorscheme beauty256<cr>
 nmap <leader>c0 :colorscheme devbox-dark-256<cr>
 nmap <leader>c- :colorscheme xoria256<cr>
@@ -631,6 +630,7 @@ nmap <leader>c= :colorscheme 256-grayvim<cr>
 " colorscheme monokai-ym2
 if !has("gui_running")                                          
     set t_Co=256                                                
+" 直接触发自动补全
 endif                                                                                         
 colorscheme khaki 
 " map ; :
