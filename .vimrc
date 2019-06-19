@@ -27,7 +27,10 @@ Plug 'easymotion/vim-easymotion'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'vim-scripts/khaki.vim' 
 Plug 'ternjs/tern_for_vim' "ternjs需要在每个项目配置, 提示区别不大
-Plug 'fatih/vim-go' "golang-vim 插件
+" Plug 'fatih/vim-go' "golang-vim 插件
+" Plug 'dart-lang/dart-vim-plugin'
+" Plug 'natebosch/vim-lsc'
+" Plug 'natebosch/vim-lsc-dart'
 
 " Plug 'Yggdroot/LeaderF', { 'do': '.\install.bat' }
 " Plug 'jiangmiao/auto-pairs' "自动补充括弧插件
