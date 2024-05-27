@@ -41,6 +41,7 @@
 "zr：展开所有折叠。
 "zf: 创建所选行的折叠
 "zm：折叠所有内容。
+"zE：删除所有折叠记录。
 
 "  -----------------------
 
@@ -147,10 +148,6 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'APZelos/blamer.nvim'
 Plug 'kyazdani42/nvim-web-devicons' " 可选图标支持
 
-Plug 'xolox/vim-session'
-Plug 'xolox/vim-misc'
-
-
 " 跳转到单词
 Plug 'easymotion/vim-easymotion'
 
@@ -226,30 +223,6 @@ autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx :CocCommand eslint.executeAutofix
 
 " 保存时使用 Prettier 格式化
 autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.json,*.md,*.html,*.css,*.scss,*.yaml,*.yml,*.vue :CocCommand prettier.formatFile
-
-" 自动保存和加载会话
-" 创建会话目录
-if !isdirectory(expand('~/.config/nvim/sessions'))
-  call mkdir(expand('~/.config/nvim/sessions'), 'p')
-endif
-
-" 自动生成会话文件名
-function! GenerateSessionFileName()
-  " 以当前文件的绝对路径作为会话文件名
-  let l:filename = expand('%:p')
-  if empty(l:filename)
-    let l:filename = 'default'
-  endif
-  " 将路径中的 / 替换为 _
-  let l:session_name = substitute(l:filename, '/', '_', 'g')
-  return expand('~/.config/nvim/sessions/') . l:session_name . '.vim'
-endfunction
-
-" 自动保存会话
-autocmd VimLeavePre * if !empty(expand('%')) | exe 'mksession! ' . GenerateSessionFileName() | endif
-
-" 自动加载会话
-autocmd VimEnter * if !empty(expand('%')) && filereadable(GenerateSessionFileName()) | exe 'source ' . GenerateSessionFileName() | endif
 
 " 保存时对 TypeScript 进行检查
 " autocmd BufWritePre *.ts,*.tsx :call CocAction('runCommand', 'tsserver.organizeImports')
