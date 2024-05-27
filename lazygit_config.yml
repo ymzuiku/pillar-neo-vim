@@ -1,0 +1,4 @@
+os:
+  edit: /Users/pillar/.config/nvim/edit_nvim.sh '{{filename}}'
+  open: /Users/pillar/.config/nvim/edit_nvim.sh '{{filename}}'
+
