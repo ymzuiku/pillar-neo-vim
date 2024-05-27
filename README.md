@@ -1,4 +1,4 @@
-## vim-front-end
+## pillar-neo-vim
 
 use neovim to develop front-end project.
 
