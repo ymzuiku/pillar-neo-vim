@@ -432,7 +432,6 @@ EOF
 
 
 
-
 " 查找文件
 nnoremap <leader>F :lua require('telescope.builtin').find_files()<CR>
 
@@ -476,7 +475,7 @@ nnoremap <leader>cr :lua require('telescope.builtin').registers()<CR>
 nnoremap <leader>cs :lua require('telescope.builtin').spell_suggest()<CR>
 nnoremap <leader>cf :lua require('telescope.builtin').filetypes()<CR>
 nnoremap <leader>ct :lua require('telescope.builtin').tags()<CR>
-nnoremap <leader>cd :lua SearchDebug()<CR>
+nnoremap <leader>de :lua SearchDebug()<CR>
 nnoremap <leader>c? :Telescope 
 
 nnoremap <leader>r :%s/apple/banana/gc
