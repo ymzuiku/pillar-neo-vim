@@ -28,11 +28,20 @@
 " vib 选中一个block
 " viw选中一个单词
 " vip 选中一个段落
+" viwP (大写P可以保持剪切板)
 "
 " vim xxx.md --clean 清除vim的设置, 解决一些特殊问题
 "
 " guiw 单词改小写
 " gUiw 单词改大写
+
+"展开折叠的行：
+"
+"zo：展开光标所在的折叠。
+"zr：展开所有折叠。
+"zf: 创建所选行的折叠
+"zm：折叠所有内容。
+
 "  -----------------------
 
 " 设置 Leader 键为逗号
@@ -44,6 +53,7 @@ nnoremap <C-j> 10j
 nnoremap <C-k> 10k
 xnoremap <C-j> 10j
 xnoremap <C-k> 10k
+nnoremap q <C-w>
 
 " 创建新 tab
 nnoremap tn :tabnew<CR>
@@ -125,7 +135,6 @@ Plug 'tami5/sqlite.lua'
 " 使用 vim-abolish 插件与 Telescope 结合来实现替换功能
 Plug 'tpope/vim-abolish'
 Plug 'nvim-lua/plenary.nvim'
-
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'
 
@@ -137,6 +146,10 @@ Plug 'hoob3rt/lualine.nvim'
 " git-blame 插件可以显示当前文件每一行的 Git 提交信息。
 Plug 'APZelos/blamer.nvim'
 Plug 'kyazdani42/nvim-web-devicons' " 可选图标支持
+
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
+
 
 " 跳转到单词
 Plug 'easymotion/vim-easymotion'
@@ -178,6 +191,7 @@ let g:blamer_enabled = 1
 
 " 设置显示延迟
 let g:blamer_delay = 1000
+let g:blamer_show_in_insert_modes = 0
 
 
 " coc.nvim 配置
@@ -213,7 +227,29 @@ autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx :CocCommand eslint.executeAutofix
 " 保存时使用 Prettier 格式化
 autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.json,*.md,*.html,*.css,*.scss,*.yaml,*.yml,*.vue :CocCommand prettier.formatFile
 
+" 自动保存和加载会话
+" 创建会话目录
+if !isdirectory(expand('~/.config/nvim/sessions'))
+  call mkdir(expand('~/.config/nvim/sessions'), 'p')
+endif
 
+" 自动生成会话文件名
+function! GenerateSessionFileName()
+  " 以当前文件的绝对路径作为会话文件名
+  let l:filename = expand('%:p')
+  if empty(l:filename)
+    let l:filename = 'default'
+  endif
+  " 将路径中的 / 替换为 _
+  let l:session_name = substitute(l:filename, '/', '_', 'g')
+  return expand('~/.config/nvim/sessions/') . l:session_name . '.vim'
+endfunction
+
+" 自动保存会话
+autocmd VimLeavePre * if !empty(expand('%')) | exe 'mksession! ' . GenerateSessionFileName() | endif
+
+" 自动加载会话
+autocmd VimEnter * if !empty(expand('%')) && filereadable(GenerateSessionFileName()) | exe 'source ' . GenerateSessionFileName() | endif
 
 " 保存时对 TypeScript 进行检查
 " autocmd BufWritePre *.ts,*.tsx :call CocAction('runCommand', 'tsserver.organizeImports')
@@ -438,7 +474,7 @@ nnoremap <leader>F :lua require('telescope.builtin').find_files()<CR>
 " 实时 grep
 nnoremap <leader>f :lua require('telescope.builtin').live_grep()<CR>
 nnoremap <leader>u :lua require('telescope.builtin').resume()<CR>
-nnoremap <leader>z :Telescope z list<CR>
+nnoremap <leader>cz :Telescope z list<CR>
 
 " 列出打开的缓冲区
 nnoremap <leader>t :lua require('telescope.builtin').buffers()<CR>
@@ -483,7 +519,7 @@ nnoremap <leader>r :%s/apple/banana/gc
 " 定义快捷键打开 nvim-tree
 nnoremap <Leader>e :NvimTreeToggle<CR>
 "nnoremap <leader>z :LazyGit<CR>
-nnoremap q :LazyGit<CR>
+nnoremap <leader>g :LazyGit<CR>
 
 
 autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
@@ -535,9 +571,6 @@ endfunction
 
 " 为函数定义一个快捷键，例如 <leader>O, 配合 lazygit 的 ctrl+o 复制路径, 可以快速打开剪切板中的路径
 nnoremap <leader>O :call OpenClipboardPath()<CR>
-
-" 打开 git blame
-nnoremap <leader>g :Git blame<CR>
 
 " 你可以添加更多的映射以适应你的需求
 map s <Plug>(easymotion-s2)
@@ -648,6 +681,32 @@ endfunction
 
 " 使用 vscode 打开当前目录
 nnoremap <leader>vs :call OpenProjectRootInVSCode()<CR>
+
+" 设置快捷键查看 HEAD~0-9 版本的文件差异
+nmap <Leader>0g :Gedit<CR>
+
+
+nnoremap 0g :Gedit<CR><C-w>o
+nnoremap 1g <c-w>o:Gvdiffsplit HEAD~1:%<cr>
+nnoremap 2g <c-w>o:Gvdiffsplit HEAD~2:%<cr>
+nnoremap 3g <c-w>o:Gvdiffsplit HEAD~3:%<cr>
+nnoremap 4g <c-w>o:Gvdiffsplit HEAD~4:%<cr>
+nnoremap 5g <c-w>o:Gvdiffsplit HEAD~5:%<cr>
+nnoremap 6g <c-w>o:Gvdiffsplit HEAD~6:%<cr>
+nnoremap 7g <c-w>o:Gvdiffsplit HEAD~7:%<cr>
+nnoremap 8g <c-w>o:Gvdiffsplit HEAD~8:%<cr>
+nnoremap 9g <c-w>o:Gvdiffsplit HEAD~9:%<cr>
+nnoremap 10g <c-w>o:Gvdiffsplit HEAD~10:%<cr>
+nnoremap 11g <c-w>o:Gvdiffsplit HEAD~11:%<cr>
+nnoremap 12g <c-w>o:Gvdiffsplit HEAD~12:%<cr>
+nnoremap 13g <c-w>o:Gvdiffsplit HEAD~13:%<cr>
+nnoremap 14g <c-w>o:Gvdiffsplit HEAD~14:%<cr>
+nnoremap 15g <c-w>o:Gvdiffsplit HEAD~15:%<cr>
+nnoremap 16g <c-w>o:Gvdiffsplit HEAD~16:%<cr>
+nnoremap 17g <c-w>o:Gvdiffsplit HEAD~17:%<cr>
+nnoremap 18g <c-w>o:Gvdiffsplit HEAD~18:%<cr>
+nnoremap 19g <c-w>o:Gvdiffsplit HEAD~19:%<cr>
+nnoremap 20g <c-w>o:Gvdiffsplit HEAD~20:%<cr>
 
 
 
