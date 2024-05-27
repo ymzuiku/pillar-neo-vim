@@ -81,14 +81,21 @@ set termguicolors
 set scrolloff=20
 
 " 设置终端输入的超时等待时间为 10 毫秒
-set ttimeoutlen=10
+" set ttimeoutlen=10
 
 " 初始化 vim-plug
 call plug#begin('~/.local/share/nvim/plugged')
 
 " 安装 gruvbox 配色方案
-Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'         " 一款流行且美观的主题
+Plug 'joshdick/onedark.vim'    " Atom 的 One Dark 主题
+Plug 'gruvbox-community/gruvbox'  " Gruvbox 社区版，持续更新
+Plug 'sainnhe/everforest'      " 清新自然的主题
+Plug 'marko-cerovac/material.nvim' " Material 主题
+Plug 'sainnhe/sonokai'         " Sonokai 主题
+Plug 'EdenEast/nightfox.nvim'  " Nightfox 主题
+Plug 'altercation/vim-colors-solarized'
+
 
 " 语法高亮
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -149,17 +156,21 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 " 设置 gruvbox 配色方案
+"syntax enable
+"set background=light
+"colorscheme solarized
+"set background=dark
 "colorscheme gruvbox
-colorscheme onedark
+"colorscheme onedark
+colorscheme material
 
-set background=dark
 " 设置 coc.nvim 的配色
-highlight CocFloating ctermbg=0 guibg=#1c1c1c
-highlight PmenuSel ctermbg=237 guibg=#3e4452
-highlight Pmenu ctermbg=0 guibg=#1c1c1c guifg=#dcdcdc
+"highlight CocFloating ctermbg=0 guibg=#1c1c1c
+"highlight PmenuSel ctermbg=237 guibg=#3e4452
+"highlight Pmenu ctermbg=0 guibg=#1c1c1c guifg=#dcdcdc
 " 自定义状态栏颜色
-highlight StatusLine ctermfg=grey ctermbg=darkgrey guifg=#928374 guibg=#3c3836
-highlight StatusLineNC ctermfg=grey ctermbg=darkgrey guifg=#928374 guibg=#3c3836
+"highlight StatusLine ctermfg=grey ctermbg=darkgrey guifg=#928374 guibg=#3c3836
+"highlight StatusLineNC ctermfg=grey ctermbg=darkgrey guifg=#928374 guibg=#3c3836
 
 
 " 启用 git-blame
