@@ -57,6 +57,7 @@ xnoremap <C-k> 10k
 nnoremap q <C-w>
 
 " 创建新 tab
+nnoremap to :tabonly<CR>
 nnoremap tn :tabnew<CR>
 nnoremap t1 :tabnext 1<CR>
 nnoremap t2 :tabnext 2<CR>
@@ -91,6 +92,24 @@ set termguicolors
 " 设置光标与顶部和底部的最小行数
 set scrolloff=20
 
+" 设置搜索忽略大小写
+set ignorecase
+
+" 如果搜索模式包含大写字母，则搜索时区分大小写
+set smartcase
+
+" 禁用不必要的文件检查，可以减少切换模式的延迟
+set updatetime=200
+set noshowmode
+set lazyredraw
+set ttyfast
+
+" 将 swapfile 存储位置设置为刚
+set directory^=$HOME/.config/nvim/swap//
+
+" 离开自动保存
+autocmd BufLeave * silent! :wa
+
 " 设置终端输入的超时等待时间为 10 毫秒
 " set ttimeoutlen=10
 
@@ -109,6 +128,7 @@ Plug 'altercation/vim-colors-solarized'
 
 
 " 语法高亮
+Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 
@@ -120,6 +140,7 @@ Plug 'fatih/vim-go'
 
 " 安装 nvim-tree.lua
 Plug 'kyazdani42/nvim-tree.lua'
+
 
 " 安装 copilot.lua
 Plug 'github/copilot.vim'
@@ -151,6 +172,9 @@ Plug 'kyazdani42/nvim-web-devicons' " 可选图标支持
 " 跳转到单词
 Plug 'easymotion/vim-easymotion'
 
+
+Plug 'mbbill/undotree'
+
 call plug#end()
 
 lua <<EOF
@@ -170,9 +194,9 @@ EOF
 "set background=light
 "colorscheme solarized
 "set background=dark
-"colorscheme gruvbox
+colorscheme gruvbox
 "colorscheme onedark
-colorscheme material
+"colorscheme material
 
 " 设置 coc.nvim 的配色
 "highlight CocFloating ctermbg=0 guibg=#1c1c1c
@@ -181,6 +205,10 @@ colorscheme material
 " 自定义状态栏颜色
 "highlight StatusLine ctermfg=grey ctermbg=darkgrey guifg=#928374 guibg=#3c3836
 "highlight StatusLineNC ctermfg=grey ctermbg=darkgrey guifg=#928374 guibg=#3c3836
+
+" 确保 undodir 目录存在
+
+nnoremap <leader>u :UndotreeToggle<CR>
 
 
 " 启用 git-blame
@@ -214,9 +242,9 @@ nmap gj <Plug>(GitGutterNextHunk)
 nmap gk <Plug>(GitGutterPrevHunk)
 
 " 阅览修改细节
-nmap <Leader>hs <Plug>(GitGutterStageHunk)
-nmap <Leader>hr <Plug>(GitGutterUndoHunk)
-nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
+nmap <Leader>ghs <Plug>(GitGutterStageHunk)
+nmap <Leader>ghr <Plug>(GitGutterUndoHunk)
+nmap <Leader>ghp <Plug>(GitGutterPreviewHunk)
 
 " 自动修复保存时的 ESLint 错误
 autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx :CocCommand eslint.executeAutofix
@@ -269,7 +297,7 @@ require'nvim-tree'.setup {
     ignore_list = {}
   },
   diagnostics = {
-    enable = false,
+    enable = true,
     icons = {
       hint = "",
       info = "",
@@ -291,8 +319,8 @@ require'nvim-tree'.setup {
     timeout = 500,
   },
   view = {
-    width = 50,
-    side = 'left',
+    width = 40,
+    side = 'right',
     number = false,
     relativenumber = false,
     signcolumn = "yes",
@@ -352,6 +380,11 @@ EOF
 lua <<EOF
 local telescope = require('telescope')
 local builtin = require('telescope.builtin')
+-- 配置 LSP 客户端
+local lspconfig = require('lspconfig')
+
+-- 以 tsserver 为例
+lspconfig.tsserver.setup {}
 
 telescope.setup {
   defaults = {
@@ -376,8 +409,11 @@ telescope.setup {
       prompt_title = "Git Status",
     },
     live_grep = {
-      prompt_title = "Search in Git Status Files",
+      prompt_title = "Live Grep",
       cwd = vim.fn.getcwd(),
+    },
+    diagnostics = {
+      theme = "ivy",
     },
   },
   extensions = {
@@ -396,7 +432,7 @@ telescope.setup {
         }
     },
     file_browser = {
-      theme = "ivy",
+      theme = "cursor",
         -- 其他配置选项
     }
   },
@@ -406,6 +442,7 @@ telescope.setup {
 require('telescope').load_extension('frecency')
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('z')
+
 
 function GrepInGitStatus()
   local opts = {}
@@ -430,7 +467,7 @@ function GrepInGitStatus()
 end
 
 vim.api.nvim_set_keymap('n', '<leader>a', ':lua GrepInGitStatus()<CR>', { noremap = true, silent = true })
-
+vim.api.nvim_set_keymap('n', '<leader>d', ':Telescope diagnostics<CR>', { noremap = true, silent = false })
 
 -- 自定义搜索函数
 function SearchDebug()
@@ -439,6 +476,65 @@ end
 
 EOF
 
+lua << EOF
+-- 需要 Plenary.nvim 来执行系统命令
+local Job = require('plenary.job')
+
+-- 定义一个全局函数来打开所有 git status 有变化的文件到标签页
+_G.open_git_changed_files_in_tabs = function()
+  print("Starting job to get git status...")
+  -- 使用 Plenary 的 Job 来执行 git 命令
+  Job:new({
+    command = 'git',
+    args = { 'status', '--porcelain' },
+    on_exit = function(j, return_val)
+      if return_val == 0 then
+        local result = j:result()
+        print("Git status result:")
+        print(vim.inspect(result))
+        -- 解析 git status 的输出，获取有变化的文件列表
+        local changed_files = {}
+        for _, line in ipairs(result) do
+          local filepath = string.match(line, '^[ MARC?]+ (.+)$')
+          if filepath then
+            table.insert(changed_files, filepath)
+          end
+        end
+
+        print("Changed files:")
+        print(vim.inspect(changed_files))
+
+        -- 在主线程中打开每个变化的文件到新的标签页
+        vim.schedule(function()
+          local tabs = vim.api.nvim_list_tabpages()
+          for _, file in ipairs(changed_files) do
+            local file_already_open = false
+            for _, tab in ipairs(tabs) do
+              local buflist = vim.api.nvim_tabpage_list_wins(tab)
+              for _, win in ipairs(buflist) do
+                local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win))
+                if bufname == vim.fn.fnamemodify(file, ":p") then
+                  file_already_open = true
+                  break
+                end
+              end
+              if file_already_open then break end
+            end
+            if not file_already_open then
+              vim.cmd('tabnew ' .. file)
+            end
+          end
+        end)
+      else
+        print("Failed to get git status")
+      end
+    end,
+  }):start()
+end
+EOF
+
+" 绑定快捷键来调用函数
+nnoremap <leader>w :lua open_git_changed_files_in_tabs()<CR>
 
 
 " 查找文件
@@ -446,7 +542,7 @@ nnoremap <leader>F :lua require('telescope.builtin').find_files()<CR>
 
 " 实时 grep
 nnoremap <leader>f :lua require('telescope.builtin').live_grep()<CR>
-nnoremap <leader>u :lua require('telescope.builtin').resume()<CR>
+nnoremap <leader>h :lua require('telescope.builtin').resume()<CR>
 nnoremap <leader>cz :Telescope z list<CR>
 
 " 列出打开的缓冲区
@@ -471,12 +567,12 @@ nnoremap <leader>j :lua require('telescope.builtin').jumplist()<CR>
 
 nnoremap <leader>o :lua require('telescope.builtin').oldfiles({cwd_only = true})<CR>
 " 列出最近打开的文件
-nnoremap <leader>h :Telescope frecency<CR>
+nnoremap <leader>cf :Telescope frecency<CR>
 nnoremap <leader>ce :Telescope file_browser<CR>
 
 
 nnoremap <leader>cc :lua require('telescope.builtin').colorscheme()<CR>
-nnoremap <leader>cp :lua require('telescope.builtin').pickers()<CR>
+nnoremap <leader>ck :lua require('telescope.builtin').pickers()<CR>
 nnoremap <leader>cqx :lua require('telescope.builtin').quickfix()<CR>
 nnoremap <leader>cqh :lua require('telescope.builtin').quickfixhistory()<CR>
 nnoremap <leader>cl :lua require('telescope.builtin').loclist()<CR>
@@ -485,6 +581,8 @@ nnoremap <leader>cs :lua require('telescope.builtin').spell_suggest()<CR>
 nnoremap <leader>cf :lua require('telescope.builtin').filetypes()<CR>
 nnoremap <leader>ct :lua require('telescope.builtin').tags()<CR>
 nnoremap <leader>de :lua SearchDebug()<CR>
+nnoremap <leader>d :lua require('telescope.builtin').diagnostics()<CR><ESC>
+
 nnoremap <leader>c? :Telescope 
 
 nnoremap <leader>r :%s/apple/banana/gc
@@ -543,7 +641,7 @@ endfunction
 
 
 " 为函数定义一个快捷键，例如 <leader>O, 配合 lazygit 的 ctrl+o 复制路径, 可以快速打开剪切板中的路径
-nnoremap <leader>O :call OpenClipboardPath()<CR>
+nnoremap <leader>cp :call OpenClipboardPath()<CR>
 
 " 你可以添加更多的映射以适应你的需求
 map s <Plug>(easymotion-s2)
@@ -606,7 +704,14 @@ require('lualine').setup {
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
+    lualine_c = {
+      {
+        'buffers',
+        show_filename_only = false, -- 设置为 false 以显示相对路径
+        show_modified_status = true, -- 显示修改状态
+        symbols = { modified = ' ●', alternate_file = '', directory = '' },
+      }
+    },
     lualine_x = {'location'},
     lualine_y = {},
     lualine_z = {}
