@@ -50,10 +50,6 @@ let mapleader = " "
 " 按下 Esc 两次取消搜索高亮
 nnoremap <leader>n :nohlsearch<CR>
 nnoremap ga mZggVGy`Zzz
-nnoremap <C-j> 10j
-nnoremap <C-k> 10k
-xnoremap <C-j> 10j
-xnoremap <C-k> 10k
 nnoremap q <C-w>
 
 " 创建新 tab
@@ -110,8 +106,8 @@ set directory^=$HOME/.config/nvim/swap//
 " 离开自动保存
 autocmd BufLeave * silent! :wa
 
-" 设置终端输入的超时等待时间为 10 毫秒
-" set ttimeoutlen=10
+" 在外部改建机中，设置 shift+ctrl+8 为 esc， 这样可以很快的退出插入模式
+inoremap <C-*> <Esc>
 
 " 初始化 vim-plug
 call plug#begin('~/.local/share/nvim/plugged')
