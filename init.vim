@@ -2,6 +2,7 @@
 " 前置条件
 " ------------------------
 " 安装 newvim, lazygit:
+
 " brew install newvim
 " brew install jesseduffield/lazygit/lazygit
 
@@ -141,6 +142,10 @@ Plug 'kyazdani42/nvim-tree.lua'
 " 安装 copilot.lua
 Plug 'github/copilot.vim'
 
+" 基础能力， 书签等等
+"Plug 'tpope/vim-obsession'
+Plug 'MattesGroeger/vim-bookmarks'
+
 " 安装 copilot.lua
 Plug 'zbirenbaum/copilot.lua'
 
@@ -211,7 +216,7 @@ nnoremap <leader>u :UndotreeToggle<CR>
 let g:blamer_enabled = 1
 
 " 设置显示延迟
-let g:blamer_delay = 1000
+let g:blamer_delay = 1500
 let g:blamer_show_in_insert_modes = 0
 
 
@@ -561,6 +566,7 @@ nnoremap <leader>B :lua require('telescope.builtin').git_branches()<CR>
 nnoremap <leader>C :lua require('telescope.builtin').git_commits()<CR>
 nnoremap <leader>j :lua require('telescope.builtin').jumplist()<CR>
 
+
 nnoremap <leader>o :lua require('telescope.builtin').oldfiles({cwd_only = true})<CR>
 " 列出最近打开的文件
 nnoremap <leader>cf :Telescope frecency<CR>
@@ -600,8 +606,8 @@ nmap gi <Plug>(coc-implementation)
 " 使用 <leader>gr 查找引用
 nmap gr <Plug>(coc-references)
 
-nmap <leader>m <Plug>(coc-format-selected)
-vmap <leader>m <Plug>(coc-format-selected)
+nmap <leader>cm <Plug>(coc-format-selected)
+vmap <leader>cm <Plug>(coc-format-selected)
 
 let g:lazygit_floating_window_winblend = 0 " transparency of floating window
 let g:lazygit_floating_window_use_terminal_vim = 1
@@ -756,6 +762,83 @@ endfunction
 " 使用 vscode 打开当前目录
 nnoremap <leader>vs :call OpenProjectRootInVSCode()<CR>
 
+
+
+" mark --------------------------
+
+" Finds the Git super-project directory.
+function! g:BMWorkDirFileLocation()
+    let filename = 'bookmarks'
+    let location = ''
+    if isdirectory('.git')
+        " Current work dir is git's work tree
+        let location = getcwd().'/.git'
+    else
+        " Look upwards (at parents) for a directory named '.git'
+        let location = finddir('.git', '.;')
+    endif
+    if len(location) > 0
+        return location.'/'.filename
+    else
+        return getcwd().'/.'.filename
+    endif
+endfunction
+
+" Finds the Git super-project directory based on the file passed as an argument.
+function! g:BMBufferFileLocation(file)
+    let filename = 'vim-bookmarks'
+    let location = ''
+    if isdirectory(fnamemodify(a:file, ":p:h").'/.git')
+        " Current work dir is git's work tree
+        let location = fnamemodify(a:file, ":p:h").'/.git'
+    else
+        " Look upwards (at parents) for a directory named '.git'
+        let location = finddir('.git', fnamemodify(a:file, ":p:h").'/.;')
+    endif
+    if len(location) > 0
+        return simplify(location.'/.'.filename)
+    else
+        return simplify(fnamemodify(a:file, ":p:h").'/.'.filename)
+    endif
+endfunction
+
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_auto_save = 1
+
+let g:bookmark_auto_close = 1
+" 覆盖 bookmark 的清除功能, 不然不小心就把书签清除了
+nnoremap mx :BookmarkShowAll<CR>
+nnoremap mc :BookmarkShowAll<CR>
+" 如何避免与 Nerdtree 插件的键绑定冲突
+let g:bookmark_no_default_key_mappings = 1
+function! BookmarkMapKeys()
+    nmap mm :BookmarkToggle<CR>
+    nmap mi :BookmarkAnnotate<CR>
+    nmap mj :BookmarkNext<CR>
+    nmap mk :BookmarkPrev<CR>
+    nmap ma :BookmarkShowAll<CR>
+    nmap mc :BookmarkShowAll<CR>
+    nmap mx :BookmarkShowAll<CR>
+    nmap mX :BookmarkClearAll<CR>
+    nmap mnk :BookmarkMoveUp
+    nmap mnj :BookmarkMoveDown
+endfunction
+function! BookmarkUnmapKeys()
+    unmap mm
+    unmap mi
+    unmap mn
+    unmap mp
+    unmap ma
+    unmap mc
+    unmap mx
+    unmap mkk
+    unmap mjj
+endfunction
+autocmd BufEnter * :call BookmarkMapKeys()
+autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
+
+" mark end ------------------
+
 " 设置快捷键查看 HEAD~0-9 版本的文件差异
 nmap <Leader>0g :Gedit<CR>
 
@@ -782,5 +865,24 @@ nnoremap 18g <c-w>o:Gvdiffsplit HEAD~18:%<cr>
 nnoremap 19g <c-w>o:Gvdiffsplit HEAD~19:%<cr>
 nnoremap 20g <c-w>o:Gvdiffsplit HEAD~20:%<cr>
 
-
+" 自动命令，根据工作目录生成会话文件路径并启动 Obsession
+"augroup AutoSession
+"  autocmd!
+"  autocmd VimEnter * call AutoSessionStart()
+"augroup END
+"
+"function! AutoSessionStart()
+"  " 获取当前工作目录名
+"  let l:session_dir = expand('~/.config/nvim/sessions')
+"  let l:session_name = substitute(getcwd(), '/', '_', 'g') . '.vim'
+"  let l:session_file = l:session_dir . '/' . l:session_name
+"
+"  " 确保会话目录存在
+"  if !isdirectory(l:session_dir)
+"    call mkdir(l:session_dir, "p")
+"  endif
+"
+"  " 启动 Obsession 并指定会话文件路径
+"  execute 'Obsession ' . l:session_file
+"endfunction
 
