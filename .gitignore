@@ -4,3 +4,5 @@ sessions
 profile.log
 undo
 .vim_last
+bookmarks
+.vim-bookmarks
