@@ -154,6 +154,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'nvim-telescope/telescope-z.nvim'
+Plug 'AckslD/nvim-neoclip.lua', {'do': ':UpdateRemotePlugins'}
 Plug 'tami5/sqlite.lua'
 " 使用 vim-abolish 插件与 Telescope 结合来实现替换功能
 Plug 'tpope/vim-abolish'
@@ -439,11 +440,49 @@ telescope.setup {
   },
 }
 
+require('neoclip').setup({
+  history = 1000,
+  enable_persistent_history = true,
+  length_limit = 1048576,
+  continuous_sync = true,
+  db_path = vim.fn.stdpath("data") .. "/neoclip.sqlite3",
+  filter = nil,
+  preview = true,
+  default_register = {'+', '*'},
+  default_register_macros = 'q',
+  enable_macro_history = true,
+  content_spec_column = false,
+  on_paste = {
+    set_reg = false,
+  },
+  on_replay = {
+    set_reg = false,
+  },
+  keys = {
+    telescope = {
+      i = {
+        select = '<cr>',
+        paste = '<c-p>',
+        paste_behind = '<c-k>',
+        replay = '<c-q>',  -- replay a macro
+        delete = '<c-d>',  -- delete an entry
+      },
+      n = {
+        select = '<cr>',
+        paste = 'p',
+        paste_behind = 'P',
+        replay = 'q',
+        delete = 'd',
+      },
+    },
+  },
+})
+
  -- Load the Telescope Frecency extension
 require('telescope').load_extension('frecency')
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('z')
-
+require('telescope').load_extension('neoclip')
 
 function GrepInGitStatus()
   local opts = {}
@@ -468,7 +507,7 @@ function GrepInGitStatus()
 end
 
 vim.api.nvim_set_keymap('n', '<leader>a', ':lua GrepInGitStatus()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>d', ':Telescope diagnostics<CR>', { noremap = true, silent = false })
+-- vim.api.nvim_set_keymap('n', '<leader>d', ':Telescope diagnostics<CR>', { noremap = true, silent = false })
 
 -- 自定义搜索函数
 function SearchDebug()
@@ -571,6 +610,10 @@ nnoremap <leader>o :lua require('telescope.builtin').oldfiles({cwd_only = true})
 " 列出最近打开的文件
 nnoremap <leader>cf :Telescope frecency<CR>
 nnoremap <leader>ce :Telescope file_browser<CR>
+" 查看剪切板
+nnoremap <leader>P :Telescope neoclip<CR>
+
+
 
 
 nnoremap <leader>cc :lua require('telescope.builtin').colorscheme()<CR>
@@ -582,12 +625,13 @@ nnoremap <leader>cr :lua require('telescope.builtin').registers()<CR>
 nnoremap <leader>cs :lua require('telescope.builtin').spell_suggest()<CR>
 nnoremap <leader>cf :lua require('telescope.builtin').filetypes()<CR>
 nnoremap <leader>ct :lua require('telescope.builtin').tags()<CR>
-nnoremap <leader>de :lua SearchDebug()<CR>
+nnoremap <leader>D :lua SearchDebug()<CR>
 nnoremap <leader>d :lua require('telescope.builtin').diagnostics()<CR><ESC>
 
 nnoremap <leader>c? :Telescope 
 
-nnoremap <leader>r :%s/apple/banana/gc
+nnoremap <leader>r <Plug>(coc-rename)
+nnoremap <leader>R :%s/apple/banana/gc
 
 " 定义快捷键打开 nvim-tree
 nnoremap <Leader>e :NvimTreeToggle<CR>
@@ -652,7 +696,7 @@ function! ReopenCukrentBuffer()
   execute 'edit'
 endfunction
 
-nnoremap <leader>R :source $MYVIMRC<CR>:call ReopenCukrentBuffer()<CR>
+nnoremap <leader>L :source $MYVIMRC<CR>:call ReopenCukrentBuffer()<CR>
 
 "if has('nvim')
 "  if empty($NVIM_LISTEN_ADDRESS)
