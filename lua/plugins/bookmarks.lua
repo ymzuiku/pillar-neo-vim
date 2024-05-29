@@ -1,8 +1,3 @@
-vim.g.bookmark_save_per_working_dir = 1
-vim.g.bookmark_auto_save = 1
-vim.g.bookmark_auto_close = 1
-vim.g.bookmark_no_default_key_mappings = 1
-vim.g.vim_bookmarks_save_dir = vim.fn.expand('~/.config/nvim/bookmarks/')
 
 -- 覆盖 bookmark 的清除功能, 不然不小心就把书签清除了
 vim.api.nvim_set_keymap('n', 'mx', ':BookmarkShowAll<CR>', { noremap = true, silent = true })
@@ -43,3 +38,10 @@ vim.api.nvim_create_autocmd('BufEnter', {
     pattern = 'NERD_tree_*',
     callback = BookmarkUnmapKeys
 })
+
+
+vim.g.bookmark_save_per_working_dir = 0
+vim.g.bookmark_auto_save = 1
+vim.g.bookmark_auto_close = 1
+vim.g.bookmark_no_default_key_mappings = 1
+vim.g.vim_bookmarks_save_dir = vim.fn.expand('~/.config/nvim/bookmarks/')
