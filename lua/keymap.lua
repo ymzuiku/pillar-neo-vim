@@ -69,7 +69,6 @@ map('n', '<leader>tr', ':lua require(\'telescope.builtin\').registers()<CR>', op
 map('n', '<leader>ts', ':lua require(\'telescope.builtin\').spell_suggest()<CR>', opts)
 map('n', '<leader>tty', ':lua require(\'telescope.builtin\').filetypes()<CR>', opts)
 map('n', '<leader>tt', ':lua require(\'telescope.builtin\').tags()<CR>', opts)
-map('n', '<leader>D', ':lua SearchDebug()<CR>', opts)
 map('n', '<leader>d', ':lua require(\'telescope.builtin\').diagnostics()<CR><ESC>', opts)
 
 -- Coc 快捷键
@@ -81,6 +80,8 @@ map('n', '<leader>cm', '<Plug>(coc-format-selected)', { noremap = false })
 map('v', '<leader>cm', '<Plug>(coc-format-selected)', { noremap = false })
 map('n', '<leader>r', '<Plug>(coc-rename)', { noremap = false })
 map('n', '<leader>R', ':%s/apple/banana/gc', { noremap = true })
+-- map('n', '<leader>d', ':CocList diagnostics<CR>', opts)
+map('n', '<leader>D', ':lua SearchDebug()<CR>', opts)
 
 -- GitGutter 快捷键
 map('n', 'gj', '<Plug>(GitGutterNextHunk)', { noremap = false })

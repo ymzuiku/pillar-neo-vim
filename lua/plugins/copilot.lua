@@ -1,6 +1,7 @@
 -- copilot.vim 配置
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap('i', '<C-J>', 'copilot#Accept("\\<CR>")', { noremap = true, silent = true, expr = true })
+vim.api.nvim_set_keymap('i', '<Tab>', 'copilot#Accept("\\<CR>")', { silent = true, expr = true, script = true })
 
 -- CoPilot 配置
 require('copilot').setup({

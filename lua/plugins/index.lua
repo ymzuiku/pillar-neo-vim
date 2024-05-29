@@ -28,6 +28,7 @@ require('packer').startup(function(use)
   use 'mbbill/undotree'
 end)
 
+
 require("plugins.bookmarks")
 require("plugins.coc")
 require("plugins.copilot")
@@ -38,3 +39,5 @@ require("plugins.lualine")
 require("plugins.nvim_tree")
 require("plugins.telescope")
 require("plugins.treesitter")
+
+
