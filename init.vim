@@ -151,9 +151,6 @@ Plug 'zbirenbaum/copilot.lua'
 
 " 安装 telescope.nvim 插件
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-frecency.nvim'
-Plug 'nvim-telescope/telescope-file-browser.nvim'
-Plug 'nvim-telescope/telescope-z.nvim'
 Plug 'AckslD/nvim-neoclip.lua', {'do': ':UpdateRemotePlugins'}
 Plug 'tami5/sqlite.lua'
 " 使用 vim-abolish 插件与 Telescope 结合来实现替换功能
@@ -196,9 +193,16 @@ EOF
 "set background=light
 "colorscheme solarized
 "set background=dark
-colorscheme gruvbox
+"colorscheme gruvbox
+colorscheme habamax 
 "colorscheme onedark
 "colorscheme material
+
+" diff 颜色
+"highlight DiffAdd ctermbg=LightGray guibg=LightGray
+"highlight DiffChange ctermfg=Yellow ctermbg=LightGray guifg=Yellow guibg=LightGray
+"highlight DiffDelete ctermfg=Red ctermbg=LightGray guifg=Red guibg=LightGray
+"highlight DiffText ctermfg=Blue ctermbg=LightGray guifg=Blue guibg=LightGray
 
 " 设置 coc.nvim 的配色
 "highlight CocFloating ctermbg=0 guibg=#1c1c1c
@@ -292,7 +296,7 @@ lua <<EOF
 require'nvim-tree'.setup {
   disable_netrw       = true,
   hijack_netrw        = true,
-  open_on_tab         = false,
+  open_on_tab         = true,
   update_focused_file = {
     enable      = true,
     update_cwd  = false,
@@ -321,7 +325,7 @@ require'nvim-tree'.setup {
     timeout = 500,
   },
   view = {
-    width = 40,
+    width = 64,
     side = 'right',
     number = false,
     relativenumber = false,
@@ -333,7 +337,7 @@ require'nvim-tree'.setup {
   },
   actions = {
     open_file = {
-      quit_on_open = true,
+      quit_on_open = false,
     },
   }
 }
@@ -420,23 +424,6 @@ telescope.setup {
   },
   extensions = {
     -- 这里可以添加扩展配置
-    frecency = {
-      db_root = vim.fn.stdpath("data") .. "/databases",
-      show_scores = false,
-      show_unindexed = true,
-      ignore_patterns = {"*.git/*", "*/tmp/*", "*/node_modules/*", "*/.venv/*", "*/.vscode/*"}, 
-      disable_devicons = false,
-        workspaces = {
-          ["conf"]    = "/home/user/.config",
-          ["data"]    = "/home/user/.local/share",
-          ["project"] = "/home/user/projects",
-          ["wiki"]    = "/home/user/wiki"
-        }
-    },
-    file_browser = {
-      theme = "cursor",
-        -- 其他配置选项
-    }
   },
 }
 
@@ -478,10 +465,6 @@ require('neoclip').setup({
   },
 })
 
- -- Load the Telescope Frecency extension
-require('telescope').load_extension('frecency')
-require('telescope').load_extension('file_browser')
-require('telescope').load_extension('z')
 require('telescope').load_extension('neoclip')
 
 function GrepInGitStatus()
@@ -583,7 +566,6 @@ nnoremap <leader>F :lua require('telescope.builtin').find_files()<CR>
 " 实时 grep
 nnoremap <leader>f :lua require('telescope.builtin').live_grep()<CR>
 nnoremap <leader>h :lua require('telescope.builtin').resume()<CR>
-nnoremap <leader>cz :Telescope z list<CR>
 
 " 列出打开的缓冲区
 nnoremap <leader>t :lua require('telescope.builtin').buffers()<CR>
@@ -605,30 +587,32 @@ nnoremap <leader>B :lua require('telescope.builtin').git_branches()<CR>
 nnoremap <leader>C :lua require('telescope.builtin').git_commits()<CR>
 nnoremap <leader>j :lua require('telescope.builtin').jumplist()<CR>
 
+" 查看 LSP 定义
+nnoremap <leader>k :lua require('telescope.builtin').lsp_document_symbols({cwd_only = true})<CR>
 
 nnoremap <leader>o :lua require('telescope.builtin').oldfiles({cwd_only = true})<CR>
 " 列出最近打开的文件
-nnoremap <leader>cf :Telescope frecency<CR>
-nnoremap <leader>ce :Telescope file_browser<CR>
+nnoremap <leader>tf :Telescope frecency<CR>
 " 查看剪切板
 nnoremap <leader>P :Telescope neoclip<CR>
 
 
 
 
-nnoremap <leader>cc :lua require('telescope.builtin').colorscheme()<CR>
-nnoremap <leader>ck :lua require('telescope.builtin').pickers()<CR>
-nnoremap <leader>cqx :lua require('telescope.builtin').quickfix()<CR>
-nnoremap <leader>cqh :lua require('telescope.builtin').quickfixhistory()<CR>
-nnoremap <leader>cl :lua require('telescope.builtin').loclist()<CR>
-nnoremap <leader>cr :lua require('telescope.builtin').registers()<CR>
-nnoremap <leader>cs :lua require('telescope.builtin').spell_suggest()<CR>
-nnoremap <leader>cf :lua require('telescope.builtin').filetypes()<CR>
-nnoremap <leader>ct :lua require('telescope.builtin').tags()<CR>
+
+nnoremap <leader>tc :lua require('telescope.builtin').colorscheme()<CR>
+nnoremap <leader>tk :lua require('telescope.builtin').pickers()<CR>
+nnoremap <leader>tqx :lua require('telescope.builtin').quickfix()<CR>
+nnoremap <leader>tqh :lua require('telescope.builtin').quickfixhistory()<CR>
+nnoremap <leader>tl :lua require('telescope.builtin').loclist()<CR>
+nnoremap <leader>tr :lua require('telescope.builtin').registers()<CR>
+nnoremap <leader>ts :lua require('telescope.builtin').spell_suggest()<CR>
+nnoremap <leader>tty :lua require('telescope.builtin').filetypes()<CR>
+nnoremap <leader>tt :lua require('telescope.builtin').tags()<CR>
 nnoremap <leader>D :lua SearchDebug()<CR>
 nnoremap <leader>d :lua require('telescope.builtin').diagnostics()<CR><ESC>
 
-nnoremap <leader>c? :Telescope 
+nnoremap <leader>t? :Telescope 
 
 nnoremap <leader>r <Plug>(coc-rename)
 nnoremap <leader>R :%s/apple/banana/gc
@@ -652,6 +636,18 @@ nmap gr <Plug>(coc-references)
 
 nmap <leader>cm <Plug>(coc-format-selected)
 vmap <leader>cm <Plug>(coc-format-selected)
+
+
+" coc 功能, 不常用，注释掉
+"nnoremap cR :CocList resume<CR>
+"nnoremap co :CocList outline<CR>
+"nnoremap cd :CocList diagnostics<CR>
+"nnoremap cr :CocList references<CR>
+"nnoremap cf :CocList -I symbols<CR>
+"nnoremap cs :CocList symbols<CR>
+"nnoremap cS :CocList services<CR>
+"nnoremap cl :CocList lists<CR>
+"nnoremap cL :CocList locations<CR>
 
 let g:lazygit_floating_window_winblend = 0 " transparency of floating window
 let g:lazygit_floating_window_use_terminal_vim = 1
@@ -687,7 +683,7 @@ endfunction
 
 
 " 为函数定义一个快捷键，例如 <leader>O, 配合 lazygit 的 ctrl+o 复制路径, 可以快速打开剪切板中的路径
-nnoremap <leader>cp :call OpenClipboardPath()<CR>
+nnoremap <C-y> :call OpenClipboardPath()<CR>
 
 " 你可以添加更多的映射以适应你的需求
 map s <Plug>(easymotion-s2)
@@ -704,11 +700,6 @@ nnoremap <leader>L :source $MYVIMRC<CR>:call ReopenCukrentBuffer()<CR>
 "    call serverstart($NVIM_LISTEN_ADDRESS)
 "  endif
 "endif
-
-
-" 自动打开 nvim-tree
-" autocmd VimEnter * NvimTreeOpen
-
 
 
 " 在 init.vim 文件中加载 packer.nvim

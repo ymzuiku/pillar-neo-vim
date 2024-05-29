@@ -1,0 +1,7 @@
+{
+  "coc.preferences.workspace.symbol.excludePatterns": [
+    "**/node_modules/**",
+    "**/.git/**",
+    "**/dist/**"
+  ]
+}
