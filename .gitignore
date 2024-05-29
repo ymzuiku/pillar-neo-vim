@@ -1,8 +1,8 @@
-session
 sessions
-*/.vim_last
 profile.log
 undo
 .vim_last
+**/.vim_last
 bookmarks
 .vim-bookmarks
+**/.vim-bookmarks
