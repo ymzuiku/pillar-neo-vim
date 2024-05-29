@@ -12,7 +12,7 @@ require('copilot').setup({
       jump_prev = '[[',
       jump_next = ']]',
       accept = '<CR>',
-      refresh = 'gr',
+      refresh = 'cr',
       open = '<M-CR>'
     },
   },
@@ -28,8 +28,8 @@ require('copilot').setup({
     },
   },
   filetypes = {
-    yaml = false,
-    markdown = false,
+    yaml = true,
+    markdown = true,
     help = false,
     gitcommit = false,
     gitrebase = false,
