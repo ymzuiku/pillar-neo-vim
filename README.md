@@ -1,6 +1,6 @@
 ## pillar-neo-vim
 
-use neovim to develop front-end project.
+Use neovim develop nodejs and golang.
 
 ## 前置条件
 
