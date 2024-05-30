@@ -2,6 +2,8 @@
 
 Use neovim develop nodejs and golang.
 
+本着简洁的原则，只保留了最常用的插件，主要是 copilot、LSP、搜索、git、文件管理、代码重构、代码跳转、书签等功能。
+
 ## 前置条件
 
 安装 neovim, lazygit:
@@ -14,14 +16,62 @@ brew install jesseduffield/lazygit/lazygit
 安装 plug 插件:
 
 ```
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
-安装字体: https://www.nerdfonts.com/font-downloads 其中, JetBrainsMono Nerd Font 的小字可读性最高
+安装字体:
 
-推荐 terminal: Alacritty
+https://www.nerdfonts.com/font-downloads 其中, JetBrainsMono Nerd Font 的小字可读性最高
 
-## 常用热键
+安装 terminal:
+
+推荐 Alacritty
+
+## 安装
+
+克隆本工程到本地 ~/.config/nvim
+
+nvim 打开后， 执行:
+
+```sh
+:PackerSync
+```
+
+## pillar-neo-vim 热键
+
+完整的热键，可以查看 lua/keymap.lua 文件
+
+- <leader> 为空格
+- <leader>f 查找文件内容
+- <leader>s 查看 git status
+- <leader>d 查看 problems
+- <leader>a 查看 git status 改过的文件内容
+- <leader>p 查看 git 范围内的内容
+- <leader>e 查看 文件管理器
+- <leader>g 查看 lazygit
+- <leader>o 查看 查看打开过的文件
+- <leader>r 重构变量名
+- <leader>r 当前文件批量改名
+- <leader>w 打开所有 git status 文件
+- <leader>v 查看剪切板内容
+- q 代替 C-w 管理窗口
+- t1-t9 切换 tab
+- to 关闭其他 tab
+- tn 新建 tab
+- 1g-40g 打开当前文件前 1-40 的 diff
+- 0g 关闭 diff
+- gr 查看引用
+- gi 跳转定义
+- gy 跳转类型定义
+- gj 跳转到下一个 git 改动
+- gk 跳转到上一个 git 改动
+- mm 添加书签
+- ma 查看所有书签
+- mj 跳转到下一个书签
+- mk 跳转到上一个书签
+
+## vim 常用默认热键
 
 - 针对单词的操作
 - 替换单词方法： yiw 先复制单词，viwp 再替换另一个单词

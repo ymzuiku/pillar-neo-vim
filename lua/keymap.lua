@@ -59,7 +59,7 @@ map('n', '<leader>j', ':lua require(\'telescope.builtin\').jumplist()<CR>', opts
 map('n', '<leader>k', ':lua require(\'telescope.builtin\').lsp_document_symbols({cwd_only = true})<CR>', opts)
 map('n', '<leader>o', ':lua require(\'telescope.builtin\').oldfiles({cwd_only = true})<CR>', opts)
 map('n', '<leader>tf', ':Telescope frecency<CR>', opts)
-map('n', '<leader>P', ':Telescope neoclip<CR>', opts)
+map('n', '<leader>v', ':Telescope neoclip<CR>', opts)
 map('n', '<leader>tc', ':lua require(\'telescope.builtin\').colorscheme()<CR>', opts)
 map('n', '<leader>tk', ':lua require(\'telescope.builtin\').pickers()<CR>', opts)
 map('n', '<leader>tqx', ':lua require(\'telescope.builtin\').quickfix()<CR>', opts)
