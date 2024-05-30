@@ -8,3 +8,4 @@ bookmarks
 **/.vim-bookmarks
 swap
 plugin
+.DS_Store
