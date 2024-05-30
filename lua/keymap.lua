@@ -94,6 +94,7 @@ map('n', '<leader>ghp', '<Plug>(GitGutterPreviewHunk)', { noremap = false })
 -- Go to the next diagnostic
 map('n', 'zk', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 map('n', 'zj', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+map('n', '<leader>b', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
 
 -- easymotion 快捷键
