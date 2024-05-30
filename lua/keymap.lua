@@ -72,12 +72,12 @@ map('n', '<leader>tt', ':lua require(\'telescope.builtin\').tags()<CR>', opts)
 map('n', '<leader>d', ':lua require(\'telescope.builtin\').diagnostics()<CR><ESC>', opts)
 
 -- Coc 快捷键
-map('n', '<leader>gd', '<Plug>(coc-definition)', { noremap = false })
-map('n', '<leader>gy', '<Plug>(coc-type-definition)', { noremap = false })
-map('n', '<leader>gi', '<Plug>(coc-implementation)', { noremap = false })
-map('n', '<leader>gr', '<Plug>(coc-references)', { noremap = false })
-map('n', '<leader>cm', '<Plug>(coc-format-selected)', { noremap = false })
-map('v', '<leader>cm', '<Plug>(coc-format-selected)', { noremap = false })
+map('n', 'gd', '<Plug>(coc-definition)', { noremap = false })
+map('n', 'gy', '<Plug>(coc-type-definition)', { noremap = false })
+map('n', 'gi', '<Plug>(coc-implementation)', { noremap = false })
+map('n', 'gr', '<Plug>(coc-references)', { noremap = false })
+map('n', 'cm', '<Plug>(coc-format-selected)', { noremap = false })
+map('v', 'cm', '<Plug>(coc-format-selected)', { noremap = false })
 map('n', '<leader>r', '<Plug>(coc-rename)', { noremap = false })
 map('n', '<leader>R', ':%s/apple/banana/gc', { noremap = true })
 -- map('n', '<leader>d', ':CocList diagnostics<CR>', opts)
@@ -89,6 +89,12 @@ map('n', 'gk', '<Plug>(GitGutterPrevHunk)', { noremap = false })
 map('n', '<leader>ghs', '<Plug>(GitGutterStageHunk)', { noremap = false })
 map('n', '<leader>ghr', '<Plug>(GitGutterUndoHunk)', { noremap = false })
 map('n', '<leader>ghp', '<Plug>(GitGutterPreviewHunk)', { noremap = false })
+
+-- LSP 快捷键
+-- Go to the next diagnostic
+map('n', 'zk', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+map('n', 'zj', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+
 
 -- easymotion 快捷键
 map('n', 's', '<Plug>(easymotion-s2)', { noremap = false })

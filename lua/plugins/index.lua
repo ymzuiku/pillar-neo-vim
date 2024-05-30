@@ -1,4 +1,5 @@
 require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim' -- Packer can manage itself
   use 'morhetz/gruvbox'
   use 'neovim/nvim-lspconfig'
   use {
@@ -33,6 +34,7 @@ require('packer').startup(function(use)
 end)
 
 
+require("plugins.lsp")
 require("plugins.bookmarks")
 require("plugins.coc")
 require("plugins.copilot")

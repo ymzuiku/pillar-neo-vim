@@ -152,7 +152,7 @@ _G.packer_plugins = {
   ["sqlite.lua"] = {
     loaded = true,
     path = "/Users/pillar/.local/share/nvim/site/pack/packer/start/sqlite.lua",
-    url = "https://github.com/tami5/sqlite.lua"
+    url = "https://github.com/kkharji/sqlite.lua"
   },
   ["telescope.nvim"] = {
     loaded = true,
@@ -163,11 +163,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/pillar/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
-  },
-  ["vim-abolish"] = {
-    loaded = true,
-    path = "/Users/pillar/.local/share/nvim/site/pack/packer/start/vim-abolish",
-    url = "https://github.com/tpope/vim-abolish"
   },
   ["vim-bookmarks"] = {
     loaded = true,
