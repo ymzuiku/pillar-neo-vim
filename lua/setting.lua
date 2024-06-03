@@ -33,16 +33,12 @@ vim.g.blamer_delay = 1500
 vim.g.blamer_show_in_insert_modes = 0
 
 
--- 自动修复保存时的 ESLint 错误
+-- 保存时使用 LSP 格式化
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = {"*.js", "*.jsx", "*.ts", "*.tsx"},
-  command = "CocCommand eslint.executeAutofix"
-})
-
--- 保存时使用 Prettier 格式化
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = {"*.js", "*.jsx", "*.ts", "*.tsx", "*.json", "*.md", "*.html", "*.css", "*.scss", "*.yaml", "*.yml", "*.vue"},
-  command = "CocCommand prettier.formatFile"
+  pattern = {"*.js", "*.jsx", "*.ts", "*.tsx", "*.json", "*.md", "*.html", "*.css", "*.yaml", "*.yml", "*.vue"},
+  callback = function()
+    vim.lsp.buf.format({ async = true })
+  end,
 })
 
 -- 自动重新加载配置文件

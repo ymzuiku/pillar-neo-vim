@@ -1,4 +1,6 @@
 require("plugins.index")
 require("utils.index")
-require("setting")
 require("keymap")
+require("plugins.keymap")
+require("utils.keymap")
+require("setting")

@@ -1,11 +1,11 @@
 -- nvim-tree 配置
 require('nvim-tree').setup {
   disable_netrw = true,
-  hijack_netrw = true,
+  hijack_netrw = false,
   open_on_tab = true,
   update_focused_file = {
     enable = true,
-    update_cwd = false,
+    update_cwd = true,
     ignore_list = {}
   },
   diagnostics = {
@@ -31,7 +31,7 @@ require('nvim-tree').setup {
     timeout = 500,
   },
   view = {
-    width = 64,
+    width = 40,
     side = 'right',
     number = false,
     relativenumber = false,
@@ -43,7 +43,7 @@ require('nvim-tree').setup {
   },
   actions = {
     open_file = {
-      quit_on_open = true,
+      quit_on_open = false,
     },
   }
 }

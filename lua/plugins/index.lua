@@ -31,6 +31,8 @@ require('packer').startup(function(use)
   use 'kyazdani42/nvim-web-devicons'
   use 'easymotion/vim-easymotion'
   use 'mbbill/undotree'
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'jose-elias-alvarez/nvim-lsp-ts-utils'
 end)
 
 
@@ -46,6 +48,5 @@ require("plugins.nvim_tree")
 require("plugins.telescope")
 require("plugins.treesitter")
 require("plugins.neoclip")
--- require("plugins.nullls")
 
 

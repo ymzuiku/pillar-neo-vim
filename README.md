@@ -55,6 +55,7 @@ nvim 打开后， 执行:
 - <leader>r 当前文件批量改名
 - <leader>w 打开所有 git status 文件
 - <leader>v 查看剪切板内容
+- <leader>x 自动优化动作
 - q 代替 C-w 管理窗口
 - t1-t9 切换 tab
 - to 关闭其他 tab
