@@ -35,7 +35,14 @@ map('n', 'tm7', ':tabmove 7<CR>', opts)
 map('n', 'tm8', ':tabmove 8<CR>', opts)
 map('n', 'tm9', ':tabmove 9<CR>', opts)
 
+-- 保存所有文件并重新加载当前会话
+map('n', 'qa', ':wa | qa!<CR>', { noremap = true, silent = true })
+map('n', 'qe', ':wa | edit<CR>', { noremap = true, silent = true })
 
-
-
-
+-- 在 quickfix 窗口中按 o 键打开文件， quickfix 就是屏幕下半截的小窗口
+vim.api.nvim_exec([[
+  augroup Quickfix
+    autocmd!
+    autocmd FileType qf nnoremap <buffer> o <CR>
+  augroup END
+]], false)

@@ -1,6 +1,14 @@
+
+
 -- Telescope 配置
+local actions = require('telescope.actions')
 require('telescope').setup {
   defaults = {
+   mappings = {
+      n = {
+        ["o"] = actions.select_default, -- 在普通模式下将 'o' 映射为默认选择行为
+      },
+    },
     vimgrep_arguments = {
       'rg',
       '--color=never',
@@ -30,6 +38,16 @@ require('telescope').setup {
     },
     diagnostics = {
       theme = "ivy",
+    },
+    git_bcommits = {
+      mappings = {
+        i = {
+          ["<CR>"] = actions.select_vertical,
+        },
+        n = {
+          ["<CR>"] = actions.select_vertical,
+        },
+      },
     },
   },
 }
