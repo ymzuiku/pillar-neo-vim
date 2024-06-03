@@ -24,7 +24,7 @@ require('packer').startup(function(use)
   use 'nvim-lua/plenary.nvim'
   use 'airblade/vim-gitgutter'
   use 'tpope/vim-fugitive'
-  use 'kdheepak/lazygit.nvim'
+  -- use 'kdheepak/lazygit.nvim'
   use 'lewis6991/gitsigns.nvim'
   use 'hoob3rt/lualine.nvim'
   use 'APZelos/blamer.nvim'
@@ -33,6 +33,8 @@ require('packer').startup(function(use)
   use 'mbbill/undotree'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+  -- vim内打开终端  
+  use 'akinsho/toggleterm.nvim'
 end)
 
 
@@ -42,11 +44,11 @@ require("plugins.coc")
 require("plugins.copilot")
 require("plugins.gitsigns")
 require("plugins.go")
-require("plugins.lazygit")
+-- require("plugins.lazygit")
 require("plugins.lualine")
 require("plugins.nvim_tree")
 require("plugins.telescope")
 require("plugins.treesitter")
 require("plugins.neoclip")
-
+require("plugins.toggleterm")
 
