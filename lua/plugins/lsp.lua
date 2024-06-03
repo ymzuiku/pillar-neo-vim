@@ -51,7 +51,14 @@ nvim_lsp.tsserver.setup({
     always_organize_imports = false, -- 总是组织 import
     })
     ts_utils.setup_client(client)
-  end
+  end,
+   -- 服务器设置
+  settings = {
+    -- 忽略 node_modules 目录
+    tsserver = {
+      exclude = { "node_modules" }
+    }
+  }
 })
 
 -- -- 配置 null-ls

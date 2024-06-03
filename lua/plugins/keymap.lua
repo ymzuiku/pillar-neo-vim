@@ -25,7 +25,8 @@ map('n', '<leader>s', ':lua require(\'telescope.builtin\').git_status()<CR>', op
 map('n', '<leader>B', ':lua require(\'telescope.builtin\').git_branches()<CR>', opts)
 map('n', '<leader>C', ':lua require(\'telescope.builtin\').git_commits()<CR>', opts)
 map('n', '<leader>j', ':lua require(\'telescope.builtin\').jumplist()<CR>', opts)
-map('n', '<leader>k', ':lua require(\'telescope.builtin\').lsp_document_symbols({cwd_only = true})<CR>', opts)
+map('n', '<leader>k', ':lua require(\'telescope.builtin\').lsp_workspace_symbols({cwd_only = true})<CR>', opts)
+map('n', '<leader>d', ':lua require(\'telescope.builtin\').lsp_document_symbols({cwd_only = true})<CR>', opts)
 map('n', '<leader>o', ':lua require(\'telescope.builtin\').oldfiles({cwd_only = true})<CR>', opts)
 map('n', '<leader>tf', ':Telescope frecency<CR>', opts)
 map('n', '<leader>v', ':Telescope neoclip<CR>', opts)
@@ -38,7 +39,7 @@ map('n', '<leader>tr', ':lua require(\'telescope.builtin\').registers()<CR>', op
 map('n', '<leader>ts', ':lua require(\'telescope.builtin\').spell_suggest()<CR>', opts)
 map('n', '<leader>tty', ':lua require(\'telescope.builtin\').filetypes()<CR>', opts)
 map('n', '<leader>tt', ':lua require(\'telescope.builtin\').tags()<CR>', opts)
-map('n', '<leader>d', ':lua require(\'telescope.builtin\').diagnostics()<CR><ESC>', opts)
+map('n', '<leader>m', ':lua require(\'telescope.builtin\').diagnostics()<CR><ESC>', opts)
 
 -- Coc 快捷键
 map('n', 'gd', '<Plug>(coc-definition)', { noremap = false })
