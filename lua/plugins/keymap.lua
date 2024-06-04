@@ -4,7 +4,7 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 -- 快捷键映射
-map('n', '-', ':Neotree source=filesystem position=float <CR>', {noremap = true, silent = true, nowait = true })
+map('n', '-', ':Neotree source=filesystem <CR>', {noremap = true, silent = true, nowait = true })
 
 map('n', '<leader>a', ':lua open_git_changed_files_in_tabs()<CR>', opts)
 -- map('n', '<leader>g', ':LazyGit<CR>', opts)
