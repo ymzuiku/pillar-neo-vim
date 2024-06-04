@@ -1,11 +1,7 @@
 require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim' -- Packer can manage itself
-  use 'morhetz/gruvbox'
-  use 'neovim/nvim-lspconfig'
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
+  use {'wbthomason/packer.nvim', opt = true} -- Packer can manage itself
+  use {'morhetz/gruvbox', opt = true}
+  use {'neovim/nvim-lspconfig', opt = true, event = "BufReadPre"}
   use {'neoclide/coc.nvim', branch = 'release'}
   use 'fatih/vim-go'
   use 'kyazdani42/nvim-tree.lua'
@@ -24,9 +20,8 @@ require('packer').startup(function(use)
   use 'nvim-lua/plenary.nvim'
   use 'airblade/vim-gitgutter'
   use 'tpope/vim-fugitive'
-  -- use 'kdheepak/lazygit.nvim'
   use 'lewis6991/gitsigns.nvim'
-  use 'hoob3rt/lualine.nvim'
+  -- use 'hoob3rt/lualine.nvim'
   use 'APZelos/blamer.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use 'easymotion/vim-easymotion'
@@ -44,11 +39,8 @@ require("plugins.coc")
 require("plugins.copilot")
 require("plugins.gitsigns")
 require("plugins.go")
--- require("plugins.lazygit")
-require("plugins.lualine")
 require("plugins.nvim_tree")
 require("plugins.telescope")
-require("plugins.treesitter")
 require("plugins.neoclip")
 require("plugins.toggleterm")
 
