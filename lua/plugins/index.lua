@@ -1,3 +1,4 @@
+
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Packer can manage itself
   use {'morhetz/gruvbox', opt = true}
@@ -5,11 +6,21 @@ require('packer').startup(function(use)
   -- use {'neoclide/coc.nvim'}
   use 'fatih/vim-go'
   -- use 'kyazdani42/nvim-tree.lua'
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+      branch = "v3.x",
+      requires = { 
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+        "MunifTanjim/nui.nvim",
+        -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+      }
+  }
   use 'github/copilot.vim'
   use 'MattesGroeger/vim-bookmarks'
   use 'zbirenbaum/copilot.lua'
   use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-file-browser.nvim'
+  -- use 'nvim-telescope/telescope-file-browser.nvim'
   use 'kkharji/sqlite.lua'
   use {
     'AckslD/nvim-neoclip.lua',
@@ -31,16 +42,47 @@ require('packer').startup(function(use)
   use 'jose-elias-alvarez/nvim-lsp-ts-utils'
   -- vim内打开终端  
   use 'akinsho/toggleterm.nvim'
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+      branch = "v3.x",
+      requires = { 
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+        "MunifTanjim/nui.nvim",
+        -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+        {
+          's1n7ax/nvim-window-picker',
+          version = '2.*',
+          config = function()
+              require 'window-picker'.setup({
+                  filter_rules = {
+                      include_current_win = false,
+                      autoselect_one = true,
+                      -- filter using buffer options
+                      bo = {
+                          -- if the file type is one of following, the window will be ignored
+                          filetype = { 'neo-tree', "neo-tree-popup", "notify" },
+                          -- if the buffer type is one of following, the window will be ignored
+                          buftype = { 'terminal', "quickfix" },
+                      },
+              },
+          })
+          end,
+        },
+      },
+      config = function ()
+        
+      end
+  }
 end)
 
 
 require("plugins.lsp")
 require("plugins.bookmarks")
--- require("plugins.coc")
 require("plugins.copilot")
 require("plugins.gitsigns")
 require("plugins.go")
--- require("plugins.nvim_tree")
+require("plugins.neo_tree")
 require("plugins.telescope")
 require("plugins.neoclip")
 require("plugins.toggleterm")

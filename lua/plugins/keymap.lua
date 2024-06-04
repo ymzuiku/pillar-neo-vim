@@ -4,16 +4,7 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 -- 快捷键映射
--- map('n', '-', ':NvimTreeFocus<CR>', opts)
--- 自定义函数打开 file_browser 并定位到当前文件所在目录
-_G.open_file_browser = function()
-    local opts = {
-      cwd = vim.fn.expand('%:p:h'), -- 当前文件所在目录
-      hidden = true
-    }
-    require('telescope').extensions.file_browser.file_browser(opts)
-end
-map('n', '-', ':lua _G.open_file_browser()<CR>', { noremap = true, silent = true })
+map('n', '-', ':Neotree source=filesystem position=float <CR>', {noremap = true, silent = true, nowait = true })
 
 map('n', '<leader>a', ':lua open_git_changed_files_in_tabs()<CR>', opts)
 -- map('n', '<leader>g', ':LazyGit<CR>', opts)
