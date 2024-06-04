@@ -4,16 +4,24 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 -- 快捷键映射
-map('n', '-', ':NvimTreeFocus<CR>', opts)
+-- map('n', '-', ':NvimTreeFocus<CR>', opts)
+-- 自定义函数打开 file_browser 并定位到当前文件所在目录
+_G.open_file_browser = function()
+    local opts = {
+      cwd = vim.fn.expand('%:p:h'), -- 当前文件所在目录
+      hidden = true
+    }
+    require('telescope').extensions.file_browser.file_browser(opts)
+end
+map('n', '-', ':lua _G.open_file_browser()<CR>', { noremap = true, silent = true })
 
-map('n', '<leader>w', ':lua open_git_changed_files_in_tabs()<CR>', opts)
+map('n', '<leader>a', ':lua open_git_changed_files_in_tabs()<CR>', opts)
 -- map('n', '<leader>g', ':LazyGit<CR>', opts)
 map('n', '<C-y>', ':lua open_clipboard_path()<CR>', opts)
 map('n', '<leader>L', ':source $MYVIMRC<CR>:lua reopen_current_buffer()<CR>', opts)
-map('n', '<leader>vs', ':lua open_project_root_in_vscode()<CR>', opts)
 
 -- Telescope 快捷键
-map('n', '<leader>F', ':lua require(\'telescope.builtin\').find_files()<CR>', opts)
+map('n', '<leader>P', ':lua require(\'telescope.builtin\').find_files()<CR>', opts)
 map('n', '<leader>f', ':lua require(\'telescope.builtin\').live_grep()<CR>', opts)
 map('n', '<leader>h', ':lua require(\'telescope.builtin\').resume()<CR>', opts)
 map('n', '<leader>b', ':lua require(\'telescope.builtin\').buffers()<CR>', opts)
@@ -24,7 +32,7 @@ map('n', '<leader>s', ':lua require(\'telescope.builtin\').git_status()<CR>', op
 map('n', '<leader>C', ':lua require(\'telescope.builtin\').git_commits()<CR>', opts)
 map('n', '<leader>c', ':lua require(\'telescope.builtin\').git_bcommits()<CR>', opts)
 map('n', '<leader>j', ':lua require(\'telescope.builtin\').jumplist()<CR>', opts)
-map('n', '<leader>k', ':lua require(\'telescope.builtin\').lsp_workspace_symbols({cwd_only = true})<CR>', opts)
+map('n', '<leader>w', ':lua require(\'telescope.builtin\').lsp_workspace_symbols({cwd_only = true})<CR>', opts)
 map('n', '<leader>d', ':lua require(\'telescope.builtin\').lsp_document_symbols({cwd_only = true})<CR>', opts)
 map('n', '=', ':lua require(\'telescope.builtin\').oldfiles({cwd_only = true})<CR>', opts)
 map('n', '<leader>tf', ':Telescope frecency<CR>', opts)
@@ -40,16 +48,22 @@ map('n', '<leader>,ty', ':lua require(\'telescope.builtin\').filetypes()<CR>', o
 map('n', '<leader>,t', ':lua require(\'telescope.builtin\').tags()<CR>', opts)
 map('n', '<leader>m', ':lua require(\'telescope.builtin\').diagnostics()<CR><ESC>', opts)
 
+
 -- Coc 快捷键
-map('n', 'gd', '<Plug>(coc-definition)', { noremap = false })
-map('n', 'gy', '<Plug>(coc-type-definition)', { noremap = false })
-map('n', 'gi', '<Plug>(coc-implementation)', { noremap = false })
-map('n', 'gr', '<Plug>(coc-references)', { noremap = false })
-map('n', 'cm', '<Plug>(coc-format-selected)', { noremap = false })
-map('v', 'cm', '<Plug>(coc-format-selected)', { noremap = false })
-map('n', '<leader>r', '<Plug>(coc-rename)', { noremap = false })
+-- map('n', 'gd', '<Plug>(coc-definition)', { noremap = false })
+-- map('n', 'gy', '<Plug>(coc-type-definition)', { noremap = false })
+-- map('n', 'gi', '<Plug>(coc-implementation)', { noremap = false })
+-- map('n', 'gr', '<Plug>(coc-references)', { noremap = false })
+-- map('n', 'cm', '<Plug>(coc-format-selected)', { noremap = false })
+-- map('v', 'cm', '<Plug>(coc-format-selected)', { noremap = false })
+-- map('n', '<leader>r', '<Plug>(coc-rename)', { noremap = false })
+map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+map('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+map('n', 'gm', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+map('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 map('n', '<leader>R', ':%s/apple/banana/gc', { noremap = true })
--- map('n', '<leader>d', ':CocList diagnostics<CR>', opts)
+-- map('n', '<leadeykr>d', ':CocList diagnostics<CR>', opts)
 map('n', '<leader>D', ':lua SearchDebug()<CR>', opts)
 
 -- GitGutter 快捷键
@@ -70,7 +84,7 @@ map('n', '<leader>x', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 map('n', 's', '<Plug>(easymotion-s2)', { noremap = false })
 
 -- 撤销树
-map('n', '<leader>u', ':UndotreeToggle<CR>', { noremap = true })
+-- map('n', '<leader>u', ':UndotreeToggle<CR>', { noremap = true })
 
 -- Open clipboard path
 map('n', '<C-y>', ':lua open_clipboard_path()<CR>', opts)

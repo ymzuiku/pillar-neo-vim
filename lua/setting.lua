@@ -21,6 +21,52 @@ vim.opt.directory:append('$HOME/.config/nvim/swap//')
 -- 颜色主题
 vim.cmd('colorscheme habamax')
 
+-- function GitBranch()
+--   local handle = io.popen("git branch --show-current 2>/dev/null")
+--   local branch = handle:read("*a")
+--   handle:close()
+--   branch = branch:gsub("\n", "") -- 移除换行符
+--   return branch
+-- end
+
+function Mode()
+  local mode_map = {
+    ['n'] = 'NORMAL',
+    ['i'] = 'INSERT',
+    ['v'] = 'VISUAL',
+    ['V'] = 'V-LINE',
+    [''] = 'V-BLOCK',
+    ['c'] = 'COMMAND',
+    ['r'] = 'REPLACE',
+    ['t'] = 'TERMINAL',
+  }
+  local mode = vim.api.nvim_get_mode().mode
+  return mode_map[mode] or mode
+end
+
+local git_branch = ""
+
+-- Lua 函数获取当前 Git 分支名称
+function GitBranch()
+  if _G.git_branch == nil then
+    local handle = io.popen("git branch --show-current 2>/dev/null")
+    local branch = handle:read("*a")
+    handle:close()
+    branch = branch:gsub("\n", "") -- 移除换行符
+    _G.git_branch = branch
+  end
+  return _G.git_branch
+end
+
+-- 自定义 statusline 显示当前文件的总行数、Git 分支名称和当前模式
+vim.o.statusline = '%{v:lua.Mode()} %{v:lua.GitBranch()} %f %h%m%r (%l/%L) %P'
+
+-- 移除状态栏的背景色
+vim.cmd [[
+  highlight StatusLine guifg=#888888 guibg=NONE
+  highlight StatusLineNC guifg=#888888 guibg=NONE
+]]
+
 -- 离开自动保存
 vim.cmd('autocmd BufLeave * silent! :wa')
 
@@ -68,22 +114,22 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 
 -- 禁用大文件的语法高亮
-vim.api.nvim_exec([[
-  augroup LargeFile
-    autocmd!
-    autocmd BufReadPost * if getfsize(expand("%")) > 5000 | syntax off | endif
-  augroup END
-]], false)
+-- vim.api.nvim_exec([[
+--   augroup LargeFile
+--     autocmd!
+--     autocmd BufReadPost * if getfsize(expand("%")) > 5000 | syntax off | endif
+--   augroup END
+-- ]], false)
 
 -- 对于大文件，可以禁用一些不必要的 LSP 功能，如诊断和符号信息
-vim.api.nvim_exec([[
-  augroup LargeFile
-    autocmd!
-    autocmd BufReadPre * let f=expand("<afile>") | if getfsize(f) > 100*1024
-      \ | set eventignore+=BufRead,BufWinEnter,BufEnter
-      \ | syntax off
-      \ | setlocal noswapfile noundofile
-      \ | set eventignore-=BufRead,BufWinEnter,BufEnter
-      \ | endif
-  augroup END
-]], false)
+-- vim.api.nvim_exec([[
+--   augroup LargeFile
+--     autocmd!
+--     autocmd BufReadPre * let f=expand("<afile>") | if getfsize(f) > 100*1024
+--       \ | set eventignore+=BufRead,BufWinEnter,BufEnter
+--       \ | syntax off
+--       \ | setlocal noswapfile noundofile
+--       \ | set eventignore-=BufRead,BufWinEnter,BufEnter
+--       \ | endif
+--   augroup END
+-- ]], false)
