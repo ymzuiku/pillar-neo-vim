@@ -87,5 +87,6 @@ require("plugins.neo_tree")
 require("plugins.telescope")
 require("plugins.neoclip")
 require("plugins.toggleterm")
+require("plugins.status_bar")
 
 vim.g.did_load_filetypes = 1

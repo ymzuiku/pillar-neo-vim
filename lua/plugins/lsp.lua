@@ -89,3 +89,11 @@ end
 
 
 
+
+-- 保存时使用 LSP 格式化
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = {"*.js", "*.jsx", "*.ts", "*.tsx", "*.json", "*.md", "*.html", "*.css", "*.yaml", "*.yml", "*.vue"},
+  callback = function()
+    vim.lsp.buf.format({ async = true })
+  end,
+})
