@@ -1,5 +1,6 @@
 
 require('packer').startup(function(use)
+  use 'nathom/filetype.nvim'
   use 'wbthomason/packer.nvim' -- Packer can manage itself
   use {'morhetz/gruvbox', opt = true}
   use {'neovim/nvim-lspconfig'}
@@ -87,3 +88,4 @@ require("plugins.telescope")
 require("plugins.neoclip")
 require("plugins.toggleterm")
 
+vim.g.did_load_filetypes = 1

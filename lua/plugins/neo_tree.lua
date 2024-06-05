@@ -17,7 +17,7 @@ require("neo-tree").setup({
   close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
   popup_border_style = "solid",
   enable_git_status = true,
-  enable_diagnostics = true,
+  enable_diagnostics = false,
   open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
   sort_case_insensitive = false, -- used when sorting files and directories in the tree
   sort_function = nil , -- use a custom function for sorting files and directories in the tree 
@@ -30,7 +30,7 @@ require("neo-tree").setup({
   --   end , -- this sorts files and directories descendantly
   default_component_configs = {
     container = {
-      enable_character_fade = true
+      enable_character_fade = false
     },
     indent = {
       indent_size = 2,
@@ -81,19 +81,19 @@ require("neo-tree").setup({
     },
     -- If you don't want to use these columns, you can set `enabled = false` for each of them individually
     file_size = {
-      enabled = true,
+      enabled = false,
       required_width = 64, -- min width of window required to show this column
     },
     type = {
-      enabled = true,
+      enabled = false,
       required_width = 122, -- min width of window required to show this column
     },
     last_modified = {
-      enabled = true,
+      enabled = false,
       required_width = 88, -- min width of window required to show this column
     },
     created = {
-      enabled = true,
+      enabled = false,
       required_width = 110, -- min width of window required to show this column
     },
     symlink_target = {
@@ -243,7 +243,7 @@ require("neo-tree").setup({
     follow_current_file = {
       enabled = true, -- This will find and focus the file in the active buffer every time
       --              -- the current file is changed while the tree is open.
-      leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+      leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
     },
     group_empty_dirs = true, -- when true, empty folders will be grouped together
     show_unloaded = true,

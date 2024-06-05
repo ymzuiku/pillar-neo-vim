@@ -59,7 +59,7 @@ function GitBranch()
 end
 
 -- 自定义 statusline 显示当前文件的总行数、Git 分支名称和当前模式
-vim.o.statusline = '%{v:lua.Mode()} %{v:lua.GitBranch()} %f %h%m%r (%l/%L) %P'
+vim.o.statusline = '%{v:lua.Mode()}  %{v:lua.GitBranch()}  %f  %h%m%r  (%l/%L)  %P'
 
 -- 移除状态栏的背景色
 vim.cmd [[
