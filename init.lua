@@ -1,5 +1,6 @@
-if exists('g:vscode')
-    " VSCode extension
+
+if vim.g.vscode then
+  -- VSCode extension
 else
   require("plugins.index")
   require("utils.index")
@@ -7,4 +8,4 @@ else
   require("utils.keymap")
   require("keymap")
   require("setting")
-endif
+end
